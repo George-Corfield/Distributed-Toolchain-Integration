@@ -8,7 +8,7 @@ We just started.
 <h2>User Stories<h2>
 
 <h2>Gantt Chart Link<h2>
-<div><a href=https://github.com/orgs/spe-uob/projects/119/views/2>Gantt Chart</a></div>
+<a style="font-size":14 href=https://github.com/orgs/spe-uob/projects/119/views/2>Gantt Chart</a>
 
 
 
