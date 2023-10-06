@@ -1,4 +1,6 @@
-<h1>Contents</h1>
+<h1>Distributed Toolchain Integration</h1>
+
+<h2>Contents</h2>
 We just started.
 
 <h2>Project Overview<h2>
