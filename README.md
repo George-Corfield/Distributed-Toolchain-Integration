@@ -1,18 +1,19 @@
-<h1>Distributed Toolchain Integration</h1>
+# Distributed Toolchain Integration
 
-<h2>Contents</h2>
-[Project Overview](#project-overview)
+## Contents
+[Project Overview](#Project-Overview)
+[Stakeholders](#Stakeholders)
+[User-Stories](#User-Stories)
+[Gantt-Chart](#Gantt-Chart)
 
-#project-overview
-<p>We will create an app that will enable the NCC to more easily move thier CAD models through their toolchains to enable a faster and more convienient workflow. </p>
+## Project-Overview
+We will create an app that will enable the NCC to more easily move thier CAD models through their toolchains to enable a faster and more convienient workflow. 
 
-<h2>Stakeholders<h2>
-<p>National Composite Centre.</p>
+## Stakeholders
+National Composite Centre.
 
-<h2>User Stories<h2>
+## User-Stories
 
-<h2>Gantt Chart Link<h2>
-<a href=https://github.com/orgs/spe-uob/projects/119/views/2>Gantt Chart</a>
-
-
+## Gantt-Chart
+[Gantt Chart](#https://github.com/orgs/spe-uob/projects/119/views/2)
 
