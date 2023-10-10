@@ -1,0 +1,17 @@
+1. Can you provide a brief overview of the project's objectives and goals?
+2. What specific challenges or issues are you currently facing with your toolchain development?
+3. What is the current solution being used, and what are the problems/shortcomings of the current solution?
+
+a. Could you provide more detailed requirements including the technical aspects such as langauages and frameworks
+   as well as any security and access control requirements.
+b. Are there any specific file and variable storage needs, along with permissions for different stakeholders?
+
+Toolchain Modules and Integration:
+a. Can you list the modules or software solutions currently used in your toolchain?
+b. What types of data, parameters, and 3D models need to be passed between these modules for optimization and iteration?
+c. What are the key reasons for keeping these modules in different locations for intellectual property and development reasons?
+
+a. Can you elaborate on the specific data management, automated data transfer, external interface, and data security challenges you foresee?
+b. Are there any limitations imposed by your IT department that need to be considered during the project?
+
+a. What are your expectations for the proposed test case? What criteria should it meet to be considered representative of the NCC problem? How are we going to test this system?
