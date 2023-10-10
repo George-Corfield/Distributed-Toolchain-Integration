@@ -19,5 +19,5 @@ National Composite Centre.
 ## User-Stories
 
 ## Gantt-Chart
-[Gantt Chart](#https://github.com/orgs/spe-uob/projects/119/views/2)
+[Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
 
