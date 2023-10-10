@@ -4,11 +4,10 @@
 [Project Overview](#project-overview)
 
 #project-overview
-<h2>Project Overview<h2>
-We will create an app that will enable the NCC to more easily move thier CAD models through their toolchains to enable a faster and more convienient workflow. 
+<p>We will create an app that will enable the NCC to more easily move thier CAD models through their toolchains to enable a faster and more convienient workflow. </p>
 
 <h2>Stakeholders<h2>
-National Composite Centre.
+<p>National Composite Centre.</p>
 
 <h2>User Stories<h2>
 
