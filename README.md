@@ -14,7 +14,7 @@
 We will create an app that will enable the NCC to more easily move thier CAD models through their toolchains to enable a faster and more convienient workflow. 
 
 ## Stakeholders
-National Composite Centre.
+National Composite Centre..
 
 ## User-Stories
 
