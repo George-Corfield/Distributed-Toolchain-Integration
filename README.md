@@ -20,16 +20,27 @@ This system will be need to be able to:
 * Communicate across the internet or a local network as the simulations will be run on seperate computers/servers.
 * Include security features as data stored in each part may be sensitive and/or patented or protected in some other way. Many of the NCC's Members are defence companies which will introduce more security requirements.
 
+## Client
+[The National Composites Centre (NCC)](https://www.nccuk.com/) 
+
 ## Stakeholders
 National Composite Centre and its members including BAE Systems, Dassault Systemes, Rolls Royce, Aramco, Airbus and more.
 
 ## User-Stories
 An engineer at the NCC wants a system to connect the toolchains together so that it is quick and easy to optimise the component they are working on.
 
-An engineer at the NCC wants a system that allows them to run simulations on a server that is not physically accessible to allow them to optimise their component.
+An engineer at the NCC wants a system that allows them to easily run simulations on a server that is not physically accessible to allow them to optimise their component.
 
 ## Ethics
 [Ethics](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/ETHICS.md)
 
+## Team Members 
+Dylan Quinton  
+
+Demyan Hibbard  
+
+George Corfield
+
 ## Gantt-Chart
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
+
