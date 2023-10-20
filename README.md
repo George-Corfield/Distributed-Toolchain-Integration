@@ -11,7 +11,7 @@
 
 [Ethics](#Ethics)
 
-[Team Members](#Team-Memebers)
+[Team Members](#Team-Members)
 
 [Gantt-Chart](#Gantt-Chart)
 
