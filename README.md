@@ -3,11 +3,19 @@
 ## Contents
 [Project Overview](#Project-Overview)
 
+[Client](#Client)
+
 [Stakeholders](#Stakeholders)
 
 [User-Stories](#User-Stories)
 
+[Ethics](#Ethics)
+
+[Team Members](#Team-Memebers)
+
 [Gantt-Chart](#Gantt-Chart)
+
+[License](#License)
 
 
 ## Project-Overview
@@ -34,7 +42,7 @@ An engineer at the NCC wants a system that allows them to easily run simulations
 ## Ethics
 [Ethics](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/ETHICS.md)
 
-## Team Members 
+## Team-Members 
 Dylan Quinton  
 
 Demyan Hibbard  
@@ -44,3 +52,5 @@ George Corfield
 ## Gantt-Chart
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
 
+## License
+[Distributed under an MIT license.](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/LICENSE)
