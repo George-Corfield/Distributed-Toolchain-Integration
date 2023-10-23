@@ -67,7 +67,7 @@ The system that is created will have limitations. They will be listed here in du
 ## Definitions
 * CAD stands for Computer Aided Design.
 * A component is a CAD model of a physical part of a product.
-* Parameters (aka results/output variables/responses) are the resulting values of a simulation. They care calculated by the simulation and passed back to the user.
+* Parameters (aka results/output variables/responses) are the resulting values of a simulation. They are calculated by the simulation and passed back to the user.
 * System refers to the software that we are building.
 * Parametric data is any data that stores parameters or variables.
 * Non-Parametric data is any data that is more complex than a series of simple values.
