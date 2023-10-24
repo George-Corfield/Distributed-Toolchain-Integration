@@ -27,21 +27,21 @@ A Database is needed and will be chosen in due time.
 A framework is needed to control the UI and backend.
 
 ## Requirements
-| Requirement | Rationale |
-| ----------- | --------- |
-| Store parametric and non-parametric data for the components | The server can send correct the data to the required modules |
-| Store parametric and non-parametric data securely | CAD, simulations etc. |
-| Allow for the data to be accessed programmatically | The platform needs to allow data to be accessed through external scrips/programs |
-| Track the source of all data added to the system | Each data set to be traced back to a defined level eg. material data source |
-| Allow testing data to be easily available | Engineers can see the results of their tests |
-| Facilitate future changes and updates |  |
-| Allow for the requirements of components to be altered within a specified range |  |
-| Use a form of version control for the requirements |  |
-| Use a form of version control for the data |  |
-| Have a review system that informs the relevant parties of changes |  |
-| Enable validation and certification |  |
-| Have a glossary |  |
-| Permissions | Security to stop users from accessing each others data |
+| Index | Requirement | Rationale |
+| ----- | ----------- | --------- |
+| 1 | Store parametric and non-parametric data for the components | The server can send correct the data to the required modules |
+| 2 | Store parametric and non-parametric data securely | CAD, simulations etc. |
+| 3 | Allow for the data to be accessed programmatically | The platform needs to allow data to be accessed through external scrips/programs |
+| 4 | Track the source of all data added to the system | Each data set to be traced back to a defined level eg. material data source |
+| 5 | Allow testing data to be easily available | Engineers can see the results of their tests |
+| 6 | Facilitate future changes and updates |  |
+| 7 | Allow for the requirements of components to be altered within a specified range |  |
+| 8 | Use a form of version control for the requirements |  |
+| 9 | Use a form of version control for the data |  |
+| 10 | Have a review system that informs the relevant parties of changes |  |
+| 11 | Enable validation and certification |  |
+| 12 | Have a glossary |  |
+| 13 | Permissions | Security to stop users from accessing each others data |
 
 ### MVP Requirements
 This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 3, 5, 6, 7, 12.
