@@ -42,6 +42,11 @@ A framework is needed to control the UI and backend.
 11. Enable validation and certification.
 12. Have a glossary.
 
+##Requirements
+| Requirement | Rational |
+| ----------- | -------- |
+| Store parametric and non-parametric data for the components | This is the reason |
+
 ### MVP Requirements
 This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 3, 5, 6, 7, 12.
 
