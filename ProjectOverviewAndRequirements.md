@@ -46,6 +46,17 @@ A framework is needed to control the UI and backend.
 | Requirement | Rational |
 | ----------- | -------- |
 | Store parametric and non-parametric data for the components | This is the reason |
+| Store parametric and non-parametric data securely.
+3. Allow for the data to be accessed programmatically.
+4. Track the source of all data added to the system.
+5. Allow testing data to be easily available.
+6. Facilitate future changes and updates.
+7. Allow for the requirements of components to be altered within a specified range.
+8. Use a form of version control for the requirements.
+9. Use a form of version control for the data.
+10. Have a review system that informs the relevant parties of changes.
+11. Enable validation and certification.
+12. Have a glossary.
 
 ### MVP Requirements
 This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 3, 5, 6, 7, 12.
