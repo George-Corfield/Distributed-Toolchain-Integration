@@ -41,6 +41,7 @@ A framework is needed to control the UI and backend.
 | Have a review system that informs the relevant parties of changes |  |
 | Enable validation and certification |  |
 | Have a glossary |  |
+| Permissions | Security to stop users from accessing each others data |
 
 ### MVP Requirements
 This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 3, 5, 6, 7, 12.
