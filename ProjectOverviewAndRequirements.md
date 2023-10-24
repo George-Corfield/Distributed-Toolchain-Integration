@@ -28,7 +28,7 @@ A framework is needed to control the UI and backend.
 
 ## Requirements
 | Requirement | Rationale |
-| ----------- | -------- |
+| ----------- | --------- |
 | Store parametric and non-parametric data for the components | The server can send correct the data to the required modules |
 | Store parametric and non-parametric data securely | CAD, simulations etc. |
 | Allow for the data to be accessed programmatically | The platform needs to allow data to be accessed through external scrips/programs |
