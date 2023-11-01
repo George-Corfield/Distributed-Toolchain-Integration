@@ -37,7 +37,7 @@ This system will be need to be able to:
 A full document for the Project Overview and Requirements is available [here](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
 ## Tech-Stack
-The Tech Stack and System architecture are available [here](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/TectStackAndArchitecture/TechStackAndArchitecture.md)
+The Tech Stack and System architecture are available [here](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/TechStackAndArchitecture.md)
 
 ## Client
 
@@ -55,7 +55,7 @@ An engineer at the NCC wants a system that allows them to easily run simulations
 
 ## Ethics
 
-[Ethics](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/ETHICS.md)
+[Ethics](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/ETHICS.md)
 
 ## Team-Members
 
@@ -71,4 +71,4 @@ George Corfield
 
 ## License
 
-[Distributed under an MIT license.](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/LICENSE)
+[Distributed under an MIT license.](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/LICENSE)
