@@ -1,27 +1,81 @@
 # Possible Solutions
 ## Content 
-* Web App
-* Desktop app
-* Server Calculations
-* Cloud
+### [Front End](#Front-End) 
+* [Web App](#Web-App)
+* [Desktop app](#Desktop-App)
+* [Command Line](#Command-Line)
 
-## Web App
 
-A web app can be used to solve this problem. It will be accessed across the internet using an internet browser. This will allow for a Graphical User Interface. This will also allow the system to be accessible through the internet. The system will need appropriate security to deal with the issues that can arise from this.
+### [Back End](#Back-End)
+* [Local](#Local)
+* [Server](#Server)
+* [Cloud](#Cloud)
 
-## Desktop App
+### [Proposed Solutions](#Proposed-Solutions)
 
-## Server Calculations
-A server can be set up, that can be accessed locally using a simple script or the command line. It will receive requirements and the component data and then it will iterate on the component and send back the parameters. This solution will require the smallest code base however it could be difficult to use without a graphical user interface. This solution will work best in a local environment. This is for security reasons, as if the system is accessible through the internet then anyone will be able to send network traffic to it which can result in targeted cyber attacks. These attacks could attempt to steal data from the system or just disable it entirely. A firewall and authentication can be used to alleviate these threats.
+## Summary
+The Solution can be made from combinations of the following front and backends.
 
+## Front End
+
+### Web-App
+
+A web app can be used for the front end. This will provide the users with a full Graphical User Interface that is accessible through any web browser. It is likely that this solution will use a server or cloud backend. 
 
 | Pros| Cons| 
 | ----- | ----------- | 
-| No data is stored on the system so security issues are much simpler to navigate. | It may take longer as the file will have to be resent to the server every time calculations are done. |
-| The system will be much easier to maintain as less technologies will be used to build it. | Allowing traffic from the internet can lead to cyber attacks that extra security is needed to deal with. | 
-| - | - | 
-| - | - | 
+| Full Graphical user interface. | Maintenance will be needed. |
+| Accessible through any web browser. |  |
 
 
+### Desktop-App
 
-## Cloud
+A Desktop app can be used for the front end. This can use any of the suggested backends.
+
+| Pros| Cons| 
+| ----- | ----------- | 
+| Full Graphical User Interface. | Maintenance will be difficult as regular updates are needed. |
+| Compatible with any backend type. | Different versions for different operating systems are needed. |
+
+### Command-Line
+This is the simplest way to communicate with the backend. A set of simple commands can be made to send the data to the backend. Would work best with a local backend.
+
+| Pros| Cons| 
+| ----- | ----------- | 
+| Very simple, practically no maintenance needed. | No/limited Graphical User Interface. |
+|  | Different versions for different operating systems are needed. |
+
+## Back End
+
+### Local
+The backend can be stored locally on each machine. 
+
+| Pros| Cons| 
+| ----- | ----------- | 
+| Simple to maintain. | Low/no security measures needed. |
+| Files will not be sent across the internet improving security and speed. | Different versions for different operating systems are needed. |
+| Cheap. | All the simulation software and modules must be installed on each machine and cannot be shared easily. |
+|  | Speed dependent on the chosen machine and cannot be altered. |
+
+### Server
+The backend can be run on a server owned by the client.
+
+| Pros| Cons| 
+| ----- | ----------- | 
+| Complete control over the server. | It may take longer as the file will have to be sent to the server. |
+| Easier to develop and test. | Strong security measures needed. | 
+|  | Low/No fault tolerance. | 
+|  | Expensive as the server must be bought and maintained. | 
+|  | Limited ability to scale the system. | 
+
+### Cloud
+The backend can be stored in the cloud. 
+
+| Pros| Cons| 
+| ----- | ----------- | 
+| The server is not your responsibility to maintain. | It may take longer as the file will have to be sent to the server. |
+| Strong fault tolerant. | Strong security measures needed. | 
+| Speed dependent on the speed of the server, so it can be increased and decreased. | Expensive as you must pay for the use of the server. | 
+| Easy to scale the system. |  | 
+
+## Proposed-Solutions
