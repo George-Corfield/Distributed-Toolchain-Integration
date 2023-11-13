@@ -1,5 +1,6 @@
 # Possible Solutions
 ## Content 
+### [Summary](#Summary)
 ### [Front End](#Front-End) 
 * [Web App](#Web-App)
 * [Desktop app](#Desktop-App)
