@@ -34,13 +34,13 @@ A framework is needed to control the UI and backend.
 | 3 | Allow for the data to be accessed programmatically | The platform needs to allow data to be accessed through external scrips/programs |
 | 4 | Track the source of all data added to the system | Each data set to be traced back to a defined level eg. material data source |
 | 5 | Allow testing data to be easily available | Engineers can see the results of their tests |
-| 6 | Facilitate future changes and updates |  |
-| 7 | Allow for the requirements of components to be altered within a specified range |  |
-| 8 | Use a form of version control for the requirements |  |
-| 9 | Use a form of version control for the data |  |
-| 10 | Have a review system that informs the relevant parties of changes |  |
-| 11 | Enable validation and certification |  |
-| 12 | Have a glossary |  |
+| 6 | Facilitate future changes and updates | Requirements have the ability to be changed and updated |
+| 7 | Allow for the requirements of components to be altered within a specified range | The requirement can be specified between a range e.g. Dia. Between 10mm-50mm |
+| 8 | Use a form of version control for the requirements | Protects requirements from both any errors and unintended consequences |
+| 9 | Use a form of version control for the data | Protects data from both any errors and unintended consequences |
+| 10 | Have a review system that informs the relevant parties of changes | All parties invloved (especially users) must know if changes to the system occur |
+| 11 | Enable validation and certification | The system should prompt or facilitate a V&V strategy |
+| 12 | Have a glossary | So there is no confusion about defintions |
 | 13 | Permissions | Security to stop users from accessing each others data |
 
 ### MVP Requirements
