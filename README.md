@@ -31,6 +31,10 @@ This system will be need to be able to:
 
 A full document for the Project Overview and Requirements is available [here](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
+
+## Tech-Stack
+The Tech Stack and System architecture are available [here](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/TechStackAndArchitecture.md)
+
 ## Client
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
 
@@ -43,7 +47,9 @@ An engineer at the NCC wants a system to connect the toolchains together so that
 An engineer at the NCC wants a system that allows them to easily run simulations on a server that is not physically accessible to allow them to optimise their component.
 
 ## Ethics
-[Ethics](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/ETHICS.md)
+
+[Ethics](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/ETHICS.md)
+
 
 ## Team-Members 
 Dylan Quinton  
@@ -56,4 +62,5 @@ George Corfield
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
 
 ## License
-[Distributed under an MIT license.](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/dev/LICENSE)
+[Distributed under an MIT license.](https://github.com/spe-uob/2023-DistributedToolchainIntegration/blob/main/LICENSE)
+
