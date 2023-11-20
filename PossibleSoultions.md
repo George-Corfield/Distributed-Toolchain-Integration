@@ -45,6 +45,7 @@ This is the simplest way to communicate with the backend. A set of simple comman
 | ----- | ----------- | 
 | Very simple, practically no maintenance needed. | No/limited Graphical User Interface. |
 |  | Different versions for different operating systems are needed. |
+|  | Dependant on users' knowledge and experience with command line |
 
 ## Back End
 
@@ -80,3 +81,10 @@ The backend can be stored in the cloud.
 | Easy to scale the system. |  | 
 
 ## Proposed-Solutions
+
+### Summary
+Client has expressed a preference to have a server for the backend.
+The web app is a superior option to both the desktop app and command line. The full GUI allows for a better user experience than the command line and it also requires less maintenace and regular updates than the desktop app.
+
+### Web-App with Server
+The most feasable solution is a web app with a server. This provides us with a full GUI that can be accessed using any web browser, the server will run and owned by the client.
