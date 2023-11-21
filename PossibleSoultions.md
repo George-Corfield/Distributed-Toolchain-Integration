@@ -1,3 +1,4 @@
+
 # Possible Solutions
 ## Content 
 ### [Summary](#Summary)
@@ -84,7 +85,13 @@ The backend can be stored in the cloud.
 
 ### Summary
 Client has expressed a preference to have a server for the backend.
-The web app is a superior option to both the desktop app and command line. The full GUI allows for a better user experience than the command line and it also requires less maintenace and regular updates than the desktop app.
+The web app is a superior option to both the desktop app and command line. The full GUI allows for a better user experience than the command line and it also requires less maintenance and regular updates than the desktop app.
 
-### Web-App with Server
-The most feasable solution is a web app with a server. This provides us with a full GUI that can be accessed using any web browser, the server will run and owned by the client.
+### Solution 1: Web-App with Server
+The most feasible solution is a combination of a web-app and server. This provides us with a full GUI that can be accessed using any web browser, the server will run and owned by the client. This provides the benefit of being OS independent, it will be accessible locally even if the internet is lost, the client has complete control over the system and it is easier to develop and maintain than a cloud solution.
+This is the chosen solution. [A link to the Tech Stack and Architecture is here.](./TechStackAndArchitecture.md)
+
+### Solution 2: Desktop-App with Server
+Another feasible solution is to use a desktop-app and server. This will also provide a full GUI however it can only be accessed using an app. This app will need to be built and distributed to any machines that need to use the software. The app will also need different versions for different operating systems and hardware (for example: Intel Mac, Apple silicon Mac, Windows 32-bit, Windows 64-bit, Linux etc). This makes maintenance of the system very costly, time consuming and difficult as each version of the software may need to be updated and maintained separately. This can also introduce other security risks as part of the software is now on other computers.
+Below is a basic architecture diagram for this solution:
+![Architecture Diagram for the Desktop-App Server solution.](./assets/DesktopArchitecture.png)
