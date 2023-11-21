@@ -93,3 +93,5 @@ This is the chosen solution. [A link to the Tech Stack and Architecture is here.
 
 ### Solution 2: Desktop-App with Server
 Another feasible solution is to use a desktop-app and server. This will also provide a full GUI however it can only be accessed using an app. This app will need to be built and distributed to any machines that need to use the software. The app will also need different versions for different operating systems and hardware (for example: Intel Mac, Apple silicon Mac, Windows 32-bit, Windows 64-bit, Linux etc). This makes maintenance of the system very costly, time consuming and difficult as each version of the software may need to be updated and maintained separately. This can also introduce other security risks as part of the software is now on other computers.
+Below is a basic architecture diagram for this solution:
+![Architecture Diagram for the Desktop-App Server solution.](./assets/DesktopArchitecture.png)
