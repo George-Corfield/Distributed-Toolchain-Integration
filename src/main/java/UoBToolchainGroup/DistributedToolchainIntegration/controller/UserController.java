@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.RequestMethod;
 // import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
+
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 
 
 @Controller
 public class UserController {
-    private final UserService userService;
-
     @Autowired
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
+    private UserService userService;
+
 
     @GetMapping("/users")
     public List<User> getUsersList(){
