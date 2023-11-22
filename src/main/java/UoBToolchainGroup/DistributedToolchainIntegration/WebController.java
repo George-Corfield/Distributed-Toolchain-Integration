@@ -13,4 +13,9 @@ public class WebController {
         model.addAttribute("greeting", "Hello " + name);
         return "index";
     }
+
+    @GetMapping(value = "/login")
+    public String login(Model model){
+        return "login";
+    }
 }
