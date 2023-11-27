@@ -5,7 +5,7 @@
 * SpringBoot
 * mongoDB
 
-A NoSQL database was chosen as we will need to store parametric and non-parametric data. Examples of data types we will be storing are floats, integers, strings and files for components and simulations.
+MongoDB was chosen as we will need to store parametric and non-parametric data. Examples of data types we will be storing are floats, integers, strings and files for components and simulations.
 
 Python will be used to create control scripts. These scripts will be responsible for taking components and their requirements from the database, connecting to the modules and then using the modules to iterate over the requirements.
 

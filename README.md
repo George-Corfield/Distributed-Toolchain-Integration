@@ -3,6 +3,10 @@
 ## Contents
 [Project Overview](#Project-Overview)
 
+[Tech-Stack](#Tech-stack)
+
+[Setup-Instructions](#Setup-instructions)
+
 [Client](#Client)
 
 [Stakeholders](#Stakeholders)
@@ -34,6 +38,15 @@ A full document for the Project Overview and Requirements is available [here](./
 
 ## Tech-Stack
 The Tech Stack and System architecture are available [here](./documentation/TechStackAndArchitecture.md)
+
+## Setup-Instructions
+To setup the project please do the following as of 27/11/2023
+
+1. Download the repository.
+2. Install Java 17.
+3. Install Python 3.
+4. Install MongoDB.
+
 
 ## Client
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
