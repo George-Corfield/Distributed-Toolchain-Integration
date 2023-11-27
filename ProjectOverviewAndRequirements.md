@@ -23,8 +23,11 @@ Python is a particularly suited to this project for the following reasons:
 * It is commonly used in engineering and scientific applications meaning the Users are likely familiar with it. This will satisfy the requirement of the system being extendable by the users.
 * A python API is available for the majority of the modules that are being used. This will make integration with the tool much easier as wrappers will not need to be made for those tools. 
 
-A Database is needed and will be chosen in due time.
-A framework is needed to control the UI and backend.
+The chosen Database is mongoDB as it is a noSQL databse. This will make it much easier to store parametric and non-parametric data and have that data associated with different users.
+
+The SpringBoot framework has been chosen as it is easy to use and will allow for a connection to the mongoDB database through java and can also be easily connected to the python backend.
+
+A link to the full Technology stack is [here](./TechStackAndArchitecture.md).
 
 ## Requirements
 | Index | Requirement | Rationale |
