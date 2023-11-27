@@ -29,11 +29,11 @@ This system will be need to be able to:
 * Communicate across the internet or a local network as the simulations will be run on seperate computers/servers.
 * Include security features as data stored in each part may be sensitive and/or patented or protected in some other way. Many of the NCC's Members are defence companies which will introduce more security requirements.
 
-A full document for the Project Overview and Requirements is available [here](./ProjectOverviewAndRequirements.md), as well as the proposed solution.
+A full document for the Project Overview and Requirements is available [here](./documentation/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
 
 ## Tech-Stack
-The Tech Stack and System architecture are available [here](./TechStackAndArchitecture.md)
+The Tech Stack and System architecture are available [here](./documentation/TechStackAndArchitecture.md)
 
 ## Client
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
@@ -48,7 +48,7 @@ An engineer at the NCC wants a system that allows them to easily run simulations
 
 ## Ethics
 
-[Ethics](./ETHICS.md)
+[Ethics](./documentation/ETHICS.md)
 
 
 ## Team-Members 
@@ -62,5 +62,5 @@ George Corfield
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
 
 ## License
-[Distributed under an MIT license.](./LICENSE)
+[Distributed under an MIT license.](./documentation/LICENSE)
 
