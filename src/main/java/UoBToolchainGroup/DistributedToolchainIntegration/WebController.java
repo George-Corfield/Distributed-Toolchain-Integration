@@ -13,4 +13,11 @@ public class WebController {
         model.addAttribute("greeting", "Hello " + name);
         return "index";
     }
+
+    @GetMapping(value = "/python")
+    public String python(Model model){
+        String res = PythonCaller.call("src\\main\\python\\test.py");
+        model.addAttribute("greeting", res);
+        return "index";
+    }
 }
