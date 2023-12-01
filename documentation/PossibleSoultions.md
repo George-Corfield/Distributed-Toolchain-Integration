@@ -1,18 +1,18 @@
 # Possible Solutions
 ## Content
-### [Summary](#Summary)
+[Summary](#Summary)
 
-### [Front End](#Front-End)
-* [Web App](#Web-App)
-* [Desktop app](#Desktop-App)
-* [Command Line](#Command-Line)
+[Front-End](#Front-End)
+* [Web-App](#Web-App)
+* [Desktop-app](#Desktop-App)
+* [Command-Line](#Command-Line)
 
-### [Back End](#Back-End)
+[Back-End](#Back-End)
 * [Local](#Local)
 * [Server](#Server)
 * [Cloud](#Cloud)
   
-### [Proposed Solutions](#Proposed-Solutions)
+[Proposed-Solutions](#Proposed-Solutions)
 ## Summary
 The Solution can be made from combinations of the following front and backends.
 
@@ -103,4 +103,4 @@ This Solution is unfeasible. While it comes with the benefits of: having a full 
 
 ### Solution 4: Web/Desktop-App using Peer to Peer
 
-This solution is unfeasible. A peer to peer network could be used. Each computer on the network would provide compute power for simulations and storage for files. Benefits: quite fast, very fault tolerant, easy to share files and data. The drawbacks are security. Peer to peer networks are much easier to infiltrate, this is especially a problem when the data on the network is sensitive or private. Another major issue is that for the network to work some computers must be on and connected to the network at all times. If everyone lives in the same time zone it is a real possibility that at night all the computers get shut off, preventing anyone from accessing the network. These issues makes the peer to peer network an unfeasible solution.
+This solution is unfeasible. A peer to peer network could be used. Each computer on the network would provide compute power for simulations and storage for files. Benefits:  Very fault tolerant, easy to share files and data. The drawbacks are security. Peer to peer networks are much easier to infiltrate, this is especially a problem when the data on the network is sensitive or private. Another major issue is that for the network to work some computers must be on and connected to the network at all times. If everyone lives in the same time zone it is a real possibility that at night all the computers get shut off, preventing anyone from accessing the network. These issues makes the peer to peer network an unfeasible solution.
