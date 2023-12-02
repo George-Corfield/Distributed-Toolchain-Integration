@@ -4,14 +4,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.ArrayList;
 
 public class PythonCaller {
 
-    public static String call(String filePath) {
+    public static String call(String filePath, String[] args) {
         try {
+
+            //build the command
+            List<String> command = new ArrayList<String>();
+            command.add("py");
+            command.add(filePath);
+            for(String elem : args){
+                command.add(elem);
+            }
+
             // Build the command to execute the Python script
-            ProcessBuilder processBuilder = new ProcessBuilder("py", filePath);
-            //processBuilder.directory(new File(System.getProperty("user.dir")));
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
 
             // Start the process
             Process process = processBuilder.start();
