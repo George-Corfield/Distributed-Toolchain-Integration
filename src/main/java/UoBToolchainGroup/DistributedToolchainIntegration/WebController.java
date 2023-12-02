@@ -23,7 +23,7 @@ public class WebController {
     }
 
         @GetMapping(value = "/pythonAdd")
-    public String pythonAdd(@RequestParam(value = "val", required = false, defaultValue = "1") String value,
+    public String pythonAdd(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
                         Model model){
         String[] args = {"add", "1", "2", "3", value};
         String res = PythonCaller.call("src\\main\\python\\test.py", args);
