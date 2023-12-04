@@ -13,4 +13,21 @@ public class WebController {
         model.addAttribute("greeting", "Hello " + name);
         return "index";
     }
+
+    @GetMapping(value = "/pythonFoo")
+    public String pythonFoo(Model model){
+        String[] args = {"foo"};
+        String res = PythonCaller.call("src\\main\\python\\test.py", args);
+        model.addAttribute("greeting", res);
+        return "index";
+    }
+
+        @GetMapping(value = "/pythonAdd")
+    public String pythonAdd(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
+                        Model model){
+        String[] args = {"add", "1", "2", "3", value};
+        String res = PythonCaller.call("src\\main\\python\\test.py", args);
+        model.addAttribute("greeting", res);
+        return "index";
+    }
 }
