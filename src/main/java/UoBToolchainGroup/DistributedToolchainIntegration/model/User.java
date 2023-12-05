@@ -12,7 +12,12 @@ public class User {
     private String firstName;
     private String lastName;
 
+    public User(){
+        super();
+    }
+
     public User(String id, String firstName, String lastName){
+        super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

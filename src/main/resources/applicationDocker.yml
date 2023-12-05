@@ -1,4 +1,0 @@
-spring:
-  data:
-    mongodb:
-      uri: "mongodb://administrator:password@localhost:27017/TestDB"
