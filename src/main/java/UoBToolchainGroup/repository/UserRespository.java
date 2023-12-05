@@ -1,4 +1,4 @@
-package UoBToolchainGroup.DistributedToolchainIntegration;
+package UoBToolchainGroup.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

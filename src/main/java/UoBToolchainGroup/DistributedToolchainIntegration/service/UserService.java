@@ -3,8 +3,8 @@ package UoBToolchainGroup.DistributedToolchainIntegration.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import UoBToolchainGroup.DistributedToolchainIntegration.UserRespository;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
+import UoBToolchainGroup.repository.UserRespository;
 
 import java.util.List;
 
