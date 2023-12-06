@@ -31,5 +31,11 @@ public class WebController {
         String res = PythonCaller.call("src\\main\\python\\test.py", args);
         model.addAttribute("greeting", res);
         return "index";
+                        }
+    
+    @GetMapping(value = "/login")
+    public String login(Model model){
+        return "login";
     }
 }
+
