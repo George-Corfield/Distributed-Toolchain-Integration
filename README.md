@@ -59,6 +59,8 @@ An engineer at the NCC wants a system to connect the toolchains together so that
 
 An engineer at the NCC wants a system that allows them to easily run simulations on a server that is not physically accessible to allow them to optimise their component.
 
+As a client to the NCC I want a secure way for the components to be optimised so that we don't risk leaking information to competitors.  
+
 ## Ethics
 
 [Ethics](./documentation/ETHICS.md)
