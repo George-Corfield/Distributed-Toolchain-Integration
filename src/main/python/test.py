@@ -1,39 +1,42 @@
-#This works as follows:
-#From the ProcessBuilder, this program should be passes the function as the first argument
-#and then all of the arguments to the function after that.
-#then the main function will be called and it will run the function and print the output. 
-#I need to stress this, YOU CANNOT USE PRINT OTHER THAN FOR OUTPUT.
-#If you do, whatever you print will be sent back to the process builder.
+# used for unit testing 
+# to run a test use while in the python directory:
+#   py -m unittest
+#
+# preferably this gets moved to the test folder, but
+# when moved to the test folder it cant discover testModule and the following error is returned
+#
+#ImportError: Failed to import test module: test
+#Traceback (most recent call last):
+#  File "C:\Users\dylan\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 436, in _find_e 436, in _find_test_path
+#    module = self._get_module_from_name(name)
+#  File "C:\Users\dylan\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 377, in _get_me 377, in _get_module_from_name
+#    __import__(name)
+#  File "S:\Uni-Coursework\2023-DistributedToolchainIntegration\src\test\java\UoBToolchainGroup\DistributedToup\DistributedToolchainIntegration\test.py", line 8, in <module>
+#    import testModule
+#ModuleNotFoundError: No module named 'testModule'
+#
+# I have tried the following
+# adding an __init__.py file to both the test folder and the python folder.
+# attempting to modify the PYTHONPATH variable
+# attempting to use code to set the path
+#
+# Any other ideas would be appreciated.
 
-#Here are example commands:
+import unittest
+import testModule
 
-# To run from the terminal:
-# py src\main\python\test.py foo
+class TestModule(unittest.TestCase):
 
-# To run using the PythonCaller class:
-# String res = PythonCaller.call("src\\main\\python\\test.py");
+    def test_sum(self):
+        self.assertEqual(testModule.add([1,2,3]), 6, 'Sum failed.')
 
-import sys
+    def test_foo(self):
+        self.assertEqual(testModule.foo(), "Test String", "Foo failed.")
 
-def main(args):
-    match args[1]:
-        case "foo":
-            print(foo())
-        case "add":
-            print(add(args[2:]))
-        case _:
-            print("Error: Function not found.")
+    def test_optimiseReq(self):
+        lower = 3
+        upper = 10
+        self.assertTrue(lower <= testModule.optimiseReq([lower, upper]) <= upper)
 
-
-def add(args):
-    sum = 0
-    for num in args:
-        sum += int(num)
-    return sum
-
-def foo():
-    return "Test String"
-
-if __name__ == "__main__":
-    main(sys.argv)
-
+if __name__ == '__main__':
+    unittest.main()
