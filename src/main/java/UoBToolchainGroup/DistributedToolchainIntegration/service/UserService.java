@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
-import UoBToolchainGroup.repository.UserRespository;
+import UoBToolchainGroup.DistributedToolchainIntegration.repository.UserRespository;
 
 import java.util.List;
 
