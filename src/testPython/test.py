@@ -22,8 +22,11 @@
 #
 # Any other ideas would be appreciated.
 
-import unittest
-import testModule
+import unittest, sys
+
+sys.path.append("..")
+
+from main.python import testModule
 
 class TestModule(unittest.TestCase):
 
