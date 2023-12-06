@@ -30,7 +30,7 @@ def main(args):
 def add(args):
     sum = 0
     for num in args:
-        sum += int(num)
+        sum += float(num)
     return sum
 
 def optimiseReq(args):
