@@ -27,7 +27,7 @@ The chosen Database is mongoDB as it is a noSQL databse. This will make it much 
 
 The SpringBoot framework has been chosen as it is easy to use and will allow for a connection to the mongoDB database through java and can also be easily connected to the python backend.
 
-A link to the full Technology stack is [here](./TechStackAndArchitecture.md).
+A link to the full Technology stack is [here](./documentation/TechStackAndArchitecture).
 
 ## Requirements
 | Index | Requirement | Rationale |
