@@ -112,7 +112,7 @@ Another feasible solution is to use a desktop-app and server. This will also pro
 
 Below is a basic architecture diagram for this solution:
 
-![Architecture Diagram for the Desktop-App Server solution.](./assets/DesktopArchitecture.png)
+![Architecture Diagram for the Desktop-App Server solution.](../assets/DesktopArchitecture.png)
 
 ### Solution 3: Desktop-App with Local Backend
 
