@@ -19,7 +19,7 @@ public class WebController {
     @GetMapping(value = "/pythonFoo")
     public String pythonFoo(Model model){
         String[] args = {"foo"};
-        String res = PythonCaller.call("src\\main\\python\\test.py", args);
+        String res = PythonCaller.call("src\\main\\python\\testModule.py", args);
         model.addAttribute("greeting", res);
         return "index";
     }
@@ -28,7 +28,7 @@ public class WebController {
     public String pythonAdd(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
                         Model model){
         String[] args = {"add", "1", "2", "3", value};
-        String res = PythonCaller.call("src\\main\\python\\test.py", args);
+        String res = PythonCaller.call("src\\main\\python\\testModule.py", args);
         model.addAttribute("greeting", res);
         return "index";
                         }

@@ -13,7 +13,7 @@
 # To run using the PythonCaller class:
 # String res = PythonCaller.call("src\\main\\python\\test.py");
 
-import sys
+import sys, random
 
 def main(args):
     match args[1]:
@@ -21,6 +21,8 @@ def main(args):
             print(foo())
         case "add":
             print(add(args[2:]))
+        case "optimiseReq":
+            print(optimiseReq(args[2:]))
         case _:
             print("Error: Function not found.")
 
@@ -28,8 +30,11 @@ def main(args):
 def add(args):
     sum = 0
     for num in args:
-        sum += int(num)
+        sum += float(num)
     return sum
+
+def optimiseReq(args):
+    return random.randint(min(args),max(args))
 
 def foo():
     return "Test String"
