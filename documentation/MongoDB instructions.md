@@ -60,5 +60,28 @@ Download MongoDB community edition from [MongodB Download Page](https://www.mong
       `"C:\Program Files\MongoDB\Server\7.0\bin\mongod.exe" --dbpath="C:\path\to\database\storage\data\db"`
 
       The MongoDB database server is running correctly if `[initandlisten] waiting for connections` is displayed
-           
+
+## Connecting to MongoDB
+
+1. Once running `mongod`, open a new terminal/ command interpreter
+- for MacOS, run `mongosh`
+- for Windows, run `mongosh.exe`
+
+2. Once `mongosh` has connected to `mongod`, switch to the `admin` database
+
+     `use admin`
+
+3. Ensure `db.getUsers()` returns `[ ]`
+
+4. Create a new user which gives access to all databases, and allows this user to edit any database
+
+    `db.createUser({ user: 'administrator', pwd: 'password', roles: [ {role : 'root', db: 'admin'} ] })`
+
+5. Ensure `db.getUsers()` now returns:
+
+   `[ { "_id" : "admin.administrator", "user" : "administrator", "db" : "admin", "roles" : [ { "role" : "root", "db" : "admin" } ], "mechanisms" : [ "SCRAM-SHA-1", "SCRAM-SHA-256" ] } ]`
+
+6. The database should now connect to the application as long as `mongod` is running. MongoDB Compass can be used to connect to the database to provide a GUI to view collections.
+
+
 
