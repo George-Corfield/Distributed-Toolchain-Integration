@@ -29,9 +29,10 @@ def main(args):
 
 def add(args):
     sum = 0
+    args.append(1)
     for num in args:
         sum += float(num)
-    return sum
+    return str(sum)
 
 def optimiseReq(args):
     return random.randint(min(args),max(args))
