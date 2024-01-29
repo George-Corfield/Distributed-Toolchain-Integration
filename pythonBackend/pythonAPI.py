@@ -1,6 +1,5 @@
 from flask import Flask, request
 from python import testModule
-import json
 
 app = Flask(__name__)
 
