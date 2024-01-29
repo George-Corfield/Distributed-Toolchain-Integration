@@ -45,7 +45,7 @@ To setup the project please do the following as of 27/11/2023
 1. Download the repository.
 2. Install Java 17.
 3. Install Python 3.
-4. Install MongoDB.
+4. [Install MongoDB](./documentation/MongoDBinstructions.md).
 
 
 ## Client
