@@ -36,7 +36,7 @@ public class WebController {
     public String pythonAdd2(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
                         Model model) throws IOException, InterruptedException{
         HttpClient client = HttpClient.newHttpClient();
-        String jsonData = "{\"array\": [1,2,3,99,3.2]}";
+        String jsonData = "{\"array\": [1,2,3,2401,3.2]}";
         HttpRequest req = HttpRequest.newBuilder().uri(URI.create("http://localhost:5000/add"))
                                     .header("Content-Type", "application/json")
                                     .POST(BodyPublishers.ofString(jsonData)) 

@@ -1,11 +1,10 @@
 from flask import Flask, request
-from python import testModule
 
 app = Flask(__name__)
 
 @app.route('/foo')
 def foo():
-    return testModule.foo()
+    return "test String"
 
 @app.route('/add', methods=['POST'])
 def add():
