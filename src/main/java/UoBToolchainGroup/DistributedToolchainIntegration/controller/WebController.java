@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
@@ -26,6 +27,20 @@ public class WebController {
                         Model model) throws IOException, InterruptedException{
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest req = HttpRequest.newBuilder().uri(URI.create("http://localhost:5000/foo")).GET().build();
+        HttpResponse<String> res = client.send(req, BodyHandlers.ofString());
+        model.addAttribute("greeting", res.body());
+        return "index";
+    }
+
+    @GetMapping(value = "/add")
+    public String pythonAdd2(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
+                        Model model) throws IOException, InterruptedException{
+        HttpClient client = HttpClient.newHttpClient();
+        String jsonData = "{\"array\": [1,2,3,99,3.2]}";
+        HttpRequest req = HttpRequest.newBuilder().uri(URI.create("http://localhost:5000/add"))
+                                    .header("Content-Type", "application/json")
+                                    .POST(BodyPublishers.ofString(jsonData)) 
+                                    .build();
         HttpResponse<String> res = client.send(req, BodyHandlers.ofString());
         model.addAttribute("greeting", res.body());
         return "index";

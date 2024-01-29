@@ -1,5 +1,6 @@
 from flask import Flask, request
 from python import testModule
+import json
 
 app = Flask(__name__)
 
@@ -7,10 +8,13 @@ app = Flask(__name__)
 def foo():
     return testModule.foo()
 
-@app.route('/add')
+@app.route('/add', methods=['POST'])
 def add():
-    num1 = float(request.args.get('num1'))
-    return testModule.add([num1])
+    json = request.get_json()
+    sum = 0
+    for elem in json['array']:
+        sum += float(elem)
+    return str(sum)
 
 #@app.route('/optimiseReq')
 #def add():
