@@ -48,6 +48,8 @@ To setup the project please do the following as of 30/01/2024
 4. [Install Dependencies for the Python back-end](./documentation/dependencies.md)
 4. [Install MongoDB](./documentation/MongoDBinstructions.md).
 
+## Containerization
+To use docker containers with this project use this [guide](./documentation/Containerization.md).
 
 ## Client
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
