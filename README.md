@@ -40,13 +40,16 @@ A full document for the Project Overview and Requirements is available [here](./
 The Tech Stack and System architecture are available [here](./documentation/TechStackAndArchitecture.md)
 
 ## Setup-Instructions
-To setup the project please do the following as of 27/11/2023
+To setup the project please do the following as of 30/01/2024
 
 1. Download the repository.
 2. Install Java 17.
 3. Install Python 3.
+4. [Install Dependencies for the Python back-end](./documentation/dependencies.md)
 4. [Install MongoDB](./documentation/MongoDBinstructions.md).
 
+## Containerization
+To use docker containers with this project use this [guide](./documentation/Containerization.md).
 
 ## Client
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
