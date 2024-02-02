@@ -30,7 +30,7 @@ public class UserController {
         List<User> users  = userService.getAllUsers();
         for (int i = 0; i < users.size() ; i++){
             User user = users.get(i);
-            System.out.println(user.getId());
+            System.out.println(user.getUserId());
             System.out.println(user.getUsername());
             System.out.println(user.getEmail());
             System.out.println(user.getRole());

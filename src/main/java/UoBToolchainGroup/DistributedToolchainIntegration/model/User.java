@@ -1,6 +1,5 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
-import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private String id;
+    private String userId;
     private String username;
     private String password;
     private String email;
@@ -19,21 +18,21 @@ public class User {
         super();
     }
 
-    public User(String id, String username, String password, String email, int role){
+    public User(String userId, String username, String password, String email, int role){
         super();
-        this.id = id;
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String id) {
+        this.userId = id;
     }
 
     public String getUsername() {
