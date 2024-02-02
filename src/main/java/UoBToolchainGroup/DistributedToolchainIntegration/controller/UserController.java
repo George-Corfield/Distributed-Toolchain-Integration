@@ -31,8 +31,9 @@ public class UserController {
         for (int i = 0; i < users.size() ; i++){
             User user = users.get(i);
             System.out.println(user.getId());
-            System.out.println(user.getFirstName());
-            System.out.println(user.getLastName());
+            System.out.println(user.getUsername());
+            System.out.println(user.getEmail());
+            System.out.println(user.getRole());
         }
         model.addAttribute("newUser", new User());
         model.addAttribute("usersList", users );

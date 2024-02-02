@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
+import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,18 +10,22 @@ public class User {
 
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
+    private String username;
+    private String password;
+    private String email;
+    private int role;
 
     public User(){
         super();
     }
 
-    public User(String id, String firstName, String lastName){
+    public User(String id, String username, String password, String email, int role){
         super();
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
     }
 
     public String getId() {
@@ -31,21 +36,39 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+
 
 }
 
