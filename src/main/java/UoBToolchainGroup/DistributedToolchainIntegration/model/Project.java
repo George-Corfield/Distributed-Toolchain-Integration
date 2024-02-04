@@ -11,13 +11,11 @@ public class Project {
 
     @Id
     private String projectId;
-    @Id
     private String partId;
     private String projectName;
     private String partName;
     private String projectDescription;
     private Date projectStartDate;
-    @Id
     private String userId;
 
     public Project(){
