@@ -3,6 +3,10 @@
 ## Contents
 [Project Overview](#Project-Overview)
 
+[Tech-Stack](#Tech-stack)
+
+[Setup-Instructions](#Setup-instructions)
+
 [Client](#Client)
 
 [Stakeholders](#Stakeholders)
@@ -29,11 +33,23 @@ This system will be need to be able to:
 * Communicate across the internet or a local network as the simulations will be run on seperate computers/servers.
 * Include security features as data stored in each part may be sensitive and/or patented or protected in some other way. Many of the NCC's Members are defence companies which will introduce more security requirements.
 
-A full document for the Project Overview and Requirements is available [here](./ProjectOverviewAndRequirements.md), as well as the proposed solution.
+A full document for the Project Overview and Requirements is available [here](./documentation/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
 
 ## Tech-Stack
-The Tech Stack and System architecture are available [here](./TechStackAndArchitecture.md)
+The Tech Stack and System architecture are available [here](./documentation/TechStackAndArchitecture.md)
+
+## Setup-Instructions
+To setup the project please do the following as of 30/01/2024
+
+1. Download the repository.
+2. Install Java 17.
+3. Install Python 3.
+4. [Install Dependencies for the Python back-end](./documentation/dependencies.md)
+4. [Install MongoDB](./documentation/MongoDBinstructions.md).
+
+## Containerization
+To use docker containers with this project use this [guide](./documentation/Containerization.md).
 
 ## Client
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
@@ -46,9 +62,11 @@ An engineer at the NCC wants a system to connect the toolchains together so that
 
 An engineer at the NCC wants a system that allows them to easily run simulations on a server that is not physically accessible to allow them to optimise their component.
 
+As a client to the NCC I want a secure way for the components to be optimised so that we don't risk leaking information to competitors.  
+
 ## Ethics
 
-[Ethics](./ETHICS.md)
+[Ethics](./documentation/ETHICS.md)
 
 
 ## Team-Members 
@@ -62,5 +80,5 @@ George Corfield
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
 
 ## License
-[Distributed under an MIT license.](./LICENSE)
+[Distributed under an MIT license.](./documentation/LICENSE)
 
