@@ -10,8 +10,8 @@ public class OptimisationVar {
     
     @Id 
     private String variableId;
-    private String cadFileId;
-    private String projectId;
+    private CadFile cadFile;
+    private Project project;
     private String variableName;
     private float initVal;
     private float lowBound;
@@ -21,11 +21,11 @@ public class OptimisationVar {
         super();
     }
 
-    public OptimisationVar(String variableId, String cadFileId, String projectId, String variableName, float initVal, float lowBound, float upBound){
+    public OptimisationVar(String variableId, CadFile cadFile, Project project, String variableName, float initVal, float lowBound, float upBound){
         super();
         this.variableId = variableId;
-        this.cadFileId = cadFileId;
-        this.projectId = projectId;
+        this.cadFile = cadFile;
+        this.project = project;
         this.variableName = variableName;
         this.initVal = initVal;
         this.lowBound = lowBound;
@@ -40,20 +40,20 @@ public class OptimisationVar {
         this.variableId = variableId;
     }
 
-    public String getCadFileId() {
-        return cadFileId;
+    public CadFile getCadFile() {
+        return cadFile;
     }
 
-    public void setCadFileId(String cadFileId) {
-        this.cadFileId = cadFileId;
+    public void setCadFile(CadFile cadFile) {
+        this.cadFile = cadFile;
     }
 
-    public String getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public String getVariableName() {
