@@ -10,9 +10,9 @@ public class CadFile {
 
     @Id
     private String cadFileId;
-    private String userId;
-    private String projectId;
-    private String partId;
+    private User user;
+    private Project project;
+    private Part part;
     private String fileName;
     
 
@@ -21,12 +21,12 @@ public class CadFile {
         super();
     }
 
-    public CadFile(String cadFileId, String userId, String projectId, String partId, String fileName){
+    public CadFile(String cadFileId, User user, Project project, Part part, String fileName){
         super();
         this.cadFileId = cadFileId;
-        this.userId = userId;
-        this.projectId = projectId;
-        this.partId = partId;
+        this.user = user;
+        this.project = project;
+        this.part = part;
         this.fileName = fileName;
     }
 
@@ -38,28 +38,28 @@ public class CadFile {
         this.cadFileId = cadFileId;
     }
 
-    public String getUserId(){
-        return userId;
+    public User getUser(){
+        return user;
     }
 
-    public void setUserId(String userId){
-        this.userId = userId;
+    public void setUser(User user){
+        this.user = user;
     }
 
-    public String getProjectId(){
-        return projectId;
+    public Project getProject(){
+        return project;
     }
 
-    public void setProjectId(String projectId){
-        this.projectId = projectId;
+    public void setProject(Project project){
+        this.project = project;
     }
 
-    public String getPartId(){
-        return partId;
+    public Part getPart(){
+        return part;
     }
 
-    public void setPartId(String partId){
-        this.partId = partId;
+    public void setPart(Part part){
+        this.part = part;
     }
 
     public String getFileName(){
