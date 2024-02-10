@@ -8,7 +8,6 @@ public class Part {
     
     @Id
     private String partId;
-
     private String partName;
     private String partDescription;
 

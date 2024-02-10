@@ -3,6 +3,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.sql.Date;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,9 +14,9 @@ public class OptimisationResult {
     
     @Id
     private String resultId;
-    private String projectId;
-    private String partId;
-    private String paramsId;
+    private Project project;
+    private Part part;
+    private OptimisationParams params;
     private int iterNum;
     private String braidFile;
     private String meshFile;
@@ -25,11 +26,11 @@ public class OptimisationResult {
         super();
     }
 
-    public OptimisationResult(String resultId, String projectId, String partId, String paramsId, int iterNum, String braidFile, String meshFile, Date resultTime){
+    public OptimisationResult(String resultId, Project project, Part part, OptimisationParams params, int iterNum, String braidFile, String meshFile, Date resultTime){
         this.resultId = resultId;
-        this.projectId = projectId;
-        this.partId = partId;
-        this.paramsId = paramsId;
+        this.project = project;
+        this.part = part;
+        this.params = params;
         this.iterNum = iterNum;
         this.braidFile = braidFile;
         this.meshFile = meshFile;
@@ -44,28 +45,28 @@ public class OptimisationResult {
         this.resultId = resultId;
     }
 
-    public String getProjectId() {
-        return projectId;
+    public Project getProjectId() {
+        return project;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setProjectId(Project project) {
+        this.project = project;
     }
 
-    public String getPartId() {
-        return partId;
+    public Part getPartId() {
+        return part;
     }
 
-    public void setPartId(String partId) {
-        this.partId = partId;
+    public void setPartId(Part part) {
+        this.part = part;
     }
 
-    public String getParamsId() {
-        return paramsId;
+    public OptimisationParams getParamsId() {
+        return params;
     }
 
-    public void setParamsId(String paramsId) {
-        this.paramsId = paramsId;
+    public void setParamsId(OptimisationParams params) {
+        this.params = params;
     }
 
     public int getIterNum() {
