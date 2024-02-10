@@ -4,28 +4,24 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "OptimisationVar")
+@Document(collection = "Variables")
 
-public class OptimisationVar {
+public class Variable {
     
     @Id 
     private String variableId;
-    private CadFile cadFile;
-    private Project project;
     private String variableName;
     private float initVal;
     private float lowBound;
     private float upBound;
 
-    public OptimisationVar(){
+    public Variable(){
         super();
     }
 
-    public OptimisationVar(String variableId, CadFile cadFile, Project project, String variableName, float initVal, float lowBound, float upBound){
+    public Variable(String variableId, String variableName, float initVal, float lowBound, float upBound){
         super();
         this.variableId = variableId;
-        this.cadFile = cadFile;
-        this.project = project;
         this.variableName = variableName;
         this.initVal = initVal;
         this.lowBound = lowBound;
@@ -40,21 +36,6 @@ public class OptimisationVar {
         this.variableId = variableId;
     }
 
-    public CadFile getCadFile() {
-        return cadFile;
-    }
-
-    public void setCadFile(CadFile cadFile) {
-        this.cadFile = cadFile;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
 
     public String getVariableName() {
         return variableName;
