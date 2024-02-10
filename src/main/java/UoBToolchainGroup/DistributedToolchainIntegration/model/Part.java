@@ -13,19 +13,21 @@ public class Part {
     private String partDescription;
     private List<Variable> variables;
     private List<Variable> optimisationVariables;
+    private OptimisationParams optimisationParams;
 
     public Part(){
         super();
     }
 
     public Part(String partId, String partName, String partDescription,
-    List<Variable> variables, List<Variable> optimisationVariables){
+    List<Variable> variables, List<Variable> optimisationVariables, OptimisationParams optimisationParams){
         this.partId = partId;
         this.partName = partName;
         this.partDescription = partDescription;
         this.variables = variables;
         this.optimisationVariables = optimisationVariables;
-    }
+        this.optimisationParams = optimisationParams;
+    }   
 
     public String getPartId(){
         return partId;
@@ -65,6 +67,14 @@ public class Part {
 
     public void setOptimisationVariables(List<Variable> optimisationVariables){
         this.optimisationVariables = optimisationVariables;
+    }
+
+    public OptimisationParams getOptimisationParams(){
+        return optimisationParams;
+    }
+
+    public void setOptimisationParams(OptimisationParams optimisationParams){
+        this.optimisationParams = optimisationParams;
     }
 
 
