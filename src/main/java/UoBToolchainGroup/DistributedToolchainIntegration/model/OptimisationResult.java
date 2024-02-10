@@ -6,6 +6,7 @@ import java.sql.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Document(collection = "OptimisationResult")
 
@@ -14,26 +15,24 @@ public class OptimisationResult {
     
     @Id
     private String resultId;
-    private Project project;
     private Part part;
     private OptimisationParams params;
     private int iterNum;
-    private String braidFile;
-    private String meshFile;
+    private List<Variable> outputVar;
+    private List<Variable> optimisedVar;
     private Date resultTime;
 
     public OptimisationResult(){
         super();
     }
 
-    public OptimisationResult(String resultId, Project project, Part part, OptimisationParams params, int iterNum, String braidFile, String meshFile, Date resultTime){
+    public OptimisationResult(String resultId, Part part, OptimisationParams params, int iterNum, List<Variable> outputVar, List<Variable> optimisedVar, Date resultTime){
         this.resultId = resultId;
-        this.project = project;
         this.part = part;
         this.params = params;
         this.iterNum = iterNum;
-        this.braidFile = braidFile;
-        this.meshFile = meshFile;
+        this.outputVar = outputVar;
+        this.optimisedVar = optimisedVar;
         this.resultTime = resultTime;
     }
 
@@ -43,14 +42,6 @@ public class OptimisationResult {
 
     public void setResultId(String resultId) {
         this.resultId = resultId;
-    }
-
-    public Project getProjectId() {
-        return project;
-    }
-
-    public void setProjectId(Project project) {
-        this.project = project;
     }
 
     public Part getPartId() {
@@ -77,20 +68,20 @@ public class OptimisationResult {
         this.iterNum = iterNum;
     }
 
-    public String getBraidFile() {
-        return braidFile;
+    public List<Variable> getOutputVar() {
+        return outputVar;
     }
 
-    public void setBraidFile(String braidFile) {
-        this.braidFile = braidFile;
+    public void setOutputVar(List<Variable> outputVar) {
+        this.outputVar = outputVar;
     }
 
-    public String getMeshFile() {
-        return meshFile;
+    public List<Variable> getOptimisedVar() {
+        return optimisedVar;
     }
 
-    public void setMeshFile(String meshFile) {
-        this.meshFile = meshFile;
+    public void setOptimisedVar(List<Variable> optimisedVar) {
+        this.optimisedVar = optimisedVar;
     }
 
     public Date getResultTime() {
