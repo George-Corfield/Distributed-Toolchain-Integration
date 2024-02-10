@@ -16,7 +16,7 @@ public class OptimisationResult {
     @Id
     private String resultId;
     private Part part;
-    private OptimisationParams params;
+    private OptimisationParams params; //do we need this here?
     private int iterNum;
     private List<Variable> outputVar;
     private List<Variable> optimisedVar;
