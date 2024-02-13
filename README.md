@@ -35,11 +35,6 @@ This system will be need to be able to:
 
 A full document for the Project Overview and Requirements is available [here](./documentation/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
-
-## Tech-Stack
-The Tech Stack and System architecture are available [here](./documentation/TechStackAndArchitecture.md)
-
-
 ## Tech Stack
 * Python
 * Java
@@ -92,7 +87,6 @@ As a client to the NCC I want a secure way for the components to be optimised so
 ## Ethics
 
 [Ethics](./documentation/ETHICS.md)
-
 
 ## Team-Members 
 Dylan Quinton  
