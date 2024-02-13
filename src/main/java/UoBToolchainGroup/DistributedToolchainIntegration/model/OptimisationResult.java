@@ -3,8 +3,10 @@ package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.sql.Date;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Document(collection = "OptimisationResult")
 
@@ -13,26 +15,24 @@ public class OptimisationResult {
     
     @Id
     private String resultId;
-    private String projectId;
-    private String partId;
-    private String paramsId;
+    private Part part;
+    private OptimisationParams params; //do we need this here?
     private int iterNum;
-    private String braidFile;
-    private String meshFile;
+    private List<Variable> outputVar;
+    private List<Variable> optimisedVar;
     private Date resultTime;
 
     public OptimisationResult(){
         super();
     }
 
-    public OptimisationResult(String resultId, String projectId, String partId, String paramsId, int iterNum, String braidFile, String meshFile, Date resultTime){
+    public OptimisationResult(String resultId, Part part, OptimisationParams params, int iterNum, List<Variable> outputVar, List<Variable> optimisedVar, Date resultTime){
         this.resultId = resultId;
-        this.projectId = projectId;
-        this.partId = partId;
-        this.paramsId = paramsId;
+        this.part = part;
+        this.params = params;
         this.iterNum = iterNum;
-        this.braidFile = braidFile;
-        this.meshFile = meshFile;
+        this.outputVar = outputVar;
+        this.optimisedVar = optimisedVar;
         this.resultTime = resultTime;
     }
 
@@ -44,28 +44,20 @@ public class OptimisationResult {
         this.resultId = resultId;
     }
 
-    public String getProjectId() {
-        return projectId;
+    public Part getPartId() {
+        return part;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setPartId(Part part) {
+        this.part = part;
     }
 
-    public String getPartId() {
-        return partId;
+    public OptimisationParams getParamsId() {
+        return params;
     }
 
-    public void setPartId(String partId) {
-        this.partId = partId;
-    }
-
-    public String getParamsId() {
-        return paramsId;
-    }
-
-    public void setParamsId(String paramsId) {
-        this.paramsId = paramsId;
+    public void setParamsId(OptimisationParams params) {
+        this.params = params;
     }
 
     public int getIterNum() {
@@ -76,20 +68,20 @@ public class OptimisationResult {
         this.iterNum = iterNum;
     }
 
-    public String getBraidFile() {
-        return braidFile;
+    public List<Variable> getOutputVar() {
+        return outputVar;
     }
 
-    public void setBraidFile(String braidFile) {
-        this.braidFile = braidFile;
+    public void setOutputVar(List<Variable> outputVar) {
+        this.outputVar = outputVar;
     }
 
-    public String getMeshFile() {
-        return meshFile;
+    public List<Variable> getOptimisedVar() {
+        return optimisedVar;
     }
 
-    public void setMeshFile(String meshFile) {
-        this.meshFile = meshFile;
+    public void setOptimisedVar(List<Variable> optimisedVar) {
+        this.optimisedVar = optimisedVar;
     }
 
     public Date getResultTime() {

@@ -9,18 +9,15 @@ public class OptimisationParams {
 
     @Id
     private String paramsId;
-    private String projectId;
-    private String cadFileId;
+    //add other variables here
 
     public OptimisationParams(){
         super();
     }
 
-    public OptimisationParams(String paramsId, String projectId, String cadFileId){
+    public OptimisationParams(String paramsId){
         super();
         this.paramsId = paramsId;
-        this.projectId = projectId;
-        this.cadFileId = cadFileId;
     }
     
     public String getParamsId(){
@@ -29,22 +26,6 @@ public class OptimisationParams {
 
     public void setParamsId(String paramsId){
         this.paramsId = paramsId;
-    }
-
-    public String getProjectId(){
-        return projectId;
-    }
-
-    public void setProjectId(String projectId){
-        this.projectId = projectId;
-    }
-
-    public String getCadFileId(){
-        return cadFileId;
-    }
-
-    public void setCadFileId(String cadFileId){
-        this.cadFileId = cadFileId;
     }
 
 
