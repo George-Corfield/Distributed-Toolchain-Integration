@@ -15,7 +15,7 @@ def test_string():
 @app.route('/add', methods=['POST'])
 def add():
     """This function takes a JSON file and sums the values in the array in the file."""
-    
+
     json = request.get_json()
     value = 0
     for elem in json['array']:
