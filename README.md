@@ -43,28 +43,26 @@ A full document for the Project Overview and Requirements is available [here](./
 
 MongoDB was chosen as we will need to store parametric and non-parametric data. Examples of data types we will be storing are floats, integers, strings and files for components and simulations.
 
-Python will be used to create control scripts. These scripts will be responsible for taking components and their requirements from the database, connecting to the modules and then using the modules to iterate over the requirements.
+Python will be used to create an app that pretends to be the simulation software that the NCC will use, since we don't have access to their simulation as it is private/secret
 
-Java and Spring Boot will be used to create the web app. This will provide the users with a user interface, and a way to send and retrieve data from the python control scripts.
+Java and Spring Boot will be used to create the web app. This will provide the users with a user interface, and a way to send and retrieve data from the Python software.
 
-The Java backend will not connect to the database and it will instead have to use the python control scripts to retrieve data from the database. This has less points of failure and will prevent any issues with both areas of the backend trying to access the database at the same time.
+The Java backend will connect to the database and it will forward the data onto the pretend simulation software. This has less points of failure and will prevent any issues with both areas of the backend trying to access the database at the same time.
 
 
 ## Architecture
 
 ![Architecture Diagram](/assets/architectureDiagram.png  "Architecture Diagram")
 
-* The Frontend and Java backend will be used to issue commands and retrieve data from the Python Control Scripts and Database.
-* The Python Control Scripts will be used to control the python modules for the simulation work, collect the results and iterate on them.
+* The Frontend and Java backend will be used to issue commands and retrieve data from the Python simulation software and Database.
 * mongoDB Database will be used to store parametric and non-parametric data.
-* The Python Modules and API's will be used as a stand in for the simulation software.
 
 ## Setup-Instructions
-To setup the project please do the following as of 30/01/2024
+To setup the project please do the following:
 
 1. Download the repository.
-2. Install Java 17.
-3. Install Python 3.
+2. [Install Java 17](https://www.oracle.com/uk/java/technologies/downloads/#java17).
+3. [Install Python 3](https://www.python.org/downloads/).
 4. Use the following commands to install the python dependencies. Start in the root directory of the repository.
 ```powershell
 pip install -r pythonBackend/requirements.txt
