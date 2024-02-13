@@ -65,8 +65,11 @@ To setup the project please do the following as of 30/01/2024
 1. Download the repository.
 2. Install Java 17.
 3. Install Python 3.
-4. [Install Dependencies for the Python back-end](./documentation/dependencies.md)
-4. [Install MongoDB](./documentation/MongoDBinstructions.md).
+4. Use the following commands to install the python dependencies. Start in the root directory of the repository.
+
+pip install -r pythonBackend/requirements.txt
+
+5. [Install MongoDB](./documentation/MongoDBinstructions.md).
 
 ## Containerization
 To use docker containers with this project use this [guide](./documentation/Containerization.md).
