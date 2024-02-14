@@ -9,7 +9,7 @@
 
 [Setup-Instructions](#Setup-instructions)
 
-[Client-&-Stakeholders](#Client-&-Stakeholders)
+[Client-&-Stakeholders](#Client--Stakeholders)
 
 [Team Members](#Team-Members)
 
