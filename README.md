@@ -9,15 +9,11 @@
 
 [Setup-Instructions](#Setup-instructions)
 
-[Client](#Client)
-
-[Stakeholders](#Stakeholders)
-
-[User-Stories](#User-Stories)
-
-[Ethics](#Ethics)
+[Client-&-Stakeholders](#Client-&-Stakeholders)
 
 [Team Members](#Team-Members)
+
+[Ethics](#Ethics)
 
 [Gantt-Chart](#Gantt-Chart)
 
@@ -102,22 +98,17 @@ mvn spring-boot:run
 ## Containerization
 To use docker containers with this project use this [guide](./documentation/Containerization.md).
 
-## Client
+## Client-&-Stakeholders
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
 
-## Stakeholders
 National Composite Centre and its members including BAE Systems, Dassault Systèmes, Rolls Royce, Aramco, Airbus and more.
 
-## User-Stories
+### User-Stories
 An engineer at the NCC wants a system to connect the toolchains together so that it is quick and easy to optimise the component they are working on.
 
 An engineer at the NCC wants a system that allows them to easily run simulations on a server that is not physically accessible to allow them to optimise their component.
 
 As a client to the NCC I want a secure way for the components to be optimised so that we don't risk leaking information to competitors.  
-
-## Ethics
-
-[Ethics](./documentation/ETHICS.md)
 
 ## Team-Members 
 Dylan Quinton  
@@ -128,6 +119,9 @@ George Corfield
 
 ## Gantt-Chart
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
+
+## Ethics
+[Ethics](./documentation/ETHICS.md)
 
 ## License
 [Distributed under an MIT license.](./documentation/LICENSE)
