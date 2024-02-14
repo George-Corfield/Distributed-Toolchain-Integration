@@ -87,7 +87,8 @@ Run the following command in the terminal to start the python application **with
 ```powershell
 py pythonbackend/python_api.py
 ```
-To use docker for the python application, there is a setup guide [here](./documentation/Containerization.md)
+To use docker for the python application, there is a setup guide [here](./documentation/Containerization.md).
+
 To run the container use the command:
 ```powershell
 docker run -it -p 5000:5000 pythonbackend		#change pythonbackend to the container name you chose
