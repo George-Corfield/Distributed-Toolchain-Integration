@@ -52,7 +52,7 @@ The Java backend will connect to the database and it will forward the data onto 
 
 ## Architecture
 
-![Architecture Diagram](/assets/architectureDiagram.png  "Architecture Diagram")
+![Architecture Diagram](/assets/archietectureDiagram.PNG  "Architecture Diagram")
 
 * The Frontend and Java backend will be used to issue commands and retrieve data from the Python simulation software and Database.
 * mongoDB Database will be used to store parametric and non-parametric data.
