@@ -35,18 +35,39 @@ This system will be need to be able to:
 
 A full document for the Project Overview and Requirements is available [here](./documentation/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
+## Tech Stack
+* Python
+* Java
+* SpringBoot
+* mongoDB
 
-## Tech-Stack
-The Tech Stack and System architecture are available [here](./documentation/TechStackAndArchitecture.md)
+MongoDB was chosen as we will need to store parametric and non-parametric data. Examples of data types we will be storing are floats, integers, strings and files for components and simulations.
+
+Python will be used to create an app that pretends to be the simulation software that the NCC will use, since we don't have access to their simulation as it is private/secret
+
+Java and Spring Boot will be used to create the web app. This will provide the users with a user interface, and a way to send and retrieve data from the Python software.
+
+The Java backend will connect to the database and it will forward the data onto the pretend simulation software. This has less points of failure and will prevent any issues with both areas of the backend trying to access the database at the same time.
+
+
+## Architecture
+
+![Architecture Diagram](/assets/architectureDiagram.png  "Architecture Diagram")
+
+* The Frontend and Java backend will be used to issue commands and retrieve data from the Python simulation software and Database.
+* mongoDB Database will be used to store parametric and non-parametric data.
 
 ## Setup-Instructions
-To setup the project please do the following as of 30/01/2024
+To setup the project please do the following:
 
 1. Download the repository.
-2. Install Java 17.
-3. Install Python 3.
-4. [Install Dependencies for the Python back-end](./documentation/dependencies.md)
-4. [Install MongoDB](./documentation/MongoDBinstructions.md).
+2. [Install Java 17](https://www.oracle.com/uk/java/technologies/downloads/#java17).
+3. [Install Python 3](https://www.python.org/downloads/).
+4. Use the following commands to install the python dependencies. Start in the root directory of the repository.
+```powershell
+pip install -r pythonBackend/requirements.txt
+```
+5. [Install MongoDB](./documentation/MongoDBinstructions.md).
 
 ## Containerization
 To use docker containers with this project use this [guide](./documentation/Containerization.md).
@@ -67,7 +88,6 @@ As a client to the NCC I want a secure way for the components to be optimised so
 ## Ethics
 
 [Ethics](./documentation/ETHICS.md)
-
 
 ## Team-Members 
 Dylan Quinton  
