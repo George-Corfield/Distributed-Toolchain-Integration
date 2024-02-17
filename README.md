@@ -1,5 +1,7 @@
 # Distributed Toolchain Integration
 
+[![Pylint](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/pylint.yml/badge.svg?branch=dev)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/pylint.yml)
+
 ## Contents
 [Project Overview](#Project-Overview)
 
@@ -7,15 +9,11 @@
 
 [Setup-Instructions](#Setup-instructions)
 
-[Client](#Client)
-
-[Stakeholders](#Stakeholders)
-
-[User-Stories](#User-Stories)
-
-[Ethics](#Ethics)
+[Client-&-Stakeholders](#Client--Stakeholders)
 
 [Team Members](#Team-Members)
+
+[Ethics](#Ethics)
 
 [Gantt-Chart](#Gantt-Chart)
 
@@ -52,42 +50,65 @@ The Java backend will connect to the database and it will forward the data onto 
 
 ## Architecture
 
-![Architecture Diagram](/assets/architectureDiagram.png  "Architecture Diagram")
+![Architecture Diagram](/assets/archietectureDiagram.PNG  "Architecture Diagram")
 
 * The Frontend and Java backend will be used to issue commands and retrieve data from the Python simulation software and Database.
 * mongoDB Database will be used to store parametric and non-parametric data.
+* The python application will be a stand-in for the simulation software the NCC uses. It must be separate from the rest of the application as the simulations may be run locally, across the network or even across the internet.
 
 ## Setup-Instructions
-To setup the project please do the following:
 
-1. Download the repository.
-2. [Install Java 17](https://www.oracle.com/uk/java/technologies/downloads/#java17).
-3. [Install Python 3](https://www.python.org/downloads/).
-4. Use the following commands to install the python dependencies. Start in the root directory of the repository.
+### Prerequisites
+You will need the following installed to build the project. 
+1. [Install Java 17](https://www.oracle.com/uk/java/technologies/downloads/#java17).
+2. [Install Python 3](https://www.python.org/downloads/).
+3. [Install MongoDB](./documentation/MongoDBinstructions.md).
+4. [Install Apache Maven](https://maven.apache.org/download.cgi)
+5. [Install Docker](https://docs.docker.com/engine/install/) (Optional but highly recommended)
+
+Next you need to clone the repo:
+```powershell
+git clone git@github.com:spe-uob/2023-DistributedToolchainIntegration.git
+```
+Use the following commands to install all the python dependencies. Start in the root directory of the repository.
 ```powershell
 pip install -r pythonBackend/requirements.txt
 ```
-5. [Install MongoDB](./documentation/MongoDBinstructions.md).
+### Running the Application
+To run the application:
+
+Start the database using the instructions [here](./documentation/MongoDBinstructions.md).
+
+Run the following command in the terminal to start the python application **without using docker**. 
+```powershell
+py pythonbackend/python_api.py
+```
+To use docker for the python application, there is a setup guide [here](./documentation/Containerization.md).
+
+To run the container use the command:
+```powershell
+docker run -it -p 5000:5000 pythonbackend		#change pythonbackend to the container name you chose
+```
+Finally you can start the Springboot application using the command:
+```powershell
+mvn spring-boot:run
+```
+
 
 ## Containerization
 To use docker containers with this project use this [guide](./documentation/Containerization.md).
 
-## Client
+## Client-&-Stakeholders
 [The National Composites Centre (NCC)](https://www.nccuk.com/) 
 
-## Stakeholders
 National Composite Centre and its members including BAE Systems, Dassault Systèmes, Rolls Royce, Aramco, Airbus and more.
 
-## User-Stories
+### User-Stories
 An engineer at the NCC wants a system to connect the toolchains together so that it is quick and easy to optimise the component they are working on.
 
 An engineer at the NCC wants a system that allows them to easily run simulations on a server that is not physically accessible to allow them to optimise their component.
 
 As a client to the NCC I want a secure way for the components to be optimised so that we don't risk leaking information to competitors.  
-
-## Ethics
-
-[Ethics](./documentation/ETHICS.md)
 
 ## Team-Members 
 Dylan Quinton  
@@ -98,6 +119,9 @@ George Corfield
 
 ## Gantt-Chart
 [Gantt Chart](https://github.com/orgs/spe-uob/projects/119/views/2)
+
+## Ethics
+[Ethics](./documentation/ETHICS.md)
 
 ## License
 [Distributed under an MIT license.](./documentation/LICENSE)
