@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 
@@ -17,27 +15,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    @PostMapping("/users")
-    public String createNewUser(@ModelAttribute("newUser") User newUser, Model model){
-        System.out.println(newUser);
-        userService.createUser(newUser);
-        return "users";
+    @PostMapping("/login")
+    public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, Model model){
+        User foundUser = userService.getUserByUsername(userDetails.getUsername());
+        if (foundUser == null){
+            System.out.println("Incorrect username");
+        } else {
+            if (foundUser.getPassword().equals(userDetails.getPassword())){
+                System.out.println("Correct Details");
+                return "index";
+            } else {
+                System.out.println("Incorrect Password");
+            }
+        }
+        return "login";
     }
 
-    @GetMapping("/users")
-    public String getUsersList(Model model){
-        List<User> users  = userService.getAllUsers();
-        for (int i = 0; i < users.size() ; i++){
-            User user = users.get(i);
-            System.out.println(user.getUserId());
-            System.out.println(user.getUsername());
-            System.out.println(user.getEmail());
-            System.out.println(user.getRole());
-        }
-        model.addAttribute("newUser", new User());
-        model.addAttribute("usersList", users );
-        return "users";
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("userDetails", new User());
+        return "login";
     }
 
 
