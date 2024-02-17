@@ -1,4 +1,5 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,21 @@ public class UserController {
     public String login(Model model){
         model.addAttribute("userDetails", new User());
         return "login";
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute("userDetails") User newUser, Model model){
+        User checkUser = userService.getUserByUsername(newUser.getUsername());
+        if (checkUser == null){
+            newUser.setUserId(new ObjectId());
+            newUser.setRole(10);
+            userService.createUser(newUser);
+            System.out.println("User Successfully Created");
+            return "index";
+        } else {
+            System.out.println("User already exists");
+        }
+        return "register";
     }
 
     @GetMapping("/register")

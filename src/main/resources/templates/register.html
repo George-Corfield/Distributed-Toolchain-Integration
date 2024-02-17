@@ -3,7 +3,7 @@
 
 <head>
 <link rel="stylesheet" href="style.css">
-<title> Login Page </title>
+<title> Register Page </title>
 </head>
 <body>
   <div class="register-page">
@@ -15,6 +15,7 @@
     <form class="form" action="#" th:action="@{/register}" th:object="${userDetails}" method="post">
       <input type="text" placeholder="username" th:field="*{username}"/>
       <input type="password" placeholder="password" th:field="*{password}"/>
+      <input type="email" placeholder="email" th:field="*{email}"/>
       <button>LOGIN</button>
       <p class="message"> <a href="./login">Have an account?</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Forgot Password?</a></p>
     </div>
