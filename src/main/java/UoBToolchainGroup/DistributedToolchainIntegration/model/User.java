@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private String userId;
+    private ObjectId userId;
     private String username;
     private String password;
     private String email;
@@ -18,7 +19,7 @@ public class User {
         super();
     }
 
-    public User(String userId, String username, String password, String email, int role){
+    public User(ObjectId userId, String username, String password, String email, int role){
         super();
         this.userId = userId;
         this.username = username;
@@ -27,11 +28,11 @@ public class User {
         this.role = role;
     }
 
-    public String getUserId() {
+    public ObjectId getUserId() {
         return userId;
     }
 
-    public void setUserId(String id) {
+    public void setUserId(ObjectId id) {
         this.userId = id;
     }
 

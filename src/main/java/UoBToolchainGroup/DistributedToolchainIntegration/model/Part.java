@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class Part {
     
     @Id
-    private String partId;
+    private ObjectId partId;
     private String partName;
     private String partDescription;
     private List<Variable> variables;
@@ -19,7 +20,7 @@ public class Part {
         super();
     }
 
-    public Part(String partId, String partName, String partDescription,
+    public Part(ObjectId partId, String partName, String partDescription,
     List<Variable> variables, List<Variable> optimisationVariables, OptimisationParams optimisationParams){
         this.partId = partId;
         this.partName = partName;
@@ -29,11 +30,11 @@ public class Part {
         this.optimisationParams = optimisationParams;
     }   
 
-    public String getPartId(){
+    public ObjectId getPartId(){
         return partId;
     }
 
-    public void setPartId(String partId){
+    public void setPartId(ObjectId partId){
         this.partId = partId;
     }
 

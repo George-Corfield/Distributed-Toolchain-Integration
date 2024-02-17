@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Variable {
     
     @Id 
-    private String variableId;
+    private ObjectId variableId;
     private String variableName;
     private float initVal;
     private float lowBound;
@@ -19,7 +20,7 @@ public class Variable {
         super();
     }
 
-    public Variable(String variableId, String variableName, float initVal, float lowBound, float upBound){
+    public Variable(ObjectId variableId, String variableName, float initVal, float lowBound, float upBound){
         super();
         this.variableId = variableId;
         this.variableName = variableName;
@@ -28,11 +29,11 @@ public class Variable {
         this.upBound = upBound;
     }
 
-    public String getVariableId() {
+    public ObjectId getVariableId() {
         return variableId;
     }
 
-    public void setVariableId(String variableId) {
+    public void setVariableId(ObjectId variableId) {
         this.variableId = variableId;
     }
 

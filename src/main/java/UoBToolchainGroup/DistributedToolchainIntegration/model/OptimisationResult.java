@@ -3,7 +3,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.sql.Date;
 
-
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 public class OptimisationResult {
     
     @Id
-    private String resultId;
+    private ObjectId resultId;
     private Part part;
     private OptimisationParams params; //do we need this here?
     private int iterNum;
@@ -26,7 +26,7 @@ public class OptimisationResult {
         super();
     }
 
-    public OptimisationResult(String resultId, Part part, OptimisationParams params, int iterNum, List<Variable> outputVar, List<Variable> optimisedVar, Date resultTime){
+    public OptimisationResult(ObjectId resultId, Part part, OptimisationParams params, int iterNum, List<Variable> outputVar, List<Variable> optimisedVar, Date resultTime){
         this.resultId = resultId;
         this.part = part;
         this.params = params;
@@ -36,11 +36,11 @@ public class OptimisationResult {
         this.resultTime = resultTime;
     }
 
-    public String getResultId() {
+    public ObjectId getResultId() {
         return resultId;
     }
 
-    public void setResultId(String resultId) {
+    public void setResultId(ObjectId resultId) {
         this.resultId = resultId;
     }
 

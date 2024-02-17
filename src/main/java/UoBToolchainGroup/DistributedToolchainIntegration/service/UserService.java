@@ -30,6 +30,10 @@ public class UserService {
         return userRespository.findById(id).get();
     }
 
+    public User getUserByUsername(String username){
+        return userRespository.findUserByUsername(username);
+    }
+
 
 
 
