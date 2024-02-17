@@ -3,6 +3,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.model;
 import java.sql.Date;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Project {
 
     @Id
-    private String projectId;
+    private ObjectId projectId;
     private String projectName;
     private String projectDescription;
     private Date projectStartDate;
@@ -22,7 +23,7 @@ public class Project {
         super();
     }
 
-    public Project(String projectId, 
+    public Project(ObjectId projectId, 
     String projectName, 
     String projectDescription, 
     Date projectStartDate,
@@ -36,11 +37,11 @@ public class Project {
         this.parts = parts;
     }
 
-    public String getProjectId() {
+    public ObjectId getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(ObjectId projectId) {
         this.projectId = projectId;
     }
 
