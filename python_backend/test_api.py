@@ -5,7 +5,7 @@ to run a test use while in the python directory:
 """
 
 import unittest
-import requests
+from modules import module
 
 class TestModule(unittest.TestCase):
     """
@@ -22,17 +22,14 @@ class TestModule(unittest.TestCase):
                  [-1,0,1,0.0],
                  [3.1,1,1,5.1]]
         for test in tests:
-            data = {"array":test[:3]}
-            self.assertEqual(float(requests.post("http://localhost:5000/add",
-                                    json=data, timeout=10).text),test[3], "Sum Failed")
+            self.assertEqual(float(module.add(test[:3])),test[3], "Sum Failed")
 
     def test_foo(self):
         """
         Tests the test_string function in the python_api file.
         """
 
-        self.assertEqual(requests.get("http://localhost:5000/foo", timeout=10).text,
-                                             "test String", "Foo failed.")
+        self.assertEqual(module.string(),"test String", "Foo failed.")
 
     def test_fake(self):
         """
