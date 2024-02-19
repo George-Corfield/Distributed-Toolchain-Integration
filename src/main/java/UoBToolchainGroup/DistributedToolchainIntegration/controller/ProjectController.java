@@ -1,5 +1,8 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.util.List;
+import java.util.Date;
+import java.util.Collections;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.ProjectService;
@@ -27,10 +31,12 @@ public class ProjectController {
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         User user = userService.getUserById(new ObjectId(id));
-        Project project = projectService.getProjectByUser(user);
+        List<Project> projects = projectService.getProjectByUser(user);
         System.out.println(id);
         System.out.println(user.getUsername());
-        System.out.println(project);
+        for (Project p: projects){
+            System.out.println(p.toString());
+        }
         return "users";
     }
 }
