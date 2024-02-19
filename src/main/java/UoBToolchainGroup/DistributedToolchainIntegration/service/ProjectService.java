@@ -3,7 +3,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.repository.ProjectRepository;
 
@@ -27,6 +27,10 @@ public class ProjectService {
 
     public Project getPartbyId(String projectId){
         return projectRepository.findById(projectId).get();
+    }
+
+    public Project getProjectByUser(User user){
+        return projectRepository.findProjecByUser(user);
     }
 
     public List<Project> getPartsbyId(String projectId){

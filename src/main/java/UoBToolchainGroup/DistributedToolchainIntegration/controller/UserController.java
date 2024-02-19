@@ -12,12 +12,15 @@ import jakarta.servlet.http.Cookie;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 
 
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
+
 
     @PostMapping("/login")
     public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, 
@@ -29,7 +32,7 @@ public class UserController {
         } else {
             if (foundUser.getPassword().equals(userDetails.getPassword())){
                 Cookie cookie = new Cookie("userId", foundUser.toString());
-                cookie.setMaxAge(7*24*60*60);;
+                cookie.setMaxAge(7*24*60*60);
                 response.addCookie(cookie);
                 System.out.println("Correct Details");
                 return "index";
