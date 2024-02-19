@@ -1,7 +1,7 @@
 # Distributed Toolchain Integration
 
 [![Pylint](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/pylint.yml/badge.svg?branch=dev)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/pylint.yml)
-
+[![Python application](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/python-app.yml/badge.svg)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/python-app.yml)
 ## Contents
 [Project Overview](#Project-Overview)
 
