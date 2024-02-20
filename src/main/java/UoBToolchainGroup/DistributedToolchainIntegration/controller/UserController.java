@@ -35,12 +35,12 @@ public class UserController {
                 Cookie cookie = new Cookie("userId", foundUser.getUserId().toString());
                 cookie.setMaxAge(7*24*60*60);
                 response.addCookie(cookie);
-                return "projects";
+                return "redirect:/projects";
             } else {
                 System.out.println("Incorrect Password");
             }
         }
-        return "index";
+        return "redirect:/";
     }
 
     public Optional<String> getCookie(HttpServletRequest req){
@@ -68,11 +68,11 @@ public class UserController {
             newUser.setRole(10);
             userService.createUser(newUser);
             System.out.println("User Successfully Created");
-            return "index";
+            return "redirect:/login";
         } else {
             System.out.println("User already exists");
         }
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/register")
