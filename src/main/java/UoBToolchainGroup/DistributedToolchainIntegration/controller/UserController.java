@@ -1,5 +1,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.util.Optional;
+import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.Cookie;
-
+import jakarta.servlet.http.HttpServletRequest;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,19 +30,28 @@ public class UserController {
     HttpServletResponse response){
         User foundUser = userService.getUserByUsername(userDetails.getUsername());
         if (foundUser == null){
-            System.out.println("Incorrect username");
         } else {
             if (foundUser.getPassword().equals(userDetails.getPassword())){
-                Cookie cookie = new Cookie("userId", foundUser.toString());
+                Cookie cookie = new Cookie("userId", foundUser.getUserId().toString());
                 cookie.setMaxAge(7*24*60*60);
                 response.addCookie(cookie);
-                System.out.println("Correct Details");
-                return "index";
+                return "projects";
             } else {
                 System.out.println("Incorrect Password");
             }
         }
         return "index";
+    }
+
+    public Optional<String> getCookie(HttpServletRequest req){
+        Cookie[] cookies = req.getCookies();
+        for (Cookie c: cookies){
+            if (c.getName().equals("userId")){
+                return Optional.ofNullable(c.getValue());
+            }
+        }
+        return Optional.empty();
+
     }
 
     @GetMapping("/login")

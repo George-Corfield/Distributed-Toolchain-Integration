@@ -32,11 +32,7 @@ public class ProjectController {
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         User user = userService.getUserById(new ObjectId(id));
         List<Project> projects = projectService.getProjectByUser(user);
-        System.out.println(id);
-        System.out.println(user.getUsername());
-        for (Project p: projects){
-            System.out.println(p.toString());
-        }
-        return "users";
+        model.addAttribute("projects", projects);
+        return "projects";
     }
 }
