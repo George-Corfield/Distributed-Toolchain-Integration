@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${project.projectName}"></title>
+</head>
+<body>
+    <h1 th:text="${project.projectName}"></h1>
+    <table>
+        <tr>
+            <th>Project Id</th>
+            <th>Project Name</th>
+            <th>Project Description</th>
+            <th>Project Start Date</th>
+            <th>User</th>
+            <th>Parts</th>
+        </tr>
+        <tr>
+            <td th:text="${project.projectId}"></td>
+            <td th:text="${project.projectName}"></td>
+            <td th:text="${project.projectDescription}"></td>
+            <td th:text="${project.projectStartDate}"></td>
+            <td th:text="${project.user}"></td>
+            <td th:text="${project.parts}"></td>
+        </tr>
+    </table>
+</body>
+</html>

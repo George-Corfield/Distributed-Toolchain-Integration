@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,8 @@ public class UserService {
         return userRespository.findAll();
     }
 
-    public User getUserById(String id){
-        return userRespository.findById(id).get();
+    public User getUserById(ObjectId userId){
+        return userRespository.findById(userId).get();
     }
 
     public User getUserByUsername(String username){
