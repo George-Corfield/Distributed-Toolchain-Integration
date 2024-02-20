@@ -30,7 +30,11 @@ public class ProjectService {
     }
 
     public List<Project> getProjectByUser(User user){
-        return projectRepository.findProjecByUser(user);
+        return projectRepository.findProjectByUser(user);
+    }
+
+    public Project getProjectByName(String projectName){
+        return projectRepository.findProjectByProjectName(projectName);
     }
 
     public List<Project> getPartsbyId(String projectId){

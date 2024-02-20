@@ -7,5 +7,7 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 
 public interface ProjectRepository extends MongoRepository<Project, String>{
 
-    public List<Project> findProjecByUser(User user);
+    public List<Project> findProjectByUser(User user);
+
+    public Project findProjectByProjectName(String projectName);
 }
