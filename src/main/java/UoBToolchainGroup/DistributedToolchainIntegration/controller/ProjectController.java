@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import UoBToolchainGroup.DistributedToolchainIntegration.model.OptimisationParams;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
@@ -36,6 +37,13 @@ public class ProjectController {
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         User user = userService.getUserById(new ObjectId(id));
         List<Project> projects = projectService.getProjectByUser(user);
+        // Part p1 = new Part(new ObjectId(),"test Part 1","testing", List.of(),List.of(),new OptimisationParams());
+        // Part p2 = new Part(new ObjectId(),"test Part 2","testing", List.of(),List.of(),new OptimisationParams());
+        // for (Project p: projects){
+        //     p.addPart(p1);
+        //     p.addPart(p2);
+        //     projectService.updateProject(p); 
+        // }
         model.addAttribute("projects", projects);
         return "projects";
     }
