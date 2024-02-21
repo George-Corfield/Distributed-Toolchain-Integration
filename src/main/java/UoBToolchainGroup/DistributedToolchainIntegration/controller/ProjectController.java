@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.ProjectService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.Cookie;
@@ -28,6 +29,8 @@ public class ProjectController {
     private ProjectService projectService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PartService partService;
 
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
