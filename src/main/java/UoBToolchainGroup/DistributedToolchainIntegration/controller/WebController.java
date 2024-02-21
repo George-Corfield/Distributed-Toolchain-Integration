@@ -2,6 +2,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
@@ -45,6 +46,11 @@ public class WebController {
         model.addAttribute("greeting", res.body());
         return "index";
     }
+
+    @GetMapping(value = "/upload")
+    public String upload(Model model){
+        return "upload";
+    } 
 
 }
 
