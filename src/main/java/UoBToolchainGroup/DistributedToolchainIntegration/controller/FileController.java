@@ -3,18 +3,26 @@ package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.FileService;
+import UoBToolchainGroup.DistributedToolchainIntegration.model.File;
 
 @RestController
 public class FileController {
+    @Autowired
+    private FileService fileService;
+
 
     @PostMapping("/saveFile")
     public String saveFile(@RequestParam("file") MultipartFile file){
         
         try{
-            //Add in the logic to save the file here.
-            //we need to know the user and/or project and the part it relates to.
-            //Add a max filesize to the files (security)
+            String fileName = file.getOriginalFilename();
+            String contentType = file.getContentType();
+            byte[] data = file.getBytes();
+            File newfile = new File(fileName, contentType, data);
+            fileService.createFile(newfile);
             return "Saved";
         }
         catch(Exception e){
