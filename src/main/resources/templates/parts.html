@@ -7,7 +7,7 @@
 <body>
     <h1 th:text="${project.projectName}"></h1>
     <ul th:each="p : ${project.parts}">
-        <li><span th:text="${p}"></span></li>
+        <li><a th:href="@{${project.projectName} + '/' + ${p.partId}}" th:text="${p.partName}"></a></li>
     </ul>
 </body>
 </html>

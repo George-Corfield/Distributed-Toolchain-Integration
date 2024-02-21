@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,11 @@ public class PartService {
 
     public Part createPart(Part part){
         return partRepository.save(part);
+    }
+
+    public Part getPartbyId(ObjectId id){
+        System.out.println(id);
+        return partRepository.findById(id.toString()).get();
     }
 
     public List<Part> getAllParts(){

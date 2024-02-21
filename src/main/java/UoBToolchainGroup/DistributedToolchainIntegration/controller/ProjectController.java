@@ -37,13 +37,14 @@ public class ProjectController {
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         User user = userService.getUserById(new ObjectId(id));
         List<Project> projects = projectService.getProjectByUser(user);
-        // Part p1 = new Part(new ObjectId(),"test Part 1","testing", List.of(),List.of(),new OptimisationParams());
-        // Part p2 = new Part(new ObjectId(),"test Part 2","testing", List.of(),List.of(),new OptimisationParams());
+        // List<Part> parts = partService.getAllParts();
         // for (Project p: projects){
-        //     p.addPart(p1);
-        //     p.addPart(p2);
+        //     for (Part t: parts){
+        //         p.addPart(t);
+        //     }
         //     projectService.updateProject(p); 
         // }
+
         model.addAttribute("projects", projects);
         return "projects";
     }
@@ -52,6 +53,6 @@ public class ProjectController {
     public String getProject(@PathVariable String projectName, Model model){
         Project project = projectService.getProjectByName(projectName);
         model.addAttribute("project", project);
-        return "test";
+        return "parts";
     }
 }
