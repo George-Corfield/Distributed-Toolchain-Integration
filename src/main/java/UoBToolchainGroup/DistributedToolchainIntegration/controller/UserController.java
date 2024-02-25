@@ -1,7 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 import java.util.Optional;
-import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
 
 
 @Controller

@@ -8,10 +8,10 @@
     <h1 th:text="${part.partName}"></h1>
     <h3 th:text="${part.partDescription}"></h3>
 
-    <button onclick="open()">Add Variable</button>
+    <button onclick="addVarForm()">Add Variable</button>
 
-    <div class="variable-form-popup" id="var-form" style="display:none">
-        <form th:action="@{/projects/${projectName}/${part.partId}}" th:object="${variable}" method="post">
+    <div class="variable-form-popup" id="var-form" style="display:none; position:fixed; bottom:0; right:15px; z-index: 9;">
+        <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId}}" th:object="${variable}" method="post">
             <h1>Add Variable</h1>
 
             <label for="variableName"><b>Name</b></label>
@@ -32,7 +32,7 @@
 </body>
 
 <script>
-    function open() {
+    function addVarForm() {
         document.getElementById("var-form").style.display = "block";
     }
 </script>

@@ -70,6 +70,14 @@ public class Part {
         this.optimisationVariables = optimisationVariables;
     }
 
+    public void addVariable(Variable variable){
+        this.variables.add(variable);
+    }
+
+    public void addOptimisationVariable(Variable variable){
+        this.optimisationVariables.add(variable);
+    }
+
     public OptimisationParams getOptimisationParams(){
         return optimisationParams;
     }

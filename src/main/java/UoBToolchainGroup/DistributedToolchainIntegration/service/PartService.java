@@ -22,8 +22,11 @@ public class PartService {
         return partRepository.save(part);
     }
 
+    public Part updatePart(Part part){
+        return partRepository.save(part);
+    }
+
     public Part getPartbyId(ObjectId id){
-        System.out.println(id);
         return partRepository.findById(id.toString()).get();
     }
 
