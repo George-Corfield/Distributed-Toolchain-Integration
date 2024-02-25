@@ -70,5 +70,10 @@ public class Variable {
         this.upBound = upBound;
     }
 
+    @Override
+    public String toString(){
+        return String.format("{\"variableName\":\"%s\",\"initVal\":%f,\"lowBound\":%f,\"upBound\":%f}",
+        variableName, initVal, lowBound, upBound);
+    }
 
 }

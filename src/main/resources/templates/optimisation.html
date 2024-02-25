@@ -7,6 +7,9 @@
 <body>
     <h1 th:text="${part.partName}"></h1>
     <h3 th:text="${part.partDescription}"></h3>
+    <ul th:each="var : ${part.variables}">
+        <li th:text="${var}"></li>
+    </ul>
 
     <button onclick="addVarForm()">Add Variable</button>
 
