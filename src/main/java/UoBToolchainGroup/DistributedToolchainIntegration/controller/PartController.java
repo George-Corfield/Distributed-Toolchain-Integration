@@ -21,6 +21,7 @@ public class PartController {
         Part part = partService.getPartbyId(new ObjectId(partId));
         System.out.println("here");
         model.addAttribute("part", part);
+        model.addAttribute("projectName", projectName);
         return "Optimisation";
     }
 }

@@ -6,6 +6,34 @@
 </head>
 <body>
     <h1 th:text="${part.partName}"></h1>
-    <span th:text="${part}"></span>
+    <h3 th:text="${part.partDescription}"></h3>
+
+    <button onclick="open()">Add Variable</button>
+
+    <div class="variable-form-popup" id="var-form" style="display:none">
+        <form th:action="@{/projects/${projectName}/${part.partId}}" th:object="${variable}" method="post">
+            <h1>Add Variable</h1>
+
+            <label for="variableName"><b>Name</b></label>
+            <input type="text" placeholder="Name" th:field="*{variableName}" required/>
+
+            <label for="initVal"><b>Initial Value</b></label>
+            <input type="number" placeholder="Initial" th:field="*{initVal}" required/>
+
+            <label for="lowBound"><b>Lower Bound</b></label>
+            <input type="number" placeholder="Lower" th:field="*{lowBound}" required/>
+
+            <label for="upBound"><b>Upper Bound</b></label>
+            <input type="number" placeholder="Upper" th:field="*{upBound}" required/>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div> 
 </body>
+
+<script>
+    function open() {
+        document.getElementById("var-form").style.display = "block";
+    }
+</script>
 </html>
