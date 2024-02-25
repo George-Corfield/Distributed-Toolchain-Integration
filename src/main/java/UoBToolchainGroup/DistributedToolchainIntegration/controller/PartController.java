@@ -33,8 +33,6 @@ public class PartController {
 
     @PostMapping("/projects/{projectName}/{partId}")
     public String addVar(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("varialble") Variable variable){
-        System.out.println(projectName);
-        System.out.println(partId);
         variable.setVariableId(new ObjectId());
         variableService.createOptimisationVar(variable);
         Part part = partService.getPartbyId(new ObjectId(partId));

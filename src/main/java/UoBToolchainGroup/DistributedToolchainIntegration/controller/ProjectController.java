@@ -27,14 +27,6 @@ public class ProjectController {
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         User user = userService.getUserById(new ObjectId(id));
         List<Project> projects = projectService.getProjectByUser(user);
-        // List<Part> parts = partService.getAllParts();
-        // for (Project p: projects){
-        //     for (Part t: parts){
-        //         p.addPart(t);
-        //     }
-        //     projectService.updateProject(p); 
-        // }
-
         model.addAttribute("projects", projects);
         return "projects";
     }
