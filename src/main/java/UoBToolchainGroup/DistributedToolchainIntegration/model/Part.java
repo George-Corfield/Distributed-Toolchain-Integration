@@ -18,6 +18,9 @@ public class Part {
 
     public Part(){
         super();
+        this.variables = List.of();
+        this.optimisationParams = new OptimisationParams();
+        this.optimisationVariables = List.of();
     }
 
     public Part(ObjectId partId, String partName, String partDescription,

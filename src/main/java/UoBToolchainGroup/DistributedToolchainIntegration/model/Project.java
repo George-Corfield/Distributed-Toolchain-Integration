@@ -21,6 +21,7 @@ public class Project {
 
     public Project(){
         super();
+        this.parts = List.of();
     }
 
     public Project(ObjectId projectId, 
