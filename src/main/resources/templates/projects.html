@@ -11,5 +11,28 @@
             <a th:href="@{'projects/' + ${project.projectName}}" th:text="${project.projectName}" />
         </li>
     </ul>
+
+    <button onclick="addForm()">New Project</button>
+
+    <div class="projects-form-popup" id="var-form" style="display:none;">
+        <form class="form" action="#" th:action="@{/projects}" th:object="${newProject}" method="post">
+            <h2>New Project</h2>
+
+            <label for="projectName"><b>Project Name</b></label>
+            <input type="text" placeholder="Project Name" th:field="*{projectName}" required />
+            <br>
+            <label for="projectDescription"><b>Project Description</b></label>
+            <input type="text" placeholder="Project Description" th:field="*{projectDescription}" required />
+
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
 </body>
+
+<script>
+    function addForm(){
+        document.getElementById("var-form").style.display = "block";
+    }
+</script>
 </html>
