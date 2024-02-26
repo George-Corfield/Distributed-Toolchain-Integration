@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
+import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.ProjectService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +27,8 @@ public class ProjectController {
     private ProjectService projectService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PartService partService;
 
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
@@ -41,11 +45,17 @@ public class ProjectController {
     public String getParts(@PathVariable String projectName, Model model){
         Project project = projectService.getProjectByName(projectName);
         model.addAttribute("project", project);
+        model.addAttribute("newPart", new Part());
         return "parts";
     }
 
     @PostMapping("/projects/{projectName}")
-    public String addPart(@PathVariable String projectName, Model model){
+    public String addPart(@PathVariable String projectName, @ModelAttribute("newPart") Part part, Model model){
+        Project project = projectService.getProjectByName(projectName);
+        part.setPartId(new ObjectId());
+        partService.createPart(part);
+        project.addPart(part);
+        projectService.updateProject(project);
         return "redirect:/projects/" + projectName;
     }
 
