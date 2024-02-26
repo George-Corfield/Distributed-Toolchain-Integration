@@ -1,6 +1,29 @@
 name: Pylint
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
 
 jobs:
   build:
@@ -20,6 +43,9 @@ jobs:
         pip install pylint
         pip install flask
         pip install requests
+    - name: Add modules to PythonPath
+      run: |
+        export PYTHONPATH="python_backend\modules"
     - name: Analysing the code with pylint
       run: |
-        pylint --fail-under=8 $(git ls-files '*.py')
+        pylint --fail-under=8 --ignore-imports $(git ls-files '*.py') 
