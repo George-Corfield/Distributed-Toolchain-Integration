@@ -88,6 +88,10 @@ public class Project {
         this.parts = parts;
     }
 
+    public void addPart(Part part){
+        this.parts.add(part);
+    }
+
 
 
     

@@ -37,6 +37,10 @@ public class ProjectService {
         return projectRepository.findProjectByProjectName(projectName);
     }
 
+    public Project updateProject(Project project){
+        return projectRepository.save(project);
+    }
+
     public List<Project> getPartsbyId(String projectId){
         String[] id = {projectId};
         ArrayList<String> ids = new ArrayList<>(Arrays.asList(id));
