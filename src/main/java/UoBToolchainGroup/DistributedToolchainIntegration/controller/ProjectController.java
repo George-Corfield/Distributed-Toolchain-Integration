@@ -44,6 +44,10 @@ public class ProjectController {
         return "parts";
     }
 
+    @PostMapping("/projects/{projectName}")
+    public String addPart(@PathVariable String projectName, Model model){
+        return "redirect:/projects/" + projectName;
+    }
 
     @PostMapping("/projects")
     public String addProject(@ModelAttribute("newProject") Project project, @CookieValue("userId") String id, Model model){

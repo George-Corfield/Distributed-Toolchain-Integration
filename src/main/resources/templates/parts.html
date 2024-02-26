@@ -6,8 +6,10 @@
 </head>
 <body>
     <h1 th:text="${project.projectName}"></h1>
-    <ul th:each="p : ${project.parts}">
-        <li><a th:href="@{${project.projectName} + '/' + ${p.partId}}" th:text="${p.partName}"></a></li>
+    <ul>
+        <li th:each="p : ${project.parts}">
+            <a th:href="@{${project.projectName} + '/' + ${p.partId}}" th:text="${p.partName}"></a>
+        </li>
     </ul>
 </body>
 </html>
