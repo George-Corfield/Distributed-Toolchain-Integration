@@ -11,5 +11,28 @@
             <a th:href="@{${project.projectName} + '/' + ${p.partId}}" th:text="${p.partName}"></a>
         </li>
     </ul>
+
+    <button onclick="addPart()">Add Part</button>
+
+    <div class="part-form-popup" id="part-form" style="display:none;">
+        <form class="form" action="#" th:action="@{'/projects/' + ${project.projectName}}" th:object="${newPart}" method="post">
+            <h2>New Part</h2>
+
+            <label for="partName"><b>Part Name</b></label>
+            <input type="text" placeholder="Part Name" th:field="*{partName}" required />
+            <br>
+            <label for="partDescription"><b>Part Description</b></label>
+            <input type="text" placeholder="Part Description" th:field="*{partDescription}" required />
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
 </body>
+
+<script>
+    function addPart(){
+        document.getElementById("part-form").style.display="block";
+    }
+</script>
 </html>
