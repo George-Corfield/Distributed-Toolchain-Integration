@@ -34,10 +34,8 @@ public class ProjectController {
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         User user = userService.getUserById(new ObjectId(id));
         List<Project> projects = projectService.getProjectByUser(user);
-        Project blank = new Project();
-        System.out.println(blank);
         model.addAttribute("projects", projects);
-        model.addAttribute("newProject", blank);
+        model.addAttribute("newProject", new Project());
         return "projects";
     }
 

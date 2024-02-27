@@ -13,7 +13,7 @@
 
     <button onclick="addVarForm()">Add Variable</button>
 
-    <div class="variable-form-popup" id="var-form" style="display:none; position:fixed; bottom:0; right:15px; z-index: 9;">
+    <div class="variable-form-popup" id="var-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId}}" th:object="${variable}" method="post">
             <h1>Add Variable</h1>
 
