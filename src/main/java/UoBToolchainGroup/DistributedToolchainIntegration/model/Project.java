@@ -21,6 +21,7 @@ public class Project {
 
     public Project(){
         super();
+        this.parts = List.of();
     }
 
     public Project(ObjectId projectId, 
@@ -51,7 +52,7 @@ public class Project {
         return projectName;
     }
 
-    public void setProjctName(String projectName) {
+    public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
 
@@ -92,7 +93,10 @@ public class Project {
         this.parts.add(part);
     }
 
-
+    @Override
+    public String toString(){
+        return String.format("{\"projectName\":\"%s\",\"projectDescription\":%s}", projectName,projectDescription);
+    }
 
     
 }
