@@ -10,14 +10,14 @@ public class File {
     private ObjectId fileId;
     private String fileName;
     private String contentType;
-    private byte[] data;
+    protected byte[] data;
 
     public File(){
         super();
     }
 
-    public File(ObjectId fileId, String fileName, String contentType, byte[] data){
-        this.fileId = fileId;
+    public File(String fileName, String contentType, byte[] data){
+        this.fileId = new ObjectId();
         this.fileName = fileName;
         this.contentType = contentType;
         this.data = data;
