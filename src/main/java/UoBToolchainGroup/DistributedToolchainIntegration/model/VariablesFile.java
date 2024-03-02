@@ -9,17 +9,20 @@ public class VariablesFile extends File{
         super( fileName, contentType, data);
     }
 
-    public List<Variable> convertToVariableList(){
+    public VariablesFile(String fileName, String contentType, List<Variable> variableList){
+        super( fileName, contentType, new JSONArray(variableList).toString().getBytes());
+    }
+
+    public static JSONArray convertToJsonArray(List<Variable> varList){
+        return new JSONArray(varList);
+    }
+
+    public static List<Variable> convertToVarList(byte[] bytes){
         List<Variable> vars = List.of();
-        JSONArray array = new JSONArray(new String(data, StandardCharsets.UTF_8));
+        JSONArray array = new JSONArray(new String(bytes, StandardCharsets.UTF_8));
         for(int i=0; i < array.length(); i++){
             System.out.println(array.getJSONObject(i));
         }
         return vars;
-    }
-
-    public JSONArray convertToJsonArray(List<Variable> varList){
-        return new JSONArray(varList);
-    }
-    
+    }  
 }
