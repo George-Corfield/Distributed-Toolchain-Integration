@@ -25,4 +25,12 @@ public class VariablesFile extends File{
         }
         return vars;
     }  
+
+    public JSONArray getJsonArray(){
+        return convertToJsonArray(convertToVarList(data));
+    }
+
+    public List<Variable> getVarList(){
+        return convertToVarList(data);
+    }
 }
