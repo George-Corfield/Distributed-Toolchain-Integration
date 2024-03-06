@@ -8,15 +8,15 @@
 </head>
 
 <body>
-    <h1>PROJECTS</h1>
+    <div class="header-container">
+        <h1>PROJECTS</h1>
+        <button class="new-project-button" onclick="addForm()">NEW PROJECT</button>
+    </div>
     <div class="button-container">
         <button class="project-button" th:each="project: ${projects}">
             <a th:href="@{'projects/' + ${project.projectName}}" th:text="${project.projectName}" />
         </button>
     </div>
-
-
-    <button class="button" onclick="addForm()">NEW PROJECT</button>
 
     <div class="projects-form-popup" id="var-form" style="display:none;">
         <form action="#" th:action="@{/projects}" th:object="${newProject}" method="post">
@@ -28,7 +28,7 @@
             <label for="projectDescription"><b>Project Description</b></label>
             <input type="text" placeholder="Project Description" th:field="*{projectDescription}" required />
 
-            <button class="button" type="submit">Submit</button>
+            <button type="submit">Submit</button>
 
         </form>
 
