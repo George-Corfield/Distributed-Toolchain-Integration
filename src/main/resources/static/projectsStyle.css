@@ -1,0 +1,106 @@
+body {
+    background: #b8b8b8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.new-project-button {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(45deg,#3c5dc9,#3ccec6);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    max-width: 150px;
+}
+
+.project-button {
+    flex-basis: calc(25% - 10px);
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(45deg, #328f8a, #08ac4b);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.projects-form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+  }
+
+.projects-form-popup input {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #afafaf;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: left;
+}
+
+.projects-form-popup button {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(45deg,#328f8a,#08ac4b);
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.new-project-button {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(45deg,#3c5dc9,#3ccec6);
+    width: calc(25% - 10px);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.message {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #b3b3b3;
+    font-size: 13px;
+    cursor: pointer;
+}

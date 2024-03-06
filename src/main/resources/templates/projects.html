@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Projects</title>
-</head>
-<body>
-    <h1>Projects</h1>
-    <ul>
-        <li th:each="project: ${projects}">
-            <a th:href="@{'projects/' + ${project.projectName}}" th:text="${project.projectName}" />
-        </li>
-    </ul>
 
-    <button onclick="addForm()">New Project</button>
+<head>
+    <link rel="stylesheet" href="projectsStyle.css">
+    <meta charset="UTF-8">
+    <title>Projects Page</title>
+</head>
+
+<body>
+    <div class="header-container">
+        <h1>PROJECTS</h1>
+        <button class="new-project-button" onclick="addForm()">NEW PROJECT</button>
+    </div>
+    <div class="button-container">
+        <button class="project-button" th:each="project: ${projects}">
+            <a th:href="@{'projects/' + ${project.projectName}}" th:text="${project.projectName}" />
+        </button>
+    </div>
 
     <div class="projects-form-popup" id="var-form" style="display:none;">
-        <form class="form" action="#" th:action="@{/projects}" th:object="${newProject}" method="post">
-            <h2>New Project</h2>
+        <form action="#" th:action="@{/projects}" th:object="${newProject}" method="post">
+            <h2>NEW PROJECT</h2>
 
             <label for="projectName"><b>Project Name</b></label>
             <input type="text" placeholder="Project Name" th:field="*{projectName}" required />
@@ -27,12 +31,18 @@
             <button type="submit">Submit</button>
 
         </form>
+
+        <p class="message" onclick="cancelForm()">Cancel new project</p>
     </div>
 </body>
 
 <script>
     function addForm(){
         document.getElementById("var-form").style.display = "block";
+    }
+
+    function cancelForm() {
+        document.getElementById("var-form").style.display = "none";
     }
 </script>
 </html>
