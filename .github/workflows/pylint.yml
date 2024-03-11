@@ -46,6 +46,9 @@ jobs:
     - name: Change the directory to the python_backend
       run: | 
         cd python_backend
+    - name: Add modules to python path
+      run: |
+        export PYTHONPATH="./modules"
     - name: Analysing the code with pylint
       run: |
         pylint --fail-under=8 --ignore-imports=y $(git ls-files '*.py') 
