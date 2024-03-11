@@ -43,9 +43,9 @@ jobs:
         pip install pylint
         pip install flask
         pip install requests
-    - name: Add modules to PythonPath
-      run: |
-        export PYTHONPATH="python_backend\modules"
+    - name: Change the directory to the python_backend
+      run: | 
+        cd python_backend
     - name: Analysing the code with pylint
       run: |
         pylint --fail-under=8 --ignore-imports=y $(git ls-files '*.py') 
