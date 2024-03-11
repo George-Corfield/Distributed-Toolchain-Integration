@@ -50,6 +50,7 @@ jobs:
     - name: Add modules to PythonPath
       run: |
         cd python_backend
+        export PYTHONPATH=./modules
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
