@@ -46,7 +46,7 @@ Download MongoDB community edition from [MongodB Download Page](https://www.mong
 -  Select the box to **Install MongoDB Compass**
 -  Finally select install to start installation
 
-4. Follow [this link](https://www.mongodb.com/try/download/shell) to installl mongosh
+4. Follow [this link](https://www.mongodb.com/try/download/shell) to install mongosh
 - Select the `.msi` download from the **Package** drop down
 - Double click installer file and follow prompts to download mongosh
 
