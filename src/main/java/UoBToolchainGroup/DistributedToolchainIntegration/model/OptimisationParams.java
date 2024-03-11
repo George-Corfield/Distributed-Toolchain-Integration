@@ -10,15 +10,17 @@ public class OptimisationParams {
 
     @Id
     private ObjectId paramsId;
+    private Integer iterations;
     //add other variables here
 
     public OptimisationParams(){
         super();
     }
 
-    public OptimisationParams(ObjectId paramsId){
+    public OptimisationParams(ObjectId paramsId, Integer iterations){
         super();
         this.paramsId = paramsId;
+        this.iterations = iterations;
     }
     
     public ObjectId getParamsId(){
@@ -29,5 +31,12 @@ public class OptimisationParams {
         this.paramsId = paramsId;
     }
 
+    public Integer getIterations(){
+        return iterations;
+    }
+
+    public void setIterations(Integer iter){
+        this.iterations = iter;
+    }
 
 }
