@@ -32,6 +32,9 @@ jobs:
       matrix:
         python-version: ["3.10"]
     steps:
+    - name: Change the directory to the python_backend
+      run: | 
+        cd python_backend
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
@@ -43,12 +46,9 @@ jobs:
         pip install pylint
         pip install flask
         pip install requests
-    - name: Change the directory to the python_backend
-      run: | 
-        cd python_backend
     - name: Add modules to python path
       run: |
-        export PYTHONPATH="./modules"
+        export PYTHONPATH=./modules
     - name: Analysing the code with pylint
       run: |
         pylint --fail-under=8 --ignore-imports=y $(git ls-files '*.py') 
