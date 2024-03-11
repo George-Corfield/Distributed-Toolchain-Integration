@@ -6,10 +6,6 @@ to run a test use while in the python directory:
 
 import unittest
 from modules import module
-import os
-import sys
-
-sys.path.append(os.path.relpath("/modules"))
 
 class TestModule(unittest.TestCase):
     """
@@ -44,3 +40,4 @@ class TestModule(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
