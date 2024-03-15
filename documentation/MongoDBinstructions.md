@@ -41,39 +41,40 @@ Download MongoDB community edition from [MongodB Download Page](https://www.mong
 1. Download `.msi` installer from above link by selecting **msi** from **Package** drop down
 2. Run the MongoDB installer from File Explorer
 3. Follow the installation wizard
--  choose the **Complete** setup to install all tools in default location, **Custom** allows you to specify where these tools are installed
+-  Choose the **Complete** setup to install all tools in default location, **Custom** allows you to specify where these tools are installed
 -  Uncheck the box to set MongoDB up as a windows service
 -  Select the box to **Install MongoDB Compass**
 -  Finally select install to start installation
 
-4. Follow [this link](https://www.mongodb.com/try/download/shell) to installl mongosh
-- Select the MSI download in the platform drop down
+4. Follow [this link](https://www.mongodb.com/try/download/shell) to install mongosh
+- Select the `.msi` download from the **Package** drop down
 - Double click installer file and follow prompts to download mongosh
 
-5. Create a database directory in the command interpreter
+5. Create the `\data\db` folders in directory of your choosing in the command interpreter using:
 
-       `cd C:\path\to\database\storage\`
+       `cd C:\your\path\to\database\storage\`
+
        `md "\data\db"`
 
-6. Start MongoDB by running `mongod.exe`
+6. Start MongoDB by running `mongod.exe` with the directory previously made using:
 
       `"C:\Program Files\MongoDB\Server\7.0\bin\mongod.exe" --dbpath="C:\path\to\database\storage\data\db"`
 
-      The MongoDB database server is running correctly if `[initandlisten] waiting for connections` is displayed
+      The MongoDB database server is running correctly if `[initandlisten] waiting for connections` is displayed in the second to last ping. Please note, you will not be able to enter anything on this tab after running this command without cancelling it
 
 ## Connecting to MongoDB
 
-1. Once running `mongod`, open a new terminal/ command interpreter
-- for MacOS, run `mongosh`
-- for Windows, run `mongosh.exe`
+1. Once running `mongod`, open a new command interpreter tab, then:
+- for MacOS, use `mongosh`
+- for Windows, use `mongosh.exe`
 
-2. Once `mongosh` has connected to `mongod`, switch to the `admin` database
+2. Once `mongosh` has connected to `mongod`, switch to the `admin` database using:
 
      `use admin`
 
-3. Ensure `db.getUsers()` returns `[ ]`
+3. Ensure entering `db.getUsers()` returns `[ ]`
 
-4. Create a new user which gives access to all databases, and allows this user to edit any database
+4. Create a new user which gives access to all databases, and allows this user to edit any database using:
 
     `db.createUser({ user: 'administrator', pwd: 'password', roles: [ {role : 'root', db: 'admin'} ] })`
 
