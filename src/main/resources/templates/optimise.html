@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Optimise</title>
+</head>
+
+<body>
+    <h1 th:text="${part.partName}"></h1>
+    <h3 th:text="${part.partDescription}"></h3>
+    <br>
+
+    <h2><strong>Optimisation Parameters</strong></h2>
+    <h3>Iteration Limit:</h3><span th:text="${opParams.iterations}"></span>
+    <h3>Modules:<span th:text="${opParams.iterations}"></span></h3>
+</body>
+</html>
