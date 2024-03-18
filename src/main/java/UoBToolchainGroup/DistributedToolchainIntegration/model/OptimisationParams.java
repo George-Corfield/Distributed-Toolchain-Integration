@@ -1,5 +1,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,16 +13,18 @@ public class OptimisationParams {
     @Id
     private ObjectId paramsId;
     private Integer iterations;
+    private List<ModulesFile> modules;
     //add other variables here
 
     public OptimisationParams(){
         super();
     }
 
-    public OptimisationParams(ObjectId paramsId, Integer iterations){
+    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ModulesFile> modules){
         super();
         this.paramsId = paramsId;
         this.iterations = iterations;
+        this.modules = modules;
     }
     
     public ObjectId getParamsId(){
@@ -37,6 +41,14 @@ public class OptimisationParams {
 
     public void setIterations(Integer iter){
         this.iterations = iter;
+    }
+
+    public List<ModulesFile> getModulesFiles(){
+        return this.modules;
+    }
+
+    public void setModules(List<ModulesFile> modules){
+        this.modules = modules;
     }
 
 }
