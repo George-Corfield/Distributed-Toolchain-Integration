@@ -1,6 +1,9 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.json.*;
 
 public class VariablesFile extends File{
@@ -18,10 +21,15 @@ public class VariablesFile extends File{
     }
 
     public static List<Variable> convertToVarList(byte[] bytes){
-        List<Variable> vars = List.of();
+        List<Variable> vars = new ArrayList<>();
         JSONArray array = new JSONArray(new String(bytes, StandardCharsets.UTF_8));
         for(int i=0; i < array.length(); i++){
-            System.out.println(array.getJSONObject(i));
+            JSONObject obj = array.getJSONObject(i);
+            Variable var = new Variable(new ObjectId(), obj.get("variableName").toString(),
+                obj.getDouble("initVal"), 
+                obj.getDouble("lowBound"), //I have no clue how to cast these to floats
+                obj.getDouble("upBound")); 
+            vars.add(var);
         }
         return vars;
     }  
