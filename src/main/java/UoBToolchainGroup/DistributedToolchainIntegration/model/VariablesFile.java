@@ -21,13 +21,17 @@ public class VariablesFile extends File{
     }
 
     public static List<Variable> convertToVarList(byte[] bytes){
+        //create a list to store the result
         List<Variable> vars = new ArrayList<>();
+        //turn the bytes into a JSONArray
         JSONArray array = new JSONArray(new String(bytes, StandardCharsets.UTF_8));
+
+        //for each variable in the provided file add it to the list
         for(int i=0; i < array.length(); i++){
             JSONObject obj = array.getJSONObject(i);
             Variable var = new Variable(new ObjectId(), obj.get("variableName").toString(),
                 obj.getDouble("initVal"), 
-                obj.getDouble("lowBound"), //I have no clue how to cast these to floats
+                obj.getDouble("lowBound"),
                 obj.getDouble("upBound")); 
             vars.add(var);
         }

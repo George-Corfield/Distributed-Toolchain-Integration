@@ -49,9 +49,11 @@ public class PartController {
 
     @PostMapping("/projects/varsfile/{projectName}/{partId}")
     public String addVars(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("file") MultipartFile file) throws IOException{
+        //turn the provided file into a variable file
         VariablesFile varFile = new VariablesFile(file.getOriginalFilename(), file.getContentType(), file.getBytes());
         List<Variable> varsList = varFile.getVarList();
 
+        //for each variable in the list, add it to the part
         for (int i = 0; i < varsList.size(); i++){
             Variable variable = new Variable(new ObjectId(), varsList.get(i).getVariableName(), varsList.get(i).getInitVal(), varsList.get(i).getLowBound(), varsList.get(i).getUpBound());
             variableService.createOptimisationVar(variable);
