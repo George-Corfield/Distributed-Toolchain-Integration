@@ -23,9 +23,11 @@ public class OptimisationController {
     @GetMapping("/projects/{projectName}/{partId}/optimise")
     public String getOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
-        OptimisationParams opParams = part.getOptimisationParams();
+        OptimisationParams op = part.getOptimisationParams();
+        System.out.println("HERE");
+        System.out.println(op.getModules());
         model.addAttribute("part", part);
-        model.addAttribute("opParams", opParams);
+        model.addAttribute("opParams", op);
         return "optimise";
     }
 }

@@ -14,10 +14,8 @@
     <h2><strong>Optimisation Parameters</strong></h2>
     <h3>Iteration Limit:</h3><span th:text="${opParams.iterations}"></span>
     <h3>Modules:</h3>
-    <span>
-        <ul th:each="mod : ${opParams.modules}">
-            <li th:text="${mod}"></li>
-        </ul>
-    </span>
+    <ol th:each="var : ${opParams.modules}">
+        <li th:text="${var}"></li>
+    </ol>
 </body>
 </html>

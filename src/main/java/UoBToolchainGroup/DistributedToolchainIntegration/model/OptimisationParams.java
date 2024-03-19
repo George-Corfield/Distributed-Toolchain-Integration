@@ -43,12 +43,16 @@ public class OptimisationParams {
         this.iterations = iter;
     }
 
-    public List<ModulesFile> getModulesFiles(){
+    public List<ModulesFile> getModules(){
         return this.modules;
     }
 
     public void setModules(List<ModulesFile> modules){
         this.modules = modules;
+    }
+
+    public void addModule(ModulesFile module){
+        this.modules.add(module);
     }
 
 }
