@@ -41,6 +41,6 @@ public class OptimisationController {
         // op.setModules(newOp.getModules());
         // part.setOptimisationParams(op);
         // partService.updatePart(part);
-        return "optimise";
+        return "redirect:/projects/{projectName}/{partId}/optimise";
     }
 }
