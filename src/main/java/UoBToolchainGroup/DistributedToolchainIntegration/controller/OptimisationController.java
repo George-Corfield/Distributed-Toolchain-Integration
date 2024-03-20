@@ -1,8 +1,12 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.catalina.valves.JsonAccessLogValve;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,10 +44,20 @@ public class OptimisationController {
 
     @PostMapping("/projects/{projectName}/{partId}/optimise")
     public String setIterationLimit(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("newOp") OptimisationParams newOp, @RequestParam("selectedModules") String selectedModules){
-        System.out.println(newOp.getIterations());
-        System.out.println(selectedModules);
-        List<String> strings = List.of(selectedModules.split(","));
-        List<ModulesFile> mods = List.of();
+        // System.out.println(newOp.getIterations());
+        // System.out.println(selectedModules);
+        List<JSONObject> json = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray("["+selectedModules+"]");
+        for (int i = 0; i < jsonArray.length(); i++){
+            json.add((JSONObject)jsonArray.get(i));
+        }
+
+        List<ModulesFile> mods = new ArrayList<>();
+        for (JSONObject mod: json){
+            mods.add(ModulesFile.jsonToString(mod));
+        }
+        System.out.println(mods.get(0));
+        System.out.println(mods.get(0).getFileId().getClass());
         return "redirect:/projects/{projectName}/{partId}/optimise";
     }
 }

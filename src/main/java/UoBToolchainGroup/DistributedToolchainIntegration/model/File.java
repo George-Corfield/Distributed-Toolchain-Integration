@@ -23,6 +23,14 @@ public class File {
         this.data = data;
     }
 
+    public File(ObjectId id, String fileName, String contentType, byte[] data){
+        this.fileId = id;
+        this.fileName = fileName;
+        this.contentType = contentType;
+        this.data = data;
+    }
+
+
     public String getFileName(){
         return fileName;
     }
