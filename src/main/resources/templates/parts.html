@@ -2,20 +2,25 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="partStyle.css">
     <meta charset="UTF-8">
     <title th:text="${project.projectName}"></title>
 </head>
 
 <body>
-    <h1 th:text="${project.projectName}"></h1>
-    <ul>
-        <li th:each="p : ${project.parts}">
-            <a th:href="@{${project.projectName} + '/' + ${p.partId}}" th:text="${p.partName}"></a>
-        </li>
-    </ul>
-
-    <button onclick="addPart()">Add Part</button>
+    <div class="header-container">
+        <h1>PROJECTS</h1>
+        <button class="new-project-button" onclick="addPart()">NEW PART</button>
+    </div>
+    <div class="button-container">
+        <button class="part-button" th:each="p : ${project.parts}">
+            <a th:href="@{${project.projectName} + '/' + ${p.partId}}">
+                <strong th:text="${p.partName}"></strong>
+            </a>
+            <br>
+            <span th:text="${p.partDescription}"></span>
+        </button>
+    </div>
 
     <div class="part-form-popup" id="part-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${project.projectName}}" th:object="${newPart}" method="post">
@@ -29,13 +34,18 @@
 
             <button type="submit">Submit</button>
         </form>
+        <p class="message" onclick="cancelPart()">Cancel new part</p>
     </div>
 
 </body>
 
 <script>
     function addPart(){
-        document.getElementById("part-form").style.display="block";
+        document.getElementById("part-form").style.display= "block";
+    }
+
+    function cancelPart() {
+        document.getElementById("part-form").style.display ="none";
     }
 </script>
 </html>
