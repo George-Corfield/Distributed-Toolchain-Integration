@@ -18,7 +18,9 @@
         <li th:text="${var}"></li>
     </ol>
 
-    <div class="opParams-form-popup" id="op-form" style="display:block;">
+    <button onclick="addOpForm()">Change Parameters</button>
+
+    <div class="opParams-form-popup" id="op-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}" th:object="${opParams}" method="post">
             <h1>Change Optimisation Parameters</h1>
             <label for="opParamsIterations"><b>Iteration Limit</b></label>
@@ -27,8 +29,8 @@
             <label for="opParamsModuleChoices"><b>Modules</b></label>
             <div id="Options">
                 <div class="moduleOption">
-                    <select class="selectedModule" id="module" th:each="var : ${opParams.modules}">
-                        <option th:value="${var}" th:text="${var.fileName}"></option>
+                    <select class="selectedModule" id="module">
+                        <option th:each="var : ${allModules}" th:value="${var}" th:text="${var.fileName}"></option>
                     </select>
                     <button type="button" onclick="addModOption(this.parentNode)">Add</button>
                     <button type="button" onclick="delModOption(this)">Delete</button>
@@ -39,6 +41,8 @@
 
             <button type="submit" onclick="createList()">Submit</button>
         </form>
+
+        <p class="message" onclick="cancelForm()">Cancel Changes</p>
     </div>
 </body>
 <script>
@@ -46,44 +50,6 @@
             el.insertAdjacentHTML('afterend', htmlString);    
 
     function addModOption(option){
-        // var container = document.createElement('div');
-        // container.classList.add("moduleOption");
-
-        // var select = document.createElement('select');
-        // select.id = 'module';
-        // select.classList.add("selectedModule");
-
-        // // console.log(opParams)
-
-        // opParams.modules.forEach(function(module){
-        //     var option = document.createElement('option');
-        //     console.log(module);
-        //     option.value = module.fileId;
-        //     option.textContent=module.fileName;
-        //     select.appendChild(option);
-        // })
-
-        // var addButton = document.createElement('button');
-        // addButton.type = 'button';
-        // addButton.textContent = 'Add';
-        // addButton.onclick = function() {
-        //     addModOption(opParams);
-        // }
-
-        // var deleteButton = document.createElement('button');
-        // deleteButton.type = 'button';
-        // deleteButton.textContent = 'Delete';
-        // deleteButton.onclick = function() {
-        //     delModOption(this);
-        // }
-
-        // container.appendChild(select);
-        // container.appendChild(addButton);
-        // container.appendChild(deleteButton);
-
-        // // console.log(container);
-
-        // document.getElementById("Options").append(container);
         var newModuleOption = option.cloneNode(true);
 
         newModuleOption.querySelector('select').selectedIndex = -1;
@@ -97,16 +63,21 @@
 
     function createList(){
         var selected = document.getElementsByClassName("selectedModule");
-        console.log(selected)
         let data = [];
         for (let i=0; i<selected.length; i++){
             console.log(selected[i].value);
             data.push(selected[i].value);
         }
-        console.log(data);
         let hiddenInput = document.getElementById("selectedModules")
         hiddenInput.value = data;
-        console.log(hiddenInput.value)
+    }
+
+    function addOpForm(){
+        document.getElementById("op-form").style.display="block";
+    }
+
+    function cancelForm() {
+        document.getElementById("op-form").style.display = "none";
     }
 </script>
 </html>

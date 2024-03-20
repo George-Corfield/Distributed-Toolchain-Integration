@@ -3,7 +3,6 @@ package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.valves.JsonAccessLogValve;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.OptimisationParams;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.FileService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.OptimisationParamsService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
 
@@ -29,18 +29,18 @@ public class OptimisationController {
     private PartService partService;
     @Autowired
     private OptimisationParamsService optimisationParamsService;
+    @Autowired
+    private FileService fileService;
 
     @GetMapping("/projects/{projectName}/{partId}/optimise")
     public String getOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = part.getOptimisationParams();
-        System.out.println(op.getParamsId());
-        System.out.println(op.getIterations());
-        System.out.println(op.getModules());
+        List<ModulesFile> mods = fileService.getAllModulesFiles();
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("opParams", op);
-        // model.addAttribute("newOp", op);
+        model.addAttribute("allModules", mods);
         return "optimise";
     }
 

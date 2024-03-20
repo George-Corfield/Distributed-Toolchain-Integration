@@ -1,11 +1,9 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "OptimisationParams")
@@ -20,9 +18,6 @@ public class OptimisationParams {
 
     public OptimisationParams(){
         super();
-        // this.paramsId = new ObjectId();
-        // this.iterations = 100;
-        // this.modules = new ArrayList<>();
     }
 
     public OptimisationParams(ObjectId paramsId, Integer iterations, List<ModulesFile> modules){
