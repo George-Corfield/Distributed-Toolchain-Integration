@@ -25,4 +25,8 @@ public class OptimisationParamsService {
     public OptimisationParams getOptimisationParamsById(ObjectId opParamsId){
         return optimisationParamsRepository.findById(opParamsId).get();
     }
+
+    public OptimisationParams updateOptimisationParams(OptimisationParams op){
+        return optimisationParamsRepository.save(op);
+    }
 }
