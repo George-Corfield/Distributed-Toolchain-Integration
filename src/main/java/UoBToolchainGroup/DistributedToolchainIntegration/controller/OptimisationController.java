@@ -1,5 +1,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.OptimisationParams;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.OptimisationParamsService;
@@ -26,6 +30,7 @@ public class OptimisationController {
     public String getOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = part.getOptimisationParams();
+        OptimisationParams ex = new OptimisationParams();
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("opParams", op);
@@ -34,13 +39,11 @@ public class OptimisationController {
     }
 
     @PostMapping("/projects/{projectName}/{partId}/optimise")
-    public String setIterationLimit(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("newOp") OptimisationParams newOp){
-        // Part part = partService.getPartbyId(new ObjectId(partId));
-        // OptimisationParams op = part.getOptimisationParams();
-        // op.setIterations(newOp.getIterations());
-        // op.setModules(newOp.getModules());
-        // part.setOptimisationParams(op);
-        // partService.updatePart(part);
+    public String setIterationLimit(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("newOp") OptimisationParams newOp, @RequestParam("selectedModules") String selectedModules){
+        System.out.println(newOp.getIterations());
+        System.out.println(selectedModules);
+        List<String> strings = List.of(selectedModules.split(","));
+        List<ModulesFile> mods = List.of();
         return "redirect:/projects/{projectName}/{partId}/optimise";
     }
 }
