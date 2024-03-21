@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Optimise</title>
+</head>
+
+<body>
+    <h1 th:text="${part.partName}"></h1>
+    <h3 th:text="${part.partDescription}"></h3>
+    <br>
+
+    <h2><strong>Optimisation Parameters</strong></h2>
+    <h3>Iteration Limit:</h3><span th:text="${opParams.iterations}"></span>
+    <h3>Modules:</h3>
+    <ol th:each="var : ${opParams.modules}">
+        <li th:text="${var}"></li>
+    </ol>
+
+    <button onclick="addOpForm()">Change Parameters</button>
+
+    <div class="opParams-form-popup" id="op-form" style="display:none;">
+        <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}" th:object="${opParams}" method="post">
+            <h1>Change Optimisation Parameters</h1>
+            <label for="opParamsIterations"><b>Iteration Limit</b></label>
+            <input type="number" th:placeholder="'Current: ' + ${opParams.iterations}" th:field="*{iterations}" th:value="${opParams.iterations}"/>
+
+            <label for="opParamsModuleChoices"><b>Modules</b></label>
+            <div id="Options">
+                <div class="moduleOption">
+                    <select class="selectedModule" id="module">
+                        <option th:each="var : ${allModules}" th:value="${var}" th:text="${var.fileName}"></option>
+                    </select>
+                    <button type="button" onclick="addModOption(this.parentNode)">Add</button>
+                    <button type="button" onclick="delModOption(this)">Delete</button>
+                </div>
+            </div>
+            
+            <input type="hidden" id="selectedModules" name="selectedModules"/>
+
+            <button type="submit" onclick="createList()">Submit</button>
+        </form>
+
+        <p class="message" onclick="cancelForm()">Cancel Changes</p>
+    </div>
+</body>
+<script>
+    const insertAfter = (el, htmlString) => 
+            el.insertAdjacentHTML('afterend', htmlString);    
+
+    function addModOption(option){
+        var newModuleOption = option.cloneNode(true);
+
+        newModuleOption.querySelector('select').selectedIndex = -1;
+        document.getElementById("Options").append(newModuleOption);
+    }
+
+    function delModOption(button){
+        document.getElementById("Options").removeChild(button.parentNode);
+
+    }
+
+    function createList(){
+        var selected = document.getElementsByClassName("selectedModule");
+        let data = [];
+        for (let i=0; i<selected.length; i++){
+            console.log(selected[i].value);
+            data.push(selected[i].value);
+        }
+        let hiddenInput = document.getElementById("selectedModules")
+        hiddenInput.value = data;
+    }
+
+    function addOpForm(){
+        document.getElementById("op-form").style.display="block";
+    }
+
+    function cancelForm() {
+        document.getElementById("op-form").style.display = "none";
+    }
+</script>
+</html>

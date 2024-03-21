@@ -19,7 +19,6 @@ public class FileController {
 
     @PostMapping("/saveFile")
     public String saveFile(@RequestParam("file") MultipartFile file){
-        
         try{
             String fileName = file.getOriginalFilename();
             String contentType = file.getContentType();
@@ -31,5 +30,5 @@ public class FileController {
         catch(Exception e){
             return "File not saved";
         }
-    } 
+    }
 }

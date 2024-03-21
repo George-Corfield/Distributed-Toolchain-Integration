@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,11 @@ public class OptimisationParamsService {
         return optimisationParamsRepository.save(optimisationParams);
     }
 
-    public OptimisationParams getOptimisationParamsById(String opParamsId){
+    public OptimisationParams getOptimisationParamsById(ObjectId opParamsId){
         return optimisationParamsRepository.findById(opParamsId).get();
+    }
+
+    public OptimisationParams updateOptimisationParams(OptimisationParams op){
+        return optimisationParamsRepository.save(op);
     }
 }
