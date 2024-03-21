@@ -1,0 +1,26 @@
+[
+  {
+    "variableName": "v1",
+    "initVal": 6,
+    "lowBound": 3,
+    "upBound": 9
+  },
+  {
+    "variableName": "v2",
+    "initVal": 2,
+    "lowBound": 3,
+    "upBound": 10
+  },
+  {
+    "variableName": "v3",
+    "initVal": -5,
+    "lowBound": 0,
+    "upBound": 5
+  },
+  {
+    "variableName": "v4",
+    "initVal": 70,
+    "lowBound": 10,
+    "upBound": 150
+  }
+]
