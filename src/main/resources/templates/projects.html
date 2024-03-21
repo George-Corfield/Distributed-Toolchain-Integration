@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="projectsStyle.css">
+    <link rel="stylesheet" href="projectStyle.css">
     <meta charset="UTF-8">
     <title>Projects Page</title>
 </head>
@@ -14,7 +14,11 @@
     </div>
     <div class="button-container">
         <button class="project-button" th:each="project: ${projects}">
-            <a th:href="@{'projects/' + ${project.projectName}}" th:text="${project.projectName}" />
+            <a th:href="@{'projects/' + ${project.projectName}}">
+                <strong th:text="${project.projectName}"></strong>
+            </a>
+            <br>
+            <span th:text="${project.projectDescription}"></span>
         </button>
     </div>
 
