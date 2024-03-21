@@ -12,15 +12,15 @@ public class Variable {
     @Id 
     private ObjectId variableId;
     private String variableName;
-    private float initVal;
-    private float lowBound;
-    private float upBound;
+    private double initVal;
+    private double lowBound;
+    private double upBound;
 
     public Variable(){
         super();
     }
 
-    public Variable(ObjectId variableId, String variableName, float initVal, float lowBound, float upBound){
+    public Variable(ObjectId variableId, String variableName, double initVal, double lowBound, double upBound){
         super();
         this.variableId = variableId;
         this.variableName = variableName;
@@ -46,27 +46,27 @@ public class Variable {
         this.variableName = variableName;
     }
 
-    public float getInitVal() {
+    public double getInitVal() {
         return initVal;
     }
 
-    public void setInitVal(float initVal) {
+    public void setInitVal(double initVal) {
         this.initVal = initVal;
     }
 
-    public float getLowBound() {
+    public double getLowBound() {
         return lowBound;
     }
 
-    public void setLowBound(float lowBound) {
+    public void setLowBound(double lowBound) {
         this.lowBound = lowBound;
     }
 
-    public float getUpBound() {
+    public double getUpBound() {
         return upBound;
     }
 
-    public void setUpBound(float upBound) {
+    public void setUpBound(double upBound) {
         this.upBound = upBound;
     }
 
