@@ -12,25 +12,21 @@ public class Part {
     private ObjectId partId;
     private String partName;
     private String partDescription;
-    private List<Variable> variables;
-    private List<Variable> optimisationVariables;
     private OptimisationParams optimisationParams;
+    private ObjectId projectId;
 
     public Part(){
         super();
-        this.variables = List.of();
         this.optimisationParams = new OptimisationParams();
-        this.optimisationVariables = List.of();
     }
 
     public Part(ObjectId partId, String partName, String partDescription,
-    List<Variable> variables, List<Variable> optimisationVariables, OptimisationParams optimisationParams){
+    List<Variable> variables, List<Variable> optimisationVariables, OptimisationParams optimisationParams, ObjectId projectId){
         this.partId = partId;
         this.partName = partName;
         this.partDescription = partDescription;
-        this.variables = variables;
-        this.optimisationVariables = optimisationVariables;
         this.optimisationParams = optimisationParams;
+        this.projectId = projectId;
     }   
 
     public ObjectId getPartId(){
@@ -57,29 +53,6 @@ public class Part {
         this.partDescription = partDescription;
     }
 
-    public List<Variable> getVariables(){
-        return variables;
-    }
-
-    public void setVariables(List<Variable> variables){
-        this.variables = variables;
-    }
-
-    public List<Variable> getOptimisationVariables(){
-        return optimisationVariables;
-    }
-
-    public void setOptimisationVariables(List<Variable> optimisationVariables){
-        this.optimisationVariables = optimisationVariables;
-    }
-
-    public void addVariable(Variable variable){
-        this.variables.add(variable);
-    }
-
-    public void addOptimisationVariable(Variable variable){
-        this.optimisationVariables.add(variable);
-    }
 
     public OptimisationParams getOptimisationParams(){
         return optimisationParams;
@@ -87,6 +60,14 @@ public class Part {
 
     public void setOptimisationParams(OptimisationParams optimisationParams){
         this.optimisationParams = optimisationParams;
+    }
+
+    public ObjectId getProjectId(){
+        return projectId;
+    }
+
+    public void setProjectId(ObjectId projectId){
+        this.projectId = projectId;
     }
 
 

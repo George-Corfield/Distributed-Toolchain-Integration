@@ -1,9 +1,9 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.repository.ProjectRepository;
 
@@ -29,8 +29,8 @@ public class ProjectService {
         return projectRepository.findById(projectId).get();
     }
 
-    public List<Project> getProjectByUser(User user){
-        return projectRepository.findProjectByUser(user);
+    public List<Project> getProjectByUser(ObjectId userId){
+        return projectRepository.findProjectByUserId(userId);
     }
 
     public Project getProjectByName(String projectName){
