@@ -16,7 +16,6 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.ProjectService;
-import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 
