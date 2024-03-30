@@ -13,14 +13,14 @@ public class OptimisationParams {
     @Id
     private ObjectId paramsId;
     private Integer iterations;
-    private List<ModulesFile> modules;
+    private List<ObjectId> modules;
     //add other variables here
 
     public OptimisationParams(){
         super();
     }
 
-    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ModulesFile> modules){
+    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules){
         super();
         this.paramsId = paramsId;
         this.iterations = iterations;
@@ -43,15 +43,15 @@ public class OptimisationParams {
         this.iterations = iter;
     }
 
-    public List<ModulesFile> getModules(){
+    public List<ObjectId> getModules(){
         return this.modules;
     }
 
-    public void setModules(List<ModulesFile> modules){
+    public void setModules(List<ObjectId> modules){
         this.modules = modules;
     }
 
-    public void addModule(ModulesFile module){
+    public void addModule(ObjectId module){
         this.modules.add(module);
     }
 

@@ -29,8 +29,8 @@ public class ProjectService {
         return projectRepository.findById(projectId).get();
     }
 
-    public List<Project> getProjectByUser(ObjectId userId){
-        return projectRepository.findProjectByUserId(userId);
+    public List<Project> getProjectsByUser(ObjectId userId){
+        return projectRepository.findProjectsByUserId(userId);
     }
 
     public Project getProjectByName(String projectName){

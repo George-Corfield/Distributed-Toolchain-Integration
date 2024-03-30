@@ -28,7 +28,9 @@ public class ProjectController {
 
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
-        List<Project> projects = projectService.getProjectByUser(new ObjectId(id));
+        System.out.println(id);
+        List<Project> projects = projectService.getProjectsByUser(new ObjectId(id));
+        System.out.println(projects);
         model.addAttribute("projects", projects);
         model.addAttribute("newProject", new Project());
         return "projects";
@@ -36,9 +38,16 @@ public class ProjectController {
 
     @GetMapping("/projects/{projectName}")
     public String getParts(@PathVariable String projectName, Model model){
+        System.out.println("Start");
         Project project = projectService.getProjectByName(projectName);
+        System.out.println(projectName);
+        System.out.println(project);
+        List<Part> parts = partService.getPartsByProjectId(project.getProjectId());
+        System.out.println(parts);
         model.addAttribute("project", project);
+        model.addAttribute("parts", parts);
         model.addAttribute("newPart", new Part());
+        System.out.println("End");
         return "parts";
     }
 

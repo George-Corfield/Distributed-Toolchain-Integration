@@ -44,24 +44,24 @@ public class OptimisationController {
         return "optimise";
     }
 
-    @PostMapping("/projects/{projectName}/{partId}/optimise")
-    public String setIterationLimit(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("opParams") OptimisationParams newOp, @RequestParam("selectedModules") String selectedModules){
-        List<JSONObject> json = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray("["+selectedModules+"]");
-        for (int i = 0; i < jsonArray.length(); i++){
-            json.add((JSONObject)jsonArray.get(i));
-        }
-        List<ModulesFile> mods = new ArrayList<>();
-        for (JSONObject mod: json){
-            mods.add(ModulesFile.jsonToString(mod));
-        }
-        Part part = partService.getPartbyId(new ObjectId(partId));
-        OptimisationParams oldOp = part.getOptimisationParams();
-        oldOp.setIterations(newOp.getIterations());
-        oldOp.setModules(mods);
-        part.setOptimisationParams(oldOp);
-        optimisationParamsService.updateOptimisationParams(oldOp);
-        partService.updatePart(part);
-        return "redirect:/projects/{projectName}/{partId}/optimise";
-    }
+    // @PostMapping("/projects/{projectName}/{partId}/optimise")
+    // public String setIterationLimit(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("opParams") OptimisationParams newOp, @RequestParam("selectedModules") String selectedModules){
+    //     List<JSONObject> json = new ArrayList<>();
+    //     JSONArray jsonArray = new JSONArray("["+selectedModules+"]");
+    //     for (int i = 0; i < jsonArray.length(); i++){
+    //         json.add((JSONObject)jsonArray.get(i));
+    //     }
+    //     List<ModulesFile> mods = new ArrayList<>();
+    //     for (JSONObject mod: json){
+    //         mods.add(ModulesFile.jsonToString(mod));
+    //     }
+    //     Part part = partService.getPartbyId(new ObjectId(partId));
+    //     OptimisationParams oldOp = part.getOptimisationParams();
+    //     oldOp.setIterations(newOp.getIterations());
+    //     oldOp.setModules(mods);
+    //     part.setOptimisationParams(oldOp);
+    //     optimisationParamsService.updateOptimisationParams(oldOp);
+    //     partService.updatePart(part);
+    //     return "redirect:/projects/{projectName}/{partId}/optimise";
+    // }
 }

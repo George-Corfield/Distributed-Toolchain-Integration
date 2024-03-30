@@ -13,7 +13,7 @@
         <button class="new-project-button" onclick="addPart()">NEW PART</button>
     </div>
     <div class="button-container">
-        <button class="part-button" th:each="p : ${project.parts}">
+        <button class="part-button" th:each="p : ${parts}">
             <a th:href="@{${project.projectName} + '/' + ${p.partId}}">
                 <strong th:text="${p.partName}"></strong>
             </a>

@@ -27,6 +27,10 @@ public class PartService {
         return partRepository.save(part);
     }
 
+    public List<Part> getPartsByProjectId(ObjectId id){
+        return partRepository.findPartsByProjectId(id);
+    }
+
 
     public Part getPartbyId(ObjectId id){
         return partRepository.findById(id.toString()).get();
