@@ -2,14 +2,15 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="partStyle.css">
+    <link rel="stylesheet" th:href="@{/partStyle.css}">
     <meta charset="UTF-8">
     <title th:text="${project.projectName}"></title>
 </head>
 
 <body>
     <div class="header-container">
-        <h1>PROJECTS</h1>
+        <h1 th:text="'Project: ' + ${project.projectName}">Project Name: </h1>
+        <h2>PARTS LIST:</h2>
         <button class="new-project-button" onclick="addPart()">NEW PART</button>
     </div>
     <div class="button-container">
