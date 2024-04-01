@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
@@ -25,19 +27,22 @@ public class UserController {
     public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, 
     Model mode,
     HttpServletResponse response){
+    
         User foundUser = userService.getUserByUsername(userDetails.getUsername());
         if (foundUser == null){
+            //user not found
         } else {
             if (foundUser.getPassword().equals(userDetails.getPassword())){
+                //user found + correct pwd
                 Cookie cookie = new Cookie("userId", foundUser.getUserId().toString());
                 cookie.setMaxAge(7*24*60*60);
                 response.addCookie(cookie);
                 return "redirect:/projects";
             } else {
-                System.out.println("Incorrect Password");
+                //user found + incorret pwd
             }
         }
-        return "redirect:/";
+        return "redirect:/login?fail=true";
     }
 
     public Optional<String> getCookie(HttpServletRequest req){
@@ -52,7 +57,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(@RequestParam(value ="fail", required = false) Boolean fail, Model model){
+        if(fail != null){
+            if(fail){
+                //add error text here
+            }
+        }
         model.addAttribute("userDetails", new User());
         return "login";
     }
