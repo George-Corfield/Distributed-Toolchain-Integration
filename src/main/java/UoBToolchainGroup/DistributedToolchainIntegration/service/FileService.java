@@ -2,6 +2,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,8 @@ public class FileService {
     public List<ModulesFile> getAllModulesFiles(){
         return fileRepository.findByContentType("Python");
     } 
+
+    public File getFileById(ObjectId id){
+        return fileRepository.findById(id.toString()).get();
+    }
 }
