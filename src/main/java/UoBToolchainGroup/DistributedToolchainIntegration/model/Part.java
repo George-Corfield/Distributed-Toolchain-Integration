@@ -17,6 +17,7 @@ public class Part {
 
     public Part(){
         super();
+        this.partId = new ObjectId();
         this.optimisationParams = new OptimisationParams();
     }
 

@@ -19,6 +19,7 @@ public class Variable {
 
     public Variable(){
         super();
+        this.variableId = new ObjectId();
     }
 
     public Variable(ObjectId variableId,ObjectId partId, String variableName, double initVal, double lowBound, double upBound){

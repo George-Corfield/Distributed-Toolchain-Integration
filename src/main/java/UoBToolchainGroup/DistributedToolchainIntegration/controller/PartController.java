@@ -44,7 +44,6 @@ public class PartController {
 
     @PostMapping("/projects/{projectName}/{partId}")
     public String addVar(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("varialble") Variable variable){
-        variable.setVariableId(new ObjectId());
         variable.setPartId(new ObjectId(partId));
         variableService.createOptimisationVar(variable);
         return "redirect:/projects/{projectName}/{partId}";

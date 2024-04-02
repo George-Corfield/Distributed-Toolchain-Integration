@@ -20,6 +20,8 @@ public class Project {
 
     public Project(){
         super();
+        this.projectId = new ObjectId();
+        this.projectStartDate = new Date();
     }
 
     public Project(ObjectId projectId, 
