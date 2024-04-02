@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.util.Arrays;
 import java.util.Optional;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.security.*;
+
 
 @Controller
 public class UserController {
@@ -26,13 +29,13 @@ public class UserController {
     @PostMapping("/login")
     public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, 
     Model mode,
-    HttpServletResponse response){
+    HttpServletResponse response) throws NoSuchAlgorithmException{
     
         User foundUser = userService.getUserByUsername(userDetails.getUsername());
         if (foundUser == null){
             //user not found
         } else {
-            if (foundUser.getPassword().equals(userDetails.getPassword())){
+            if(Arrays.equals(foundUser.getPassword(), generatePasswordHash(userDetails.getPassword(), foundUser.getSalt()))){
                 //user found + correct pwd
                 Cookie cookie = new Cookie("userId", foundUser.getUserId().toString());
                 cookie.setMaxAge(7*24*60*60);
@@ -68,11 +71,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("userDetails") User newUser, Model model){
+    public String register(@ModelAttribute("userDetails") User newUser, Model model) throws NoSuchAlgorithmException{
         User checkUser = userService.getUserByUsername(newUser.getUsername());
         if (checkUser == null){
             newUser.setUserId(new ObjectId());
             newUser.setRole(10);
+            byte[] salt = generateSalt();
+            newUser.setSalt(salt);
+            newUser.setPassword(generatePasswordHash(newUser.getPassword(), salt));
             userService.createUser(newUser);
             System.out.println("User Successfully Created");
             return "redirect:/login";
@@ -88,6 +94,20 @@ public class UserController {
         return "register";
     }
 
+    //takes a salt and uses that 
+    private byte[] generatePasswordHash(byte[] plaintext, byte[] salt) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(salt);
+        byte[] hashedPassword = md.digest(plaintext);
+        return hashedPassword;
+    }
 
+    //create a generate salt function
+    private byte[] generateSalt(){
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        return salt;
+    }
     
 }
