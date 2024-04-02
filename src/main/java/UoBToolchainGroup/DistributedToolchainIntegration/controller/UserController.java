@@ -80,12 +80,11 @@ public class UserController {
             newUser.setSalt(salt);
             newUser.setPassword(generatePasswordHash(newUser.getPassword(), salt));
             userService.createUser(newUser);
-            System.out.println("User Successfully Created");
             return "redirect:/login";
         } else {
-            System.out.println("User already exists");
+            //user exists
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/register")
@@ -94,7 +93,6 @@ public class UserController {
         return "register";
     }
 
-    //takes a salt and uses that 
     private byte[] generatePasswordHash(byte[] plaintext, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-512");
         md.update(salt);
