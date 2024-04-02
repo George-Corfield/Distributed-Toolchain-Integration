@@ -34,6 +34,8 @@ public class OptimisationController {
         OptimisationParams op = part.getOptimisationParams();
         List<File> currentFiles = new ArrayList<>();
         List<ObjectId> currentFileId = op.getModules();
+
+        //gets the data for the files based on id's stored in optimisation paramters
         for (int i = 0; i < currentFileId.size(); i++){
             currentFiles.add(fileService.getFileById(currentFileId.get(i)));
         }
@@ -48,34 +50,23 @@ public class OptimisationController {
 
     @PostMapping("/projects/{projectName}/{partId}/optimise")
     public String setParams(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("opParams") OptimisationParams newOp, @RequestParam("selectedModules") String selectedModules){
-        // List<JSONObject> json = new ArrayList<>();
-        // JSONArray jsonArray = new JSONArray("["+selectedModules+"]");
-        // for (int i = 0; i < jsonArray.length(); i++){
-        //     json.add((JSONObject)jsonArray.get(i));
-        // }
+        //gets the current part and optimisation paramters
         Part part = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = part.getOptimisationParams();
-        op.setIterations(newOp.getIterations());
+
+        //splits the id's into a list via the comma, and appends them to the optimisation parameter list
         String[] mods = selectedModules.split(",");
         op.setModules(new ArrayList<>());
         for (String s: mods){
             op.addModule(new ObjectId(s));
         }
+
+        //sets the iterations to the newly entered iterations, which is kept the same if the user does not iteract
+        op.setIterations(newOp.getIterations());
         part.setOptimisationParams(op);
+
+        //updates the part
         partService.updatePart(part);
         return "redirect:/projects/{projectName}/{partId}/optimise";
-        
-        // List<ModulesFile> mods = new ArrayList<>();
-        // for (JSONObject mod: json){
-        //     mods.add(ModulesFile.jsonToString(mod));
-        // }
-        // Part part = partService.getPartbyId(new ObjectId(partId));
-        // OptimisationParams oldOp = part.getOptimisationParams();
-        // oldOp.setIterations(newOp.getIterations());
-        // oldOp.setModules(mods);
-        // part.setOptimisationParams(oldOp);
-        // optimisationParamsService.updateOptimisationParams(oldOp);
-        // partService.updatePart(part);
-        // return "redirect:/projects/{projectName}/{partId}/optimise";
     }
 }

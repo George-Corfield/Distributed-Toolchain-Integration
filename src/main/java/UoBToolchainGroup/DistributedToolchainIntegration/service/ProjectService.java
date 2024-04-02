@@ -30,6 +30,7 @@ public class ProjectService {
     }
 
     public List<Project> getProjectsByUser(ObjectId userId){
+        //retrieves all projects with the same userId
         return projectRepository.findProjectsByUserId(userId);
     }
 

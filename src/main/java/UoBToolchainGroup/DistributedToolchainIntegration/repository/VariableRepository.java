@@ -11,4 +11,6 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 public interface VariableRepository extends MongoRepository<Variable, ObjectId>{
 
     public List<Variable> getVariablesByPartId(ObjectId partId);
+    //gets all variables with partId via query:
+    //{ "partId" : { "$oid" : ObjectId }} fields: Document{{}}
 }

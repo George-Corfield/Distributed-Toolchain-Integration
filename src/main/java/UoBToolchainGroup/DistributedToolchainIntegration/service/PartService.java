@@ -28,6 +28,7 @@ public class PartService {
     }
 
     public List<Part> getPartsByProjectId(ObjectId id){
+        //retrieves all parts with same project id
         return partRepository.findPartsByProjectId(id);
     }
 

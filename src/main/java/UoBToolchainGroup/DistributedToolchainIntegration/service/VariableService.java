@@ -29,6 +29,7 @@ public class VariableService {
     }
 
     public List<Variable> getVariablesByPart(ObjectId partId){
+        // retrieves all the variables with field partId = partId
         return optimisationVarRepository.getVariablesByPartId(partId);
     }
 

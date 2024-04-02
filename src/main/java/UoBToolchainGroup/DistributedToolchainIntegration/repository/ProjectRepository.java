@@ -8,6 +8,8 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 public interface ProjectRepository extends MongoRepository<Project, String>{
 
     public List<Project> findProjectsByUserId(ObjectId userId);
+    //gets all projects with associated userId via query:
+    //{ "userId" : { "$oid" : ObjectId }} fields: Document{{}}
 
     public Project findProjectByProjectName(String projectName);
 }
