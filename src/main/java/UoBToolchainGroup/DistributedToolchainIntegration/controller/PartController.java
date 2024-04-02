@@ -33,10 +33,12 @@ public class PartController {
 
     @GetMapping("/projects/{projectName}/{partId}")
     public String getPart(@PathVariable String projectName, @PathVariable String partId, Model model){
-        Part part = partService.getPartbyId(new ObjectId(partId)); 
+        Part part = partService.getPartbyId(new ObjectId(partId));
+        List<Variable> variables = variableService.getVariablesByPart(part.getPartId()); 
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("variable", new Variable());
+        model.addAttribute("currentVariables", variables);
         return "Optimisation";
     }
 
