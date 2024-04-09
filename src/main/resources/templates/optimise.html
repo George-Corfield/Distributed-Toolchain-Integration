@@ -17,8 +17,11 @@
     <ol th:each="var : ${currentModules}">
         <li th:text="${var}"></li>
     </ol>
+    <h3>Optimisation Problem:</h3>
+    <span th:if="${opParams.maximising}">Maximisation</span>
+    <span th:if="${!opParams.maximising}">Minimisation</span>
 
-    <button onclick="addOpForm()">Change Parameters</button>
+    <button onclick="addOpForm()">Set Parameters</button>
 
     <div class="opParams-form-popup" id="op-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}" th:object="${opParams}" method="post">
@@ -26,6 +29,11 @@
             <label for="opParamsIterations"><b>Iteration Limit</b></label>
             <input type="number" th:placeholder="'Current: ' + ${opParams.iterations}" th:field="*{iterations}" th:value="${opParams.iterations}"/>
 
+            <label for="opParamsMaximisation"><b>Choose Problem Type</b></label>
+            <select th:field="*{maximising}">
+                <option th:value="1">Maximisation</option>
+                <option th:value="0">Minimisation</option>
+            </select>
             <label for="opParamsModuleChoices"><b>Modules</b></label>
             <div id="Options">
                 <div class="moduleOption">
@@ -47,7 +55,7 @@
 </body>
 <script>
     const insertAfter = (el, htmlString) => 
-            el.insertAdjacentHTML('afterend', htmlString);    
+            el.insertAdjacentHTML('afterend', htmlString);  
 
     function addModOption(option){
         var newModuleOption = option.cloneNode(true);

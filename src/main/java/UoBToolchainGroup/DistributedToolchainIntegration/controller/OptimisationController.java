@@ -63,6 +63,7 @@ public class OptimisationController {
 
         //sets the iterations to the newly entered iterations, which is kept the same if the user does not iteract
         op.setIterations(newOp.getIterations());
+        op.setMaximising(newOp.getMaximising());
         part.setOptimisationParams(op);
 
         //updates the part
