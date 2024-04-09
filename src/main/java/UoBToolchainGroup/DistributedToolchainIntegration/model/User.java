@@ -11,21 +11,23 @@ public class User {
     @Id
     private ObjectId userId;
     private String username;
-    private String password;
+    private byte[] password;
     private String email;
     private int role;
+    private byte[] salt;
 
     public User(){
         super();
     }
 
-    public User(ObjectId userId, String username, String password, String email, int role){
+    public User(ObjectId userId, String username, byte[] password, String email, int role, byte[] salt){
         super();
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.salt = salt;
     }
 
     public ObjectId getUserId() {
@@ -44,11 +46,11 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(byte[] password) {
         this.password = password;
     }
 
@@ -66,6 +68,14 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public byte[] getSalt(){
+        return salt;
+    }
+
+    public void setSalt(byte[] salt){
+        this.salt = salt;
     }
 
 
