@@ -14,8 +14,8 @@
     <h2><strong>Optimisation Parameters</strong></h2>
     <h3>Iteration Limit:</h3><span th:text="${opParams.iterations}"></span>
     <h3>Modules:</h3>
-    <ol th:each="var : ${currentModules}">
-        <li th:text="${var}"></li>
+    <ol>
+        <li th:each="var : ${currentModules}" th:text="${var.fileName}"></li>
     </ol>
     <h3>Optimisation Problem:</h3>
     <span th:if="${opParams.maximising}">Maximisation</span>
@@ -52,6 +52,7 @@
 
         <p class="message" onclick="cancelForm()">Cancel Changes</p>
     </div>
+
 </body>
 <script>
     const insertAfter = (el, htmlString) => 
