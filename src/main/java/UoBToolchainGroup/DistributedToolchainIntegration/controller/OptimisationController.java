@@ -25,6 +25,7 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.Result;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.FileService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.ResultService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.VariableService;
 
 
@@ -36,6 +37,8 @@ public class OptimisationController {
     private FileService fileService;
     @Autowired
     private VariableService variableService;
+    @Autowired
+    private ResultService resultService;
 
     @GetMapping("/projects/{projectName}/{partId}/optimise")
     public String getOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model){
@@ -106,15 +109,15 @@ public class OptimisationController {
         }
         // System.out.println(modulesArray);
         // System.out.println(variablesArray);
-        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray, new ObjectId(partId));
-
-        System.out.println(h.getResults());
+        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
+        updateResultsTable(h.getResults(), new ObjectId(partId));
         return "index";
     }
 
-    public void updateResultsTable(List<Result> results){
+    public void updateResultsTable(List<Result> results, ObjectId partId){
         for (Result r: results){
-            
+            r.setPartId(partId);
+            resultService.creatResult(r);
         }
     }
 }

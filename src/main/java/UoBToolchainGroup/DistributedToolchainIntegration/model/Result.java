@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "results")
+@Document(collection = "Results")
 public class Result {
 
     @Id

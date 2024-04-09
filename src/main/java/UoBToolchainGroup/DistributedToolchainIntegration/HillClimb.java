@@ -18,7 +18,6 @@ public class HillClimb {
     private boolean maximising;
     private JSONArray variablesArray;
     private JSONArray modules;
-    private ObjectId partId;
     //optimisation data
     private List<Result> results;
     private Result currentResult;
@@ -26,12 +25,11 @@ public class HillClimb {
     private double maximum;
     
 
-    public HillClimb(int iterations, boolean maximising, JSONArray variablesArray,JSONArray modules, ObjectId partId){
+    public HillClimb(int iterations, boolean maximising, JSONArray variablesArray,JSONArray modules){
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
         this.modules = modules;
-        this.partId = partId;
         this.results = new ArrayList<>();
         Result r = CalculateInitialResult();
         currentResult = r;
@@ -44,7 +42,6 @@ public class HillClimb {
     public Result CalculateInitialResult(){
         Result r = new Result();
         Random rand = new Random();
-        r.setPartId(partId);
         r.setOutputValue(rand.nextFloat(500));
         for (int i = 0; i < variablesArray.length(); i++){
             JSONArray v = variablesArray.getJSONArray(i);
