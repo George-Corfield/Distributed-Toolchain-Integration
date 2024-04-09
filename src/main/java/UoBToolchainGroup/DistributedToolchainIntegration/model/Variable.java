@@ -11,6 +11,7 @@ public class Variable {
     
     @Id 
     private ObjectId variableId;
+    private ObjectId partId;
     private String variableName;
     private double initVal;
     private double lowBound;
@@ -18,6 +19,17 @@ public class Variable {
 
     public Variable(){
         super();
+        this.variableId = new ObjectId();
+    }
+
+    public Variable(ObjectId variableId,ObjectId partId, String variableName, double initVal, double lowBound, double upBound){
+        super();
+        this.variableId = variableId;
+        this.partId = partId;
+        this.variableName = variableName;
+        this.initVal = initVal;
+        this.lowBound = lowBound;
+        this.upBound = upBound;
     }
 
     public Variable(ObjectId variableId, String variableName, double initVal, double lowBound, double upBound){
@@ -68,6 +80,14 @@ public class Variable {
 
     public void setUpBound(double upBound) {
         this.upBound = upBound;
+    }
+
+    public ObjectId getPartId(){
+        return partId;
+    }
+
+    public void setPartId(ObjectId partId){
+        this.partId = partId;
     }
 
     @Override

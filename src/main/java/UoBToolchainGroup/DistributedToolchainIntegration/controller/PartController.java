@@ -33,20 +33,19 @@ public class PartController {
 
     @GetMapping("/projects/{projectName}/{partId}")
     public String getPart(@PathVariable String projectName, @PathVariable String partId, Model model){
-        Part part = partService.getPartbyId(new ObjectId(partId)); 
+        Part part = partService.getPartbyId(new ObjectId(partId));
+        List<Variable> variables = variableService.getVariablesByPart(part.getPartId()); 
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("variable", new Variable());
+        model.addAttribute("currentVariables", variables);
         return "Optimisation";
     }
 
     @PostMapping("/projects/{projectName}/{partId}")
     public String addVar(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("varialble") Variable variable){
-        variable.setVariableId(new ObjectId());
+        variable.setPartId(new ObjectId(partId));
         variableService.createOptimisationVar(variable);
-        Part part = partService.getPartbyId(new ObjectId(partId));
-        part.addVariable(variable);
-        partService.updatePart(part);
         return "redirect:/projects/{projectName}/{partId}";
     }
 
@@ -58,11 +57,8 @@ public class PartController {
 
         //for each variable in the list, add it to the part
         for (int i = 0; i < varsList.size(); i++){
-            Variable variable = new Variable(new ObjectId(), varsList.get(i).getVariableName(), varsList.get(i).getInitVal(), varsList.get(i).getLowBound(), varsList.get(i).getUpBound());
+            Variable variable = new Variable(new ObjectId(), new ObjectId(partId), varsList.get(i).getVariableName(), varsList.get(i).getInitVal(), varsList.get(i).getLowBound(), varsList.get(i).getUpBound());
             variableService.createOptimisationVar(variable);
-            Part part = partService.getPartbyId(new ObjectId(partId));
-            part.addVariable(variable);
-            partService.updatePart(part);
         }
         return "redirect:/projects/{projectName}/{partId}";
     }

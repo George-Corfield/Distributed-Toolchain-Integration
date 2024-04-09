@@ -10,5 +10,7 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile;
 public interface FileRepository extends MongoRepository<File, String>{
 
     public List<ModulesFile> findByContentType(String type);
-    
+    //finds all modules which have a specific content type via query:
+    //{ "contentType" : String } fields: Document{{}}
+
 }

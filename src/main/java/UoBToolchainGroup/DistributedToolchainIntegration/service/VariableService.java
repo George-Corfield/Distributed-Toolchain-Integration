@@ -1,5 +1,8 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
+import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +24,13 @@ public class VariableService {
         return optimisationVarRepository.save(optimisationVar);
     }
 
-    public Variable getOptimisationVarById(String opVarId){
+    public Variable getOptimisationVarById(ObjectId opVarId){
         return optimisationVarRepository.findById(opVarId).get();
+    }
+
+    public List<Variable> getVariablesByPart(ObjectId partId){
+        // retrieves all the variables with field partId = partId
+        return optimisationVarRepository.getVariablesByPartId(partId);
     }
 
 }

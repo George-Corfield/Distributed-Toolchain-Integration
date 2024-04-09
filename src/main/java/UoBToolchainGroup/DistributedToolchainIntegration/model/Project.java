@@ -16,26 +16,25 @@ public class Project {
     private String projectName;
     private String projectDescription;
     private Date projectStartDate;
-    private User user;
-    private List<Part> parts;
+    private ObjectId userId;
 
     public Project(){
         super();
-        this.parts = List.of();
+        this.projectId = new ObjectId();
+        this.projectStartDate = new Date();
     }
 
     public Project(ObjectId projectId, 
     String projectName, 
     String projectDescription, 
     Date projectStartDate,
-    User user,
+    ObjectId userId,
     List<Part> parts){
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.projectStartDate = projectStartDate;
-        this.user = user;
-        this.parts = parts;
+        this.userId = userId;
     }
 
     public ObjectId getProjectId() {
@@ -73,24 +72,12 @@ public class Project {
         this.projectStartDate = projectStartDate;
     }
 
-    public User getUser() {
-        return user;
+    public ObjectId getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Part> getParts(){
-        return parts;
-    }
-
-    public void setParts(List<Part> parts){
-        this.parts = parts;
-    }
-
-    public void addPart(Part part){
-        this.parts.add(part);
+    public void setUser(ObjectId user) {
+        this.userId = user;
     }
 
     @Override

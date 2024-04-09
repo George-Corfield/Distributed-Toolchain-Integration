@@ -1,6 +1,5 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
-import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
-import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.ProjectService;
-import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 
@@ -26,14 +23,11 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private PartService partService;
 
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
-        User user = userService.getUserById(new ObjectId(id));
-        List<Project> projects = projectService.getProjectByUser(user);
+        List<Project> projects = projectService.getProjectsByUser(new ObjectId(id));
         model.addAttribute("projects", projects);
         model.addAttribute("newProject", new Project());
         return "projects";
@@ -42,7 +36,9 @@ public class ProjectController {
     @GetMapping("/projects/{projectName}")
     public String getParts(@PathVariable String projectName, Model model){
         Project project = projectService.getProjectByName(projectName);
+        List<Part> parts = partService.getPartsByProjectId(project.getProjectId());
         model.addAttribute("project", project);
+        model.addAttribute("parts", parts);
         model.addAttribute("newPart", new Part());
         return "parts";
     }
@@ -50,19 +46,14 @@ public class ProjectController {
     @PostMapping("/projects/{projectName}")
     public String addPart(@PathVariable String projectName, @ModelAttribute("newPart") Part part, Model model){
         Project project = projectService.getProjectByName(projectName);
-        part.setPartId(new ObjectId());
+        part.setProjectId(project.getProjectId());
         partService.createPart(part);
-        project.addPart(part);
-        projectService.updateProject(project);
         return "redirect:/projects/" + projectName;
     }
 
     @PostMapping("/projects")
     public String addProject(@ModelAttribute("newProject") Project project, @CookieValue("userId") String id, Model model){
-        User user = userService.getUserById(new ObjectId(id));
-        project.setUser(user);
-        project.setProjectId(new ObjectId());
-        project.setProjectStartDate(new Date());
+        project.setUser(new ObjectId(id));
         projectService.createProject(project);
         return "redirect:/projects";
     }

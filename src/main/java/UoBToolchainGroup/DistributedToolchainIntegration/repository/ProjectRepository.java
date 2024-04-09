@@ -1,13 +1,15 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.repository;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
-import UoBToolchainGroup.DistributedToolchainIntegration.model.User;
 
 public interface ProjectRepository extends MongoRepository<Project, String>{
 
-    public List<Project> findProjectByUser(User user);
+    public List<Project> findProjectsByUserId(ObjectId userId);
+    //gets all projects with associated userId via query:
+    //{ "userId" : { "$oid" : ObjectId }} fields: Document{{}}
 
     public Project findProjectByProjectName(String projectName);
 }
