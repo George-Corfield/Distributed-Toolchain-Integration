@@ -2,8 +2,11 @@ package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +16,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import UoBToolchainGroup.DistributedToolchainIntegration.HillClimb;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.File;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.OptimisationParams;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
+import UoBToolchainGroup.DistributedToolchainIntegration.model.Result;
+import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.FileService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.VariableService;
 
 
 @Controller
@@ -27,6 +34,8 @@ public class OptimisationController {
     private PartService partService;
     @Autowired
     private FileService fileService;
+    @Autowired
+    private VariableService variableService;
 
     @GetMapping("/projects/{projectName}/{partId}/optimise")
     public String getOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model){
@@ -69,5 +78,43 @@ public class OptimisationController {
         //updates the part
         partService.updatePart(part);
         return "redirect:/projects/{projectName}/{partId}/optimise";
+    }
+
+    @GetMapping("/optimise/projects/{projectName}/{partId}")
+    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model){
+        Part p = partService.getPartbyId(new ObjectId(partId));
+        OptimisationParams op = p.getOptimisationParams();
+        List<ObjectId> modules = op.getModules();
+        List<Variable> vars = variableService.getVariablesByPart(new ObjectId(partId));
+        JSONArray variablesArray = new JSONArray();
+        JSONArray modulesArray = new JSONArray();
+        Random rand = new Random();
+        for (int i = 0; i < modules.size(); i++) {
+            modulesArray.put((ModulesFile) fileService.getFileById(modules.get(i)));
+
+            //sets random variables currently for each module
+            JSONArray json = new JSONArray();
+            Variable var1 = vars.get(rand.nextInt(vars.size()));
+            json.put(new JSONObject(var1));
+            Variable var2 = vars.get(rand.nextInt(vars.size()));
+            json.put(new JSONObject(var2));
+            if(i != 0){
+                json.put(new JSONObject("{ 'variableName':'PR' }"));
+            }
+            variablesArray.put(json);
+            // System.out.println(modVariablesArray);
+        }
+        // System.out.println(modulesArray);
+        // System.out.println(variablesArray);
+        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray, new ObjectId(partId));
+
+        System.out.println(h.getResults());
+        return "index";
+    }
+
+    public void updateResultsTable(List<Result> results){
+        for (Result r: results){
+            
+        }
     }
 }

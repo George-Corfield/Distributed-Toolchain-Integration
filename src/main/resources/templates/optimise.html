@@ -53,6 +53,12 @@
         <p class="message" onclick="cancelForm()">Cancel Changes</p>
     </div>
 
+    <br>
+    <div>
+        <a th:href="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}">
+            <button type="button">Click This</button>
+        </a>
+    </div>
 </body>
 <script>
     const insertAfter = (el, htmlString) => 
