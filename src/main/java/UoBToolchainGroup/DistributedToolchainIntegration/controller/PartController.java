@@ -39,13 +39,13 @@ public class PartController {
     public String getPart(@PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
         List<Variable> variables = variableService.getVariablesByPart(part.getPartId()); 
-        // List<Result> results = resultService.getResultsByPart(new ObjectId(partId));
-        // System.out.println(results);
+        List<Result> results = resultService.getResultsByPart(new ObjectId(partId));
+        System.out.println(results);
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("variable", new Variable());
         model.addAttribute("currentVariables", variables);
-        //model.addAttribute("results", results);
+        model.addAttribute("results", results);
         return "Optimisation";
     }
 

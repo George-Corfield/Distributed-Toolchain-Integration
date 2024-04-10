@@ -52,23 +52,29 @@
 		</ul>
 	</div>
 
-    <!-- <div>
+    <div>
         <span th:if="${results == null}">No Current Results</span>
-        <span th:unless="${results != null}">
+        <span th:if="${results != null}" style="right:10%;">
             <table>
                 <tr>
                     <th>Result Id</th>
+                    <th>Variables Values</th>
                     <th>Output Value</th>
                     <th>Fitness</th>
                 </tr>
-                <tr th:each="${r : results}">
+                <tr th:each="r : ${results}">
                     <th th:text="${r.resultId}"></th>
+                    <th>
+                        <ul>
+                            <li th:each="var : ${r.variables}" th:text="${var.variableName} + ' : ' + ${var.initVal}"></li>
+                        </ul>
+                    </th>
                     <th th:text="${r.outputValue}"></th>
                     <th th:text="${r.fitnessLevel}"></th>
                 </tr>
             </table>
         </span>
-    </div> -->
+    </div>
 </body>
 
 <script>

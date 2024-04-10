@@ -16,7 +16,7 @@ public class HillClimb {
 
     private int iterations;
     private boolean maximising;
-    private JSONArray variablesArray;
+    private List<List<Variable>> variablesArray;
     private JSONArray modules;
     //optimisation data
     private List<Result> results;
@@ -25,7 +25,7 @@ public class HillClimb {
     private double maximum;
     
 
-    public HillClimb(int iterations, boolean maximising, JSONArray variablesArray,JSONArray modules){
+    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,JSONArray modules){
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
@@ -43,11 +43,11 @@ public class HillClimb {
         Result r = new Result();
         Random rand = new Random();
         r.setOutputValue(rand.nextFloat(500));
-        for (int i = 0; i < variablesArray.length(); i++){
-            JSONArray v = variablesArray.getJSONArray(i);
-            for (int j = 0; j < v.length(); j++){
-                JSONObject var = v.getJSONObject(j);
-                if (var.getString("variableName") != "PR"){
+        for (int i = 0; i < variablesArray.size(); i++){
+            List<Variable> v = variablesArray.get(i);
+            for (int j = 0; j < v.size(); j++){
+                Variable var = v.get(j);
+                if (!var.getVariableName().equals("PR")){
                     r.addVariable(var);
                 }
             }
@@ -58,29 +58,29 @@ public class HillClimb {
     public Result GenerateNeighbor(){
         Result neighbor = new Result();
         Random r = new Random();
-        int rand = r.nextInt(variablesArray.length());
-        JSONArray mod = variablesArray.getJSONArray(rand);
-        int rand2 = r.nextInt(mod.length());
-        JSONObject var = mod.getJSONObject(rand2);
-        while (var.get("variableName").equals("PR")){
-            rand2 = r.nextInt(mod.length());
-            var = mod.getJSONObject(rand2);
+        int rand = r.nextInt(variablesArray.size());
+        List<Variable> mod = variablesArray.get(rand);
+        int rand2 = r.nextInt(mod.size());
+        Variable var = mod.get(rand2);
+        while (var.getVariableName().equals("PR")){
+            rand2 = r.nextInt(mod.size());
+            var = mod.get(rand2);
         }
-        double lowerBound = var.getDouble("lowBound");
-        double upperBound = var.getDouble("upBound");
-        double value = var.getDouble("initVal");
+        double lowerBound = var.getLowBound();
+        double upperBound = var.getUpBound();
+        double value = var.getInitVal();
         double diff = upperBound - lowerBound;
         diff = diff * 0.1 * r.nextDouble(-1, 1);
         value = Math.min(Math.max(value+diff, lowerBound), upperBound);
-        var.put("initVal",value);
-        mod.put(rand2, var);
-        variablesArray.put(rand,mod);
+        var.setInitVal(value);;
+        mod.set(rand2, var);
+        variablesArray.set(rand,mod);
         neighbor.setOutputValue(r.nextFloat(501));
-        for (int i = 0; i < variablesArray.length(); i++){
-            JSONArray v = variablesArray.getJSONArray(i);
-            for (int j = 0; j < v.length(); j++){
-                JSONObject vars = v.getJSONObject(j);
-                if (vars.getString("variableName") != "PR"){
+        for (int i = 0; i < variablesArray.size(); i++){
+            List<Variable> v = variablesArray.get(i);
+            for (int j = 0; j < v.size(); j++){
+                Variable vars = v.get(j);
+                if (!vars.getVariableName().equals("PR")){
                     neighbor.addVariable(vars);
                 }
             }

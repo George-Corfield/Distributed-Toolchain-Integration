@@ -1,6 +1,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import org.bson.types.ObjectId;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -39,6 +40,10 @@ public class Variable {
         this.initVal = initVal;
         this.lowBound = lowBound;
         this.upBound = upBound;
+    }
+
+    public Variable(String variableName){
+        this.variableName = variableName;
     }
 
     public ObjectId getVariableId() {

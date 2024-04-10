@@ -1,5 +1,8 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -12,17 +15,17 @@ public class Result {
     @Id
     private ObjectId resultId;
     private ObjectId partId;
-    private JSONArray variables;
+    private List<Variable> variables;
     private double outputValue;
     private double fitnessLevel;
 
 
     public Result(){
         resultId = new ObjectId();
-        variables = new JSONArray();
+        variables = new ArrayList<>();
     }
 
-    public Result(ObjectId partId, JSONArray json, double outputVal ,double fitness){
+    public Result(ObjectId partId, List<Variable> json, double outputVal ,double fitness){
         this.partId = partId;
         this.variables = json;
         this.outputValue = outputVal;
@@ -45,16 +48,16 @@ public class Result {
         this.partId = id;
     }
 
-    public JSONArray getVariables(){
+    public List<Variable> getVariables(){
         return variables;
     }
 
-    public void setVariables(JSONArray json){
+    public void setVariables(List<Variable> json){
         this.variables = json;
     }
 
-    public void addVariable(JSONObject obj){
-        variables.put(obj);
+    public void addVariable(Variable obj){
+        variables.add(obj);
     }
 
     public double getOutputValue(){

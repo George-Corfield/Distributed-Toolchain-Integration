@@ -89,24 +89,25 @@ public class OptimisationController {
         OptimisationParams op = p.getOptimisationParams();
         List<ObjectId> modules = op.getModules();
         List<Variable> vars = variableService.getVariablesByPart(new ObjectId(partId));
-        JSONArray variablesArray = new JSONArray();
+        List<List<Variable>> variablesArray = new ArrayList<>();
         JSONArray modulesArray = new JSONArray();
         Random rand = new Random();
         for (int i = 0; i < modules.size(); i++) {
             modulesArray.put((ModulesFile) fileService.getFileById(modules.get(i)));
 
             //sets random variables currently for each module
-            JSONArray json = new JSONArray();
+            List<Variable> json = new ArrayList<>();
             Variable var1 = vars.get(rand.nextInt(vars.size()));
-            json.put(new JSONObject(var1));
+            json.add(var1);
             Variable var2 = vars.get(rand.nextInt(vars.size()));
-            json.put(new JSONObject(var2));
+            json.add(var2);
             if(i != 0){
-                json.put(new JSONObject("{ 'variableName':'PR' }"));
+                json.add(new Variable("PR"));
             }
-            variablesArray.put(json);
+            variablesArray.add(json);
             // System.out.println(modVariablesArray);
         }
+        System.out.println(variablesArray);
         // System.out.println(modulesArray);
         // System.out.println(variablesArray);
         HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
