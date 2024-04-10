@@ -51,6 +51,24 @@
 			</li>
 		</ul>
 	</div>
+
+    <!-- <div>
+        <span th:if="${results == null}">No Current Results</span>
+        <span th:unless="${results != null}">
+            <table>
+                <tr>
+                    <th>Result Id</th>
+                    <th>Output Value</th>
+                    <th>Fitness</th>
+                </tr>
+                <tr th:each="${r : results}">
+                    <th th:text="${r.resultId}"></th>
+                    <th th:text="${r.outputValue}"></th>
+                    <th th:text="${r.fitnessLevel}"></th>
+                </tr>
+            </table>
+        </span>
+    </div> -->
 </body>
 
 <script>

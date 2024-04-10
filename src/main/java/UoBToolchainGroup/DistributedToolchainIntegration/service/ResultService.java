@@ -1,5 +1,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +25,9 @@ public class ResultService {
 
     public Result getResultById(ObjectId opResultId){
         return optimisationResultRepository.findById(opResultId).get();
+    }
+
+    public List<Result> getResultsByPart(ObjectId partId){
+        return optimisationResultRepository.getResultsByPartId(partId);
     }
 }

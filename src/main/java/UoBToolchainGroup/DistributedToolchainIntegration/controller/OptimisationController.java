@@ -111,7 +111,7 @@ public class OptimisationController {
         // System.out.println(variablesArray);
         HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
         updateResultsTable(h.getResults(), new ObjectId(partId));
-        return "index";
+        return "redirect:/projects/{projectName}/{partId}";
     }
 
     public void updateResultsTable(List<Result> results, ObjectId partId){
