@@ -1,11 +1,13 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
+import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import UoBToolchainGroup.DistributedToolchainIntegration.HillClimb;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.File;
@@ -84,33 +88,28 @@ public class OptimisationController {
         return "redirect:/projects/{projectName}/{partId}/optimise";
     }
 
-    @GetMapping("/optimise/projects/{projectName}/{partId}")
-    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model){
+    @PostMapping("/optimise/projects/{projectName}/{partId}")
+    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables){
+        String[][] variables = null;
+        try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                variables = objectMapper.readValue(selectedVariables, String[][].class);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/projects/{projectName}/{partId}";
+            }
         Part p = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = p.getOptimisationParams();
-        List<ObjectId> modules = op.getModules();
-        List<Variable> vars = variableService.getVariablesByPart(new ObjectId(partId));
-        List<List<Variable>> variablesArray = new ArrayList<>();
         JSONArray modulesArray = new JSONArray();
-        Random rand = new Random();
-        for (int i = 0; i < modules.size(); i++) {
-            modulesArray.put((ModulesFile) fileService.getFileById(modules.get(i)));
-
-            //sets random variables currently for each module
-            List<Variable> json = new ArrayList<>();
-            Variable var1 = vars.get(rand.nextInt(vars.size()));
-            json.add(var1);
-            Variable var2 = vars.get(rand.nextInt(vars.size()));
-            json.add(var2);
-            if(i != 0){
-                json.add(new Variable("PR"));
-            }
-            variablesArray.add(json);
-            // System.out.println(modVariablesArray);
+        List<List<Variable>> variablesArray = new ArrayList<>();
+        for (int i = 0; i < variables.length; i++){
+             List<Variable> temp = new ArrayList<>();
+             for (int j=0; j<variables[i].length; j++){
+                Variable var = variableService.getOptimisationVarById(new ObjectId(variables[i][j]));
+                temp.add(var);
+             }
+             variablesArray.add(temp);
         }
-        System.out.println(variablesArray);
-        // System.out.println(modulesArray);
-        // System.out.println(variablesArray);
         HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
         updateResultsTable(h.getResults(), new ObjectId(partId));
         return "redirect:/projects/{projectName}/{partId}";
