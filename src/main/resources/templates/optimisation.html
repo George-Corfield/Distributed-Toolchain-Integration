@@ -52,9 +52,10 @@
 		</ul>
 	</div>
 
-    <div>
-        <span th:if="${results == null}">No Current Results</span>
-        <span th:if="${results != null}" style="right:10%;">
+    <div style="float: right;">
+        <h2>Results</h2>
+        <span th:if="${results.isEmpty()}">No Current Results</span>
+        <span th:if="${not results.isEmpty()}">
             <table>
                 <tr>
                     <th>Result Id</th>

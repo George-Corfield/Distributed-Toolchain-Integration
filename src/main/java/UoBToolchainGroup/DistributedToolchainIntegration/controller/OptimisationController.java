@@ -6,7 +6,6 @@ import java.util.Random;
 
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,11 +51,13 @@ public class OptimisationController {
             currentFiles.add(fileService.getFileById(currentFileId.get(i)));
         }
         List<ModulesFile> mods = fileService.getAllModulesFiles();
+        List<Variable> variables = variableService.getVariablesByPart(new ObjectId(partId));
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("currentModules", currentFiles);
         model.addAttribute("opParams", op);
         model.addAttribute("allModules", mods);
+        model.addAttribute("variables", variables);
         return "optimise";
     }
 

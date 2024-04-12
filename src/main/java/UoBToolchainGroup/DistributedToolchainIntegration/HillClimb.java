@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bson.types.ObjectId;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Result;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 
@@ -113,10 +110,10 @@ public class HillClimb {
         double diff = maximum-minimum;
         double value = result.getOutputValue();
         if (maximising){
-            double fitness = ((value-minimum)/(maximum-minimum)) * 100;
+            double fitness = ((value-minimum)/(diff)) * 100;
             result.setFitnessLevel(fitness);
         } else {
-            double fitness = ((maximum-value)/(maximum-minimum)) * 100;
+            double fitness = ((maximum-value)/(diff)) * 100;
             result.setFitnessLevel(fitness);
         }
         return result;
