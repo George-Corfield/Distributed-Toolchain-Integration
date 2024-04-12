@@ -81,8 +81,8 @@
                 </td>
             </tr>
         </table>
-        <form>
-            <input type="hidden" id="hiddenVariables" value=""/>
+        <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" method="post">
+            <input type="hidden" id="hiddenVariables" name="selectedVariables"/>
             <button type="submit" onclick="createVariableList()">Submit</button>
         </form>
     </div>
@@ -148,8 +148,8 @@
             tableEntry = document.getElementById("entry-"+String(i));
             data.push(eachEntry);
         }
-        console.log(data);
-        hiddenInput.value = data;
+        
+        hiddenInput.value = JSON.stringify(data);
         // var tab1 = document.getElementById("entry-0");
         // var tab2 = document.getElementById("entry-1");
         // var tab3 = document.getElementById("entry-2");
