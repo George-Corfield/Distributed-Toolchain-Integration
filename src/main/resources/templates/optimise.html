@@ -71,11 +71,11 @@
             <tr th:each="currentMod, iter : ${currentModules}" th:id="'row-'+${iter.index}">
                 <td th:text="${currentMod.fileName}"></td>
                 <td th:id="'entry-'+${iter.index}">
+                    <button type="button" onclick="addVarOption(this.parentNode)">Add</button>
                     <div class="varOption">
                         <select class="selectedVar">
                             <option th:each="var : ${variables}" th:value="${var.variableId}" th:text="${var.variableName}"></option>
                         </select>
-                        <button type="button" onclick="addVarOption(this.parentNode, this.parentNode.parentNode.id)">Add</button>
                         <button type="button" onclick="delVarOption(this, this.parentNode.parentNode.id)">Delete</button>
                     </div>
                 </td>
@@ -150,22 +150,6 @@
         }
         
         hiddenInput.value = JSON.stringify(data);
-        // var tab1 = document.getElementById("entry-0");
-        // var tab2 = document.getElementById("entry-1");
-        // var tab3 = document.getElementById("entry-2");
-        // var tab4 = document.getElementById("entry-3");
-        // var option1 = tab1.getElementsByClassName("selectedVar");
-        // var option2 = tab2.getElementsByClassName("selectedVar");
-        // var option3 = tab3.getElementsByClassName("selectedVar");
-        // var option4 = tab4.getElementsByClassName("selectedVar");
-        // console.log(tab1);
-        // console.log(option1);
-        // console.log(tab2);
-        // console.log(option2);
-        // console.log(tab3);
-        // console.log(option3);
-        // console.log(tab4);
-        // console.log(option4);
 
     }
 </script>

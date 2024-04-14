@@ -1,13 +1,9 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.bson.types.ObjectId;
-import org.json.JSONArray;
-import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,7 +96,7 @@ public class OptimisationController {
             }
         Part p = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = p.getOptimisationParams();
-        JSONArray modulesArray = new JSONArray();
+        List<ModulesFile> modulesArray = new ArrayList<>();
         List<List<Variable>> variablesArray = new ArrayList<>();
         for (int i = 0; i < variables.length; i++){
              List<Variable> temp = new ArrayList<>();
@@ -109,6 +105,10 @@ public class OptimisationController {
                 temp.add(var);
              }
              variablesArray.add(temp);
+        }
+        List<ObjectId> modIds = op.getModules();
+        for (int i = 0; i<modIds.size();i++){
+            modulesArray.add((ModulesFile) fileService.getFileById(modIds.get(i)));
         }
         HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
         updateResultsTable(h.getResults(), new ObjectId(partId));

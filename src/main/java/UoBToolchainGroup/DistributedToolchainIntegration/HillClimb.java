@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.json.JSONArray;
 
+import UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Result;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 
@@ -14,7 +14,7 @@ public class HillClimb {
     private int iterations;
     private boolean maximising;
     private List<List<Variable>> variablesArray;
-    private JSONArray modules;
+    private List<ModulesFile> modules;
     //optimisation data
     private List<Result> results;
     private Result currentResult;
@@ -22,7 +22,7 @@ public class HillClimb {
     private double maximum;
     
 
-    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,JSONArray modules){
+    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,List<ModulesFile> modules){
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
@@ -38,18 +38,37 @@ public class HillClimb {
 
     public Result CalculateInitialResult(){
         Result r = new Result();
-        Random rand = new Random();
-        r.setOutputValue(rand.nextFloat(500));
+        for (int i= 0; i < modules.size(); i++){
+            double execute = executeModule(modules.get(i));
+            if (i != modules.size()-1){
+                variablesArray.get(i+1).add(new Variable("PR",execute));
+            } else {
+                r.setOutputValue(execute);
+            }
+        }
+        r.setVariables(setResultVariables());
+        return r;
+    }
+
+    public List<Variable> setResultVariables(){
+        List<Variable> resultVariables = new ArrayList<>();
         for (int i = 0; i < variablesArray.size(); i++){
             List<Variable> v = variablesArray.get(i);
             for (int j = 0; j < v.size(); j++){
                 Variable var = v.get(j);
-                if (!var.getVariableName().equals("PR")){
-                    r.addVariable(var);
+                if (!var.getResult()){
+                    resultVariables.add(var);
                 }
             }
         }
-        return r;
+        return resultVariables;
+    }
+
+    public double executeModule(ModulesFile module){
+        //TODO module logic here 
+        Random r =  new Random();
+        return r.nextDouble(500);
+
     }
 
     public Result GenerateNeighbor(){
@@ -59,7 +78,7 @@ public class HillClimb {
         List<Variable> mod = variablesArray.get(rand);
         int rand2 = r.nextInt(mod.size());
         Variable var = mod.get(rand2);
-        while (var.getVariableName().equals("PR")){
+        while (var.getResult()){
             rand2 = r.nextInt(mod.size());
             var = mod.get(rand2);
         }
@@ -73,15 +92,7 @@ public class HillClimb {
         mod.set(rand2, var);
         variablesArray.set(rand,mod);
         neighbor.setOutputValue(r.nextFloat(501));
-        for (int i = 0; i < variablesArray.size(); i++){
-            List<Variable> v = variablesArray.get(i);
-            for (int j = 0; j < v.size(); j++){
-                Variable vars = v.get(j);
-                if (!vars.getVariableName().equals("PR")){
-                    neighbor.addVariable(vars);
-                }
-            }
-        }
+        neighbor.setVariables(setResultVariables());
         return neighbor;
     }   
 
@@ -123,7 +134,6 @@ public class HillClimb {
         return results;
     }
 
-
     public void optimise(){
         int iter = 1;
         while (iter != iterations){
@@ -138,9 +148,5 @@ public class HillClimb {
             result = evaluateFitness(result);
         }
     }
-
-
-
-
 
 }
