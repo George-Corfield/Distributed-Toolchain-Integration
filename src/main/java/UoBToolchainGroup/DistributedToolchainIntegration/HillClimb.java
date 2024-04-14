@@ -37,6 +37,7 @@ public class HillClimb {
     }
 
     public Result CalculateInitialResult(){
+        //calculates an initial result based on the initial values
         Result r = new Result();
         for (int i= 0; i < modules.size(); i++){
             double execute = executeModule(modules.get(i));
@@ -51,6 +52,7 @@ public class HillClimb {
     }
 
     public List<Variable> setResultVariables(){
+        //creates a set of all variables and their values
         List<Variable> resultVariables = new ArrayList<>();
         for (int i = 0; i < variablesArray.size(); i++){
             List<Variable> v = variablesArray.get(i);
@@ -72,6 +74,8 @@ public class HillClimb {
     }
 
     public Result GenerateNeighbor(){
+        //modifies 1 variable value and outputs the new value of running the modules
+        //TODO connect to module running logic to actually calculate results
         Result neighbor = new Result();
         Random r = new Random();
         int rand = r.nextInt(variablesArray.size());
@@ -97,6 +101,7 @@ public class HillClimb {
     }   
 
     public Result compareNeighbor(Result neighbor){
+        //compares if neighbor is a better or worse result than current result
         if (maximising){
             if (neighbor.getOutputValue() > currentResult.getOutputValue()){
                 return neighbor;
@@ -118,6 +123,7 @@ public class HillClimb {
     }
 
     public Result evaluateFitness(Result result){
+        //Evaluates the fitness of each result on a scale of 0 to 100
         double diff = maximum-minimum;
         double value = result.getOutputValue();
         if (maximising){
@@ -135,6 +141,7 @@ public class HillClimb {
     }
 
     public void optimise(){
+        //main function run to generate all results
         int iter = 1;
         while (iter != iterations){
 

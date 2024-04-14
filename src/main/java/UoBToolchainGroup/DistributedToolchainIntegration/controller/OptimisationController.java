@@ -87,6 +87,7 @@ public class OptimisationController {
     @PostMapping("/optimise/projects/{projectName}/{partId}")
     public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables){
         String[][] variables = null;
+        //maps the selected variables html list to java array
         try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 variables = objectMapper.readValue(selectedVariables, String[][].class);
@@ -98,6 +99,8 @@ public class OptimisationController {
         OptimisationParams op = p.getOptimisationParams();
         List<ModulesFile> modulesArray = new ArrayList<>();
         List<List<Variable>> variablesArray = new ArrayList<>();
+
+        //loop to translate variable id's into the actual variable object
         for (int i = 0; i < variables.length; i++){
              List<Variable> temp = new ArrayList<>();
              for (int j=0; j<variables[i].length; j++){
@@ -106,16 +109,21 @@ public class OptimisationController {
              }
              variablesArray.add(temp);
         }
+
+        //loop to translate module id's into actual module files stored in database
         List<ObjectId> modIds = op.getModules();
         for (int i = 0; i<modIds.size();i++){
             modulesArray.add((ModulesFile) fileService.getFileById(modIds.get(i)));
         }
+
+        //runs hill climb algorithm and then redirects to results page
         HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
         updateResultsTable(h.getResults(), new ObjectId(partId));
         return "redirect:/projects/{projectName}/{partId}";
     }
 
     public void updateResultsTable(List<Result> results, ObjectId partId){
+        //adds results to the database
         for (Result r: results){
             r.setPartId(partId);
             resultService.creatResult(r);
