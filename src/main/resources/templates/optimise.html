@@ -55,14 +55,9 @@
     </div>
 
     <br>
-    <!-- <div>
-        <a th:href="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}">
-            <button type="button">Click This</button>
-        </a>
-    </div> -->
 
-
-    <div style="float: right;">
+    <div th:if="${currentModules.isEmpty()}" style="float: right;">Please Select Modules before Optimising</div>
+    <div th:if="${not currentModules.isEmpty()}" style="float: right;">
         <table>
             <tr>
                 <th>Module</th>
@@ -73,7 +68,7 @@
                 <td th:id="'entry-'+${iter.index}">
                     <button type="button" onclick="addVarOption(this.parentNode)">Add</button>
                     <div class="varOption">
-                        <select class="selectedVar">
+                        <select class="selectedVar" required>
                             <option th:each="var : ${variables}" th:value="${var.variableId}" th:text="${var.variableName}"></option>
                         </select>
                         <button type="button" onclick="delVarOption(this, this.parentNode.parentNode.id)">Delete</button>
@@ -83,7 +78,7 @@
         </table>
         <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" method="post">
             <input type="hidden" id="hiddenVariables" name="selectedVariables"/>
-            <button type="submit" onclick="createVariableList()">Submit</button>
+            <button type="submit" onclick="createVariableList()">Optimise</button>
         </form>
     </div>
 </body>
@@ -99,19 +94,31 @@
     }
 
     function delModOption(button){
-        document.getElementById("Options").removeChild(button.parentNode);
+        if (document.getElementsByClassName("moduleOption").length = 1){
+            alert("Cannot have 0 modules to run");
+        } else {
+            document.getElementById("Options").removeChild(button.parentNode);
+
+        }
 
     }
 
-    function addVarOption(option, id){
-        var newVariableOption = option.cloneNode(true);
+    function addVarOption(tableData){
+        var newOption = tableData.getElementsByClassName('varOption')[0].cloneNode(true);
 
-        newVariableOption.querySelector('select').selectedIndex -=1;
-        document.getElementById(id).append(newVariableOption);
+
+        newOption.querySelector('select').selectedIndex =0;
+        document.getElementById(tableData.id).append(newOption);
     }
 
     function delVarOption(button, id){
-        document.getElementById(id).removeChild(button.parentNode);
+        var tableData = document.getElementById(id);
+        if (tableData.getElementsByClassName('varOption').length == 1){
+            alert("Cannot have 0 variable inputs!");
+        } else {
+            document.getElementById(id).removeChild(button.parentNode);
+        }
+       
     }
 
     function createModuleList(){
