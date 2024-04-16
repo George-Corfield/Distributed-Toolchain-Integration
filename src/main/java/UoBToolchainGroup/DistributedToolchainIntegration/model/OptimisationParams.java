@@ -12,6 +12,7 @@ public class OptimisationParams {
     private ObjectId paramsId;
     private Integer iterations;
     private List<ObjectId> modules;
+    private Boolean maximising;
     //add other variables here
 
     public OptimisationParams(){
@@ -19,13 +20,15 @@ public class OptimisationParams {
         this.paramsId = new ObjectId();
         this.iterations = 100;
         this.modules = new ArrayList<>();
+        this.maximising = false;
     }
 
-    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules){
+    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules, Boolean max){
         super();
         this.paramsId = paramsId;
         this.iterations = iterations;
         this.modules = modules;
+        this.maximising = max;
     }
     
     public ObjectId getParamsId(){
@@ -54,6 +57,14 @@ public class OptimisationParams {
 
     public void addModule(ObjectId module){
         this.modules.add(module);
+    }
+
+    public Boolean getMaximising(){
+        return this.maximising;
+    }
+
+    public void setMaximising(Boolean max){
+        this.maximising = max;
     }
 
 }

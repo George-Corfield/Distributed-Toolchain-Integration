@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
+import UoBToolchainGroup.DistributedToolchainIntegration.model.Result;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.VariablesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.PartService;
+import UoBToolchainGroup.DistributedToolchainIntegration.service.ResultService;
 import UoBToolchainGroup.DistributedToolchainIntegration.service.VariableService;
 
 @Controller
@@ -28,6 +30,8 @@ public class PartController {
     private PartService partService;
     @Autowired 
     private VariableService variableService;
+    @Autowired
+    private ResultService resultService;
     
 
 
@@ -35,10 +39,13 @@ public class PartController {
     public String getPart(@PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
         List<Variable> variables = variableService.getVariablesByPart(part.getPartId()); 
+        List<Result> results = resultService.getResultsByPart(new ObjectId(partId));
+        System.out.println(results);
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("variable", new Variable());
         model.addAttribute("currentVariables", variables);
+        model.addAttribute("results", results);
         return "Optimisation";
     }
 

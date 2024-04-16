@@ -16,10 +16,12 @@ public class Variable {
     private double initVal;
     private double lowBound;
     private double upBound;
+    private boolean result;
 
     public Variable(){
         super();
         this.variableId = new ObjectId();
+        this.result = false;
     }
 
     public Variable(ObjectId variableId,ObjectId partId, String variableName, double initVal, double lowBound, double upBound){
@@ -30,6 +32,7 @@ public class Variable {
         this.initVal = initVal;
         this.lowBound = lowBound;
         this.upBound = upBound;
+        this.result = false;
     }
 
     public Variable(ObjectId variableId, String variableName, double initVal, double lowBound, double upBound){
@@ -39,6 +42,22 @@ public class Variable {
         this.initVal = initVal;
         this.lowBound = lowBound;
         this.upBound = upBound;
+        this.result = false;
+    }
+
+    public Variable(String variableName, double initVal){
+        //for result variables only
+        super();
+        this.variableName = variableName;
+        this.initVal = initVal;
+        this.lowBound = initVal;
+        this.upBound = initVal;
+        this.result = true;
+    }
+
+    public Variable(String variableName){
+        this.variableName = variableName;
+        this.result = false;
     }
 
     public ObjectId getVariableId() {
@@ -88,6 +107,14 @@ public class Variable {
 
     public void setPartId(ObjectId partId){
         this.partId = partId;
+    }
+
+    public boolean getResult(){
+        return result;
+    }
+
+    public void setResult(boolean res){
+        this.result = res;
     }
 
     @Override
