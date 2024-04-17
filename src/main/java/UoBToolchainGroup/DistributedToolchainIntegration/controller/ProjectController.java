@@ -28,6 +28,7 @@ public class ProjectController {
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         List<Project> projects = projectService.getProjectsByUser(new ObjectId(id));
+        model.addAttribute("userId", id);
         model.addAttribute("projects", projects);
         model.addAttribute("newProject", new Project());
         return "projects";

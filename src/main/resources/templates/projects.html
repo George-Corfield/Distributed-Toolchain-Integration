@@ -10,7 +10,8 @@
 <body>
     <div class="header-container">
         <h1>PROJECTS</h1>
-        <button class="new-project-button" onclick="addForm()">NEW PROJECT</button>
+        <button class="new-project-button" onclick="addProjectForm()">NEW PROJECT</button>
+        <button class="new-module-button" onclick="addModuleForm()">UPLOAD MODULE</button>
     </div>
     <div class="button-container">
         <button class="project-button" th:each="project: ${projects}">
@@ -36,17 +37,42 @@
 
         </form>
 
-        <p class="message" onclick="cancelForm()">Cancel new project</p>
+        <p class="message" onclick="cancelProjectForm()">Cancel new project</p>
+    </div>
+
+    <div class="modules-form-popup" id="module-form" style="display:none;">
+        <form action="#" method="post" th:action="@{/saveModule}" enctype="multipart/form-data">
+            <h2>UPLOAD MODULE</h2>
+
+            <label for="file"><b>Select File</b></label>
+            <input type="file" name="file" id="file">
+
+            <label for="publicFile"><b>File is Public</b></label>
+            <input type="checkbox" name="publicFile" id="publicFile" value="1">
+
+            <input type="hidden" name="userId" th:value="${userId}">
+            <button type="submit">Upload</button>
+        </form>
+
+        <p class="message" onclick="cancelModuleForm()">Cancel Upload</p>
     </div>
 </body>
 
 <script>
-    function addForm(){
+    function addProjectForm(){
         document.getElementById("var-form").style.display = "block";
     }
 
-    function cancelForm() {
+    function cancelProjectForm() {
         document.getElementById("var-form").style.display = "none";
+    }
+
+    function addModuleForm(){
+        document.getElementById("module-form").style.display = "block";
+    }
+
+    function cancelModuleForm() {
+        document.getElementById("module-form").style.display = "none";
     }
 </script>
 </html>
