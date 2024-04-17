@@ -17,7 +17,14 @@ public class CustomErrorController implements ErrorController{
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
-            model.addAttribute("err", "Error: " + statusCode);
+            String message = "";
+            if(statusCode == 404){
+                message = "Resource Not Found.";
+            } else if(statusCode == 500){
+                message = "Internal Server Error.";
+            }
+            model.addAttribute("err","Error: " + statusCode);
+            model.addAttribute("message", message);
         }
         return "error";
     }
