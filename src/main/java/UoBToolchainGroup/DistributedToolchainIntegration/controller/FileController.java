@@ -43,7 +43,7 @@ public class FileController {
             ModulesFile newFile = new ModulesFile(fileName, contentType, data, new ObjectId(userId), publicFile);
             fileService.createFile(newFile);
         }catch(Exception e){
-            
+            //add exception logic if necessary
         }
         return "redirect:/projects";
     }
