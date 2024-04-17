@@ -3,6 +3,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -30,5 +31,10 @@ public class FileController {
         catch(Exception e){
             return "File not saved";
         }
+    }
+
+    @PostMapping("/saveModule")
+    public String saveModule(@RequestParam("file") MultipartFile file, @RequestParam("userId") ObjectId userId){
+        return "Done";
     }
 }
