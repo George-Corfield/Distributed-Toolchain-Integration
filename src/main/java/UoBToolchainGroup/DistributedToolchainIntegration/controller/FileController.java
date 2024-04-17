@@ -35,7 +35,7 @@ public class FileController {
     }
 
     @PostMapping("/saveModule")
-    public String saveModule(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, @RequestParam("publicFile") boolean publicFile){
+    public String saveModule(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, @RequestParam(value = "publicFile", defaultValue = "false") boolean publicFile){
         try {
             String fileName = file.getOriginalFilename();
             String contentType = file.getContentType();

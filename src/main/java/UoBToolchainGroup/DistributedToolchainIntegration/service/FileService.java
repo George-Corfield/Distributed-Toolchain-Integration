@@ -24,8 +24,8 @@ public class FileService {
         return fileRepository.save(file);
     }
 
-    public List<ModulesFile> getAllModulesFiles(){
-        return fileRepository.findByContentType("Python");
+    public List<ModulesFile> getAvailableModulesFiles(ObjectId id){
+        return fileRepository.findModulesFilesByUserIdOrPublicFile(id, true, "text/x-python-script");
     } 
 
     public File getFileById(ObjectId id){
