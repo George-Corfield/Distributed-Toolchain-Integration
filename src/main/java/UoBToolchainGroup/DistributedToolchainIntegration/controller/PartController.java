@@ -40,7 +40,6 @@ public class PartController {
         Part part = partService.getPartbyId(new ObjectId(partId));
         List<Variable> variables = variableService.getVariablesByPart(part.getPartId()); 
         List<Result> results = resultService.getResultsByPart(new ObjectId(partId));
-        System.out.println(results);
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);
         model.addAttribute("variable", new Variable());
