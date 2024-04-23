@@ -2,19 +2,36 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <!--  <link rel="stylesheet" href="style.css">  -->
+    <link rel="stylesheet" th:href="@{/optimisationStyle.css}">
     <meta charset="UTF-8">
     <title th:text="${part.partName}"></title>
 </head>
 
 <body>
-    <h1 th:text="${part.partName}"></h1>
-    <h3 th:text="${part.partDescription}"></h3>
-    <ul th:each="var : ${currentVariables}">
-        <li th:text="${var}"></li>
-    </ul>
+    <div class = "header-container">
+        <h1 th:text="${part.partName}"></h1>
+        <button class="new-variable-button" onclick="addVarForm()">NEW VARIABLE</button>
+    </div>    
 
-    <button onclick="addVarForm()">Add Variable</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Variable Name</th>
+                <th>Initial Value</th>
+                <th>Lower Bound</th>
+                <th>Upper Bound</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="var : ${currentVariables}">
+                <td th:text="${var.variableName}"></td>
+                <td th:text="${var.initVal}"></td>
+                <td th:text="${var.lowBound}"></td>
+                <td th:text="${var.upBound}"></td>
+            </tr>
+        </tbody>
+    </table>
+   
 
     <div class="variable-form-popup" id="var-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId}}" th:object="${variable}" method="post">
@@ -22,18 +39,19 @@
 
             <label for="variableName"><b>Name</b></label>
             <input type="text" placeholder="Name" th:field="*{variableName}" required/>
-
+            <br>
             <label for="initVal"><b>Initial Value</b></label>
             <input type="number" placeholder="Initial" th:field="*{initVal}" required/>
-
+            <br>
             <label for="lowBound"><b>Lower Bound</b></label>
             <input type="number" placeholder="Lower" th:field="*{lowBound}" required/>
-
+            <br>
             <label for="upBound"><b>Upper Bound</b></label>
             <input type="number" placeholder="Upper" th:field="*{upBound}" required/>
 
             <button type="submit">Submit</button>
         </form>
+        <p class="message" onclick="cancelPart()">Cancel new variable</p>
     </div> 
 
     <div>
@@ -81,6 +99,9 @@
 <script>
     function addVarForm() {
         document.getElementById("var-form").style.display = "block";
+    }
+    function cancelPart() {
+        document.getElementById("var-form").style.display ="none";
     }
 </script>
 </html>
