@@ -5,6 +5,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+import org.testcontainers.utility.MountableFile;
 import org.testcontainers.junit.jupiter.Container;
 
 @Testcontainers
@@ -15,7 +16,8 @@ public class ContainerTest {
     public static GenericContainer<?> MONGO_TEST_CONTAINER = new GenericContainer<>(DockerImageName.parse("mongo:7.0.3"))
         .withExposedPorts(27017)
         .withEnv("MONGO_INITDB_ROOT_USERNAME", "test_admin")
-        .withEnv("MONGO_INITDB_ROOT_PASSWORD","test_admin");
+        .withEnv("MONGO_INITDB_ROOT_PASSWORD","test_admin")
+        .withCopyFileToContainer(MountableFile.forClasspathResource("init-script.js"), "/docker-entrypoint-initdb.d/init-script.js");
 
     static {
         MONGO_TEST_CONTAINER.start();
