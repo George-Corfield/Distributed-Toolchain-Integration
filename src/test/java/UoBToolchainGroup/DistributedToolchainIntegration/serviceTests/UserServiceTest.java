@@ -5,11 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 
 import org.bson.types.ObjectId;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +30,7 @@ import UoBToolchainGroup.DistributedToolchainIntegration.service.UserService;
 @SpringBootTest
 @Testcontainers
 @RunWith(SpringRunner.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(Lifecycle.PER_CLASS)
 public class UserServiceTest  extends ContainerTest{
 
     @Autowired
@@ -34,7 +39,7 @@ public class UserServiceTest  extends ContainerTest{
 
     private User USER;
 
-    @Before
+    @BeforeAll
     public void setUp(){
         userService = new UserService(userRespository);
         USER = new User(new ObjectId("6627c5044bdbcf0634346abc"), "testUser", new byte[0], "testUser@test.com", 10, new byte[0]);
@@ -54,16 +59,14 @@ public class UserServiceTest  extends ContainerTest{
     public void testCreateUser(){
         User savedUser = userService.createUser(USER);
         assertEquals(USER, savedUser);
-        System.out.println(userService.getAllUsers());
-        System.out.println(USER.getUserId());
-        System.out.println(savedUser.getUserId());
     }
 
-    @Test 
+    @ParameterizedTest 
     @Order(2)
-    public void testGetUserById(){
-        User expectedUser = userService.getUserById(USER.getUserId());
-        assertTrue(equalUsers(expectedUser, USER));
+    @CsvSource({"6628696e117fd47726a8116e,John","6628696e117fd47726a8116b,Jack","6628696e117fd47726a8116c,Jason"})
+    public void testGetUserById(String id, String expectedUsername){
+        User expectedUser = userService.getUserById(new ObjectId(id));
+        assertEquals(expectedUser.getUsername(),expectedUsername);
     }
     
 }

@@ -3,6 +3,7 @@ package UoBToolchainGroup.DistributedToolchainIntegration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
@@ -21,6 +22,14 @@ public class ContainerTest {
 
     static {
         MONGO_TEST_CONTAINER.start();
+        try {
+            ExecResult result = MONGO_TEST_CONTAINER.execInContainer("ls", "/docker-entrypoint-initdb.d");
+            System.out.println("Contents of /docker-entrypoint-initdb.d");
+            System.out.println(result.getStdout());
+        } catch (Exception e){
+            System.out.println(e);
+        }
+            
     }
 
     @DynamicPropertySource

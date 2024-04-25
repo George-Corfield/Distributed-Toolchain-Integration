@@ -1,6 +1,6 @@
 db = db.getSiblingDB('service_test');
 
-db.users.insert([
+db.Users.insert([
     {
         _id : ObjectId("6628696e117fd47726a8116e"),
         username : "John",
