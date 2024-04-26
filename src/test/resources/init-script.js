@@ -49,7 +49,7 @@ db.Projects.insert([
         _id : ObjectId("6628696e117fd47726a8115c"),
         projectName: "test-project-3",
         projectDescription:"test",
-        userId: ObjectId("6628696e117fd47726a8116e"),
+        userId: ObjectId("6628696e117fd47726a8116b"),
         _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Project"
     }
 ])
