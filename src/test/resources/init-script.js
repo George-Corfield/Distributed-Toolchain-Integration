@@ -128,3 +128,31 @@ db.Variables.insert([
         _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Variable"
     }
 ])
+
+db.Files.insert([
+    {
+        _id : ObjectId("6428696e117fd47726a8115a"),
+        fileName : "test-modfile-1",
+        contentType : "text/x-python-script",
+        data : [],
+        userId : ObjectId("6628696e117fd47726a8116e"),
+        publicFile : true,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile"
+    },
+    {
+        _id : ObjectId("6428696e117fd47726a8115b"),
+        fileName : "test-modfile-2",
+        contentType : "text/x-python-script",
+        data : [],
+        userId : ObjectId("6628696e117fd47726a8116b"),
+        publicFile : false,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.ModulesFile"
+    },
+    {
+        _id : ObjectId("6428696e117fd47726a8115c"),
+        fileName : "test-varfile-1",
+        contentType : "application/json",
+        data : [],
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.VariablesFile"
+    }
+])
