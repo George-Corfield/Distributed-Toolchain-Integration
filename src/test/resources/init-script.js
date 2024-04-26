@@ -156,3 +156,30 @@ db.Files.insert([
         _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.VariablesFile"
     }
 ])
+
+db.Results.insert([
+    {
+        _id : ObjectId("6328696e117fd47726a8115a"),
+        partId : ObjectId("6728696e117fd47726a8115a"),
+        variables : [],
+        outputValue : 500,
+        fitnessLevel : 60,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Result"
+    },
+    {
+        _id : ObjectId("6328696e117fd47726a8115b"),
+        partId : ObjectId("6728696e117fd47726a8115a"),
+        variables : [],
+        outputValue : 350,
+        fitnessLevel : 35,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Result"
+    },
+    {
+        _id : ObjectId("6328696e117fd47726a8115c"),
+        partId : ObjectId("6728696e117fd47726a8115b"),
+        variables : [],
+        outputValue : 200,
+        fitnessLevel : 3,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Result"
+    }
+])
