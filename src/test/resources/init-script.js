@@ -29,3 +29,27 @@ db.Users.insert([
         _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.User"
     }      
 ])
+
+db.Projects.insert([
+    {
+        _id : ObjectId("6628696e117fd47726a8115b"),
+        projectName: "test-project-1",
+        projectDescription:"test",
+        userId: ObjectId("6628696e117fd47726a8116e"),
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Project"
+    },
+    {
+        _id : ObjectId("6628696e117fd47726a8115d"),
+        projectName: "test-project-2",
+        projectDescription:"test",
+        userId: ObjectId("6628696e117fd47726a8116e"),
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Project"
+    },
+    {
+        _id : ObjectId("6628696e117fd47726a8115c"),
+        projectName: "test-project-3",
+        projectDescription:"test",
+        userId: ObjectId("6628696e117fd47726a8116e"),
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Project"
+    }
+])
