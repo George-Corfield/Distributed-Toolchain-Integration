@@ -28,6 +28,7 @@ import UoBToolchainGroup.DistributedToolchainIntegration.service.ResultService;
 @ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
 public class ResultServiceTest extends ContainerTest{
+    //Test class to test ResultService methods
 
     @Autowired
     private ResultRepository resultRepository;
@@ -35,24 +36,30 @@ public class ResultServiceTest extends ContainerTest{
 
     @BeforeAll
     public void setup(){
+        //Set result service prior to testing
         resultService = new ResultService(resultRepository);
     }
 
     @ParameterizedTest
     @CsvSource({"6328696e117fd47726a8115a,500","6328696e117fd47726a8115b,350","6328696e117fd47726a8115c,200"})
     public void testGetResultById(ObjectId id, double expectedOutputValue){
+        //Test to ensure getResultById() returns expected result object
         Result result = resultService.getResultById(id);
         assertEquals(expectedOutputValue, result.getOutputValue());
     }
 
     @Test
     public void testGetResultsByPart_MultipleResults(){
+        //Test to ensure getResultsByPart() returns expected list of results
+        //Expected Result: A list of length 2 based on init-script.js
         List<Result> results = resultService.getResultsByPart(new ObjectId("6728696e117fd47726a8115a"));
         assertTrue(results.size() ==2);
     }
 
     @Test
     public void testGetResultsByPart_SingleResult(){
+        //Test to ensure getResultsByPart() returns expected list of results
+        //Expected Result: A list of length 1 based on init-script.js
         List<Result> results = resultService.getResultsByPart(new ObjectId("6728696e117fd47726a8115b"));
         assertTrue(results.size() == 1);
     }
