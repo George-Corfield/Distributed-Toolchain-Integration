@@ -53,3 +53,42 @@ db.Projects.insert([
         _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Project"
     }
 ])
+
+db.Parts.insert([
+    {
+        _id : ObjectId("6728696e117fd47726a8115a"),
+        partName : "test-part-1",
+        partDescription: "test",
+        optimisationParams : {
+            _id : ObjectId("6828696e117fd47726a8115a"),
+            iterations : 100,
+            modules: [ObjectId("6928696e117fd47726a8115a"),ObjectId("6928696e117fd47726a8115b")],
+            maximising: true
+        },
+        projectId: ObjectId("6628696e117fd47726a8115b")
+    },
+    {
+        _id : ObjectId("6728696e117fd47726a8115b"),
+        partName : "test-part-1",
+        partDescription: "test",
+        optimisationParams : {
+            _id : ObjectId("6828696e117fd47726a8115b"),
+            iterations : 100,
+            modules: [ObjectId("6928696e117fd47726a8115a"),ObjectId("6928696e117fd47726a8115b")],
+            maximising: true
+        },
+        projectId: ObjectId("6628696e117fd47726a8115b")
+    },
+    {
+        _id : ObjectId("6728696e117fd47726a8115c"),
+        partName : "test-part-1",
+        partDescription: "test",
+        optimisationParams : {
+            _id : ObjectId("6828696e117fd47726a8115c"),
+            iterations : 100,
+            modules: [ObjectId("6928696e117fd47726a8115a"),ObjectId("6928696e117fd47726a8115b")],
+            maximising: true
+        },
+        projectId: ObjectId("6628696e117fd47726a8115d")
+    }
+])

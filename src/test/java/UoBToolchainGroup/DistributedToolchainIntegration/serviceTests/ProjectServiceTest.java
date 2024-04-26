@@ -8,11 +8,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
-import org.junit.runner.RunWith;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import UoBToolchainGroup.DistributedToolchainIntegration.ContainerTest;
@@ -23,7 +23,7 @@ import UoBToolchainGroup.DistributedToolchainIntegration.service.ProjectService;
 
 @SpringBootTest
 @Testcontainers
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
 public class ProjectServiceTest extends ContainerTest{
     
