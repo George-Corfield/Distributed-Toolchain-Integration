@@ -65,11 +65,12 @@ db.Parts.insert([
             modules: [ObjectId("6928696e117fd47726a8115a"),ObjectId("6928696e117fd47726a8115b")],
             maximising: true
         },
-        projectId: ObjectId("6628696e117fd47726a8115b")
+        projectId: ObjectId("6628696e117fd47726a8115b"),
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Part"
     },
     {
         _id : ObjectId("6728696e117fd47726a8115b"),
-        partName : "test-part-1",
+        partName : "test-part-2",
         partDescription: "test",
         optimisationParams : {
             _id : ObjectId("6828696e117fd47726a8115b"),
@@ -77,11 +78,12 @@ db.Parts.insert([
             modules: [ObjectId("6928696e117fd47726a8115a"),ObjectId("6928696e117fd47726a8115b")],
             maximising: true
         },
-        projectId: ObjectId("6628696e117fd47726a8115b")
+        projectId: ObjectId("6628696e117fd47726a8115b"),
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Part"
     },
     {
         _id : ObjectId("6728696e117fd47726a8115c"),
-        partName : "test-part-1",
+        partName : "test-part-3",
         partDescription: "test",
         optimisationParams : {
             _id : ObjectId("6828696e117fd47726a8115c"),
@@ -89,6 +91,7 @@ db.Parts.insert([
             modules: [ObjectId("6928696e117fd47726a8115a"),ObjectId("6928696e117fd47726a8115b")],
             maximising: true
         },
-        projectId: ObjectId("6628696e117fd47726a8115d")
+        projectId: ObjectId("6628696e117fd47726a8115d"),
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Part"
     }
 ])
