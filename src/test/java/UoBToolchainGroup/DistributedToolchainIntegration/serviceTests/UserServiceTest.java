@@ -1,7 +1,10 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.serviceTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeAll;
@@ -54,6 +57,7 @@ public class UserServiceTest  extends ContainerTest{
     @Order(1)
     public void testCreateUser(){
         User savedUser = userService.createUser(USER);
+        userRespository.delete(savedUser);
         assertEquals(USER, savedUser);
     }
 
@@ -63,6 +67,21 @@ public class UserServiceTest  extends ContainerTest{
     public void testGetUserById(String id, String expectedUsername){
         User expectedUser = userService.getUserById(new ObjectId(id));
         assertEquals(expectedUser.getUsername(),expectedUsername);
+    }
+
+    @ParameterizedTest
+    @Order(3)
+    @CsvSource({"6628696e117fd47726a8116e,John","6628696e117fd47726a8116b,Jack","6628696e117fd47726a8116c,Jason"})
+    public void testGetUserByUsername(String expectedId, String name){
+        User user = userService.getUserByUsername(name);
+        assertEquals(user.getUserId().toString(), expectedId);
+    }
+
+    @Test
+    @Order(4)
+    public void testGetAllUsers(){
+        List<User> users = userService.getAllUsers();
+        assertTrue(users.size() == 3);
     }
     
 }
