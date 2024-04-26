@@ -95,3 +95,36 @@ db.Parts.insert([
         _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Part"
     }
 ])
+
+db.Variables.insert([
+    {
+        _id : ObjectId("6928696e117fd47726a8115a"),
+        partId: ObjectId("6728696e117fd47726a8115a"),
+        variableName : "test-variable-1",
+        initVal : 10.00,
+        lowBound : 5.00,
+        upBound : 15.00,
+        result : false,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Variable"
+    },
+    {
+        _id : ObjectId("6928696e117fd47726a8115b"),
+        partId: ObjectId("6728696e117fd47726a8115a"),
+        variableName : "test-variable-2",
+        initVal : 10.00,
+        lowBound : 5.00,
+        upBound : 15.00,
+        result : false,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Variable"
+    },
+    {
+        _id : ObjectId("6928696e117fd47726a8115c"),
+        partId: ObjectId("6728696e117fd47726a8115b"),
+        variableName : "test-variable-3",
+        initVal : 10.00,
+        lowBound : 5.00,
+        upBound : 15.00,
+        result : false,
+        _class : "UoBToolchainGroup.DistributedToolchainIntegration.model.Variable"
+    }
+])
