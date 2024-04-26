@@ -2,7 +2,7 @@
 This is a API module that emulates the simulations that are used to optimise the components.
 """
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from modules import module
 
 app = Flask(__name__)
@@ -20,5 +20,18 @@ def add():
     json = request.get_json()
     return str(module.add(json['array']))
 
+@app.route('/optimise', methods=['POST'])
+def optimise():
+    """Takes the JSON file and the Module and runs the module with the JSON file as input"""
+
+    files = request.files.getlist('file')
+    print(request.files)
+
+    if len(files) != 2:
+        return jsonify("Incorrect number of files"), 400
+
+    
+    return jsonify("ggs"), 200
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=True)
