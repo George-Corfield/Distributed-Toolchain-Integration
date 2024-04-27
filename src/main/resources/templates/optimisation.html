@@ -10,10 +10,12 @@
 <body>
     <div class = "header-container">
         <h1 th:text="${part.partName}"></h1>
-        <button class="new-variable-button" onclick="addVarForm()">NEW VARIABLE</button>
+        <div class = "button-container">
+            <button class="new-variable-button" onclick="addVarForm()">NEW VARIABLE</button>
+        </div>
     </div>    
 
-    <table>
+    <table class="variable-table">
         <thead>
             <tr>
                 <th>Variable Name</th>
@@ -41,36 +43,37 @@
             <input type="text" placeholder="Name" th:field="*{variableName}" required/>
             <br>
             <label for="initVal"><b>Initial Value</b></label>
-            <input type="number" placeholder="Initial" th:field="*{initVal}" required/>
+            <input type="float" placeholder="Initial" th:field="*{initVal}" required/>
             <br>
             <label for="lowBound"><b>Lower Bound</b></label>
-            <input type="number" placeholder="Lower" th:field="*{lowBound}" required/>
+            <input type="float" placeholder="Lower" th:field="*{lowBound}" required/>
             <br>
             <label for="upBound"><b>Upper Bound</b></label>
-            <input type="number" placeholder="Upper" th:field="*{upBound}" required/>
+            <input type="float" placeholder="Upper" th:field="*{upBound}" required/>
 
             <button type="submit">Submit</button>
         </form>
         <p class="message" onclick="cancelPart()">Cancel new variable</p>
     </div> 
 
+    <div class="upload-form">
+        <form method="POST" enctype="multipart/form-data" action="#" th:action="@{'/projects/varsfile/' + ${projectName} + '/' + ${part.partId}}">
+            <div class="form-group">
+                <label for="file">Upload File:</label>
+                <input class="file-input" type="file" name="file" id="file" />
+                <button class="upload-button" type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
     <div>
-		<form method="POST" enctype="multipart/form-data" action="#" th:action="@{'/projects/varsfile/' + ${projectName} + '/' + ${part.partId}}">
-			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-			</table>
-		</form>
-	</div>
-    <div>
-		<ul>
-			<li th:each="file : ${files}">
-				<a th:href="${file}" th:text="${file}"></a>
-			</li>
-		</ul>
-	</div>
+        <ul class="file-list">
+            <li th:each="file : ${files}">
+                <a th:href="${file}" th:text="${file}"></a>
+            </li>
+        </ul>
+    </div>
 
-    <div style="float: right;">
+    <div style="float: left;">
         <h2>Results</h2>
         <span th:if="${results.isEmpty()}">No Current Results</span>
         <span th:if="${not results.isEmpty()}">

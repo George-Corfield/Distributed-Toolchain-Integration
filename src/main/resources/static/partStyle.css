@@ -9,10 +9,15 @@ body {
     padding: 10px 20px;
 }
 
+.button-container {
+    margin-top: 15px;
+}
+
 .new-part-button {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(45deg,#3c5dc9,#3ccec6);
-    border: 1px solid #000000;
+    background-color: #0099ff;
+    border: none;
+    color: white;
     border-radius: 8px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -20,10 +25,13 @@ body {
     padding-right: 15px;
     margin-bottom: 20px;
     margin-left: 20px;
-    color: #ffffff;
     font-size: 14px;
     cursor: pointer;
     max-width: 150px;
+}
+
+.new-part-button:hover {
+    background-color: #007dd1;
 }
 
 .part-button {
@@ -83,6 +91,10 @@ body {
     color: #ffffff;
     font-size: 14px;
     cursor: pointer;
+}
+
+.part-form-popup button:hover {
+    background-image: linear-gradient(45deg,#2c837e,#079241);
 }
 
 .message {

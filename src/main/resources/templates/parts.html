@@ -10,7 +10,9 @@
 <body>
     <div class="header-container">
         <h1 th:text="${project.projectName}">Project Name: </h1>
-        <button class="new-part-button" onclick="addPart()">NEW PART</button>
+        <div class = "button-container">
+            <button class="new-part-button" onclick="addPart()">NEW PART</button>
+        </div>
     </div>
     <div class="button-container">
         <button class="part-button" th:each="p : ${parts}">
