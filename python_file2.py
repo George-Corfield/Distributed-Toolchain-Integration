@@ -1,6 +1,11 @@
 #I am a fake module
+import sys
+import json
 
-def execute():
-    return 200
+def execute(json_input):
+    jsons = json.load(json_input)
+    array = jsons['array']
+    print(sum(array))
 
-print("Hello I am executing")
+if __name__ == "__main__":
+    execute(sys.argv[1])

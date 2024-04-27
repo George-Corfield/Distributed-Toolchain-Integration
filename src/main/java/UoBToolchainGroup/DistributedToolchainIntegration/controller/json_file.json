@@ -1,1 +1,6 @@
-{"array": [1,2,3,2401,3.2]}
+{
+    "variableName": "v1",
+    "initVal": 1,
+    "lowBound": 1,
+    "upBound": 12
+}

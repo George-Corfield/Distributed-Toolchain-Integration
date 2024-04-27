@@ -2,9 +2,9 @@
 This is a API module that emulates the simulations that are used to optimise the components.
 """
 
+import json
 from flask import Flask, request, jsonify
 from modules import module
-import subprocess
 
 app = Flask(__name__)
 
@@ -18,8 +18,8 @@ def test_string():
 def add():
     """This function takes a JSON file and sums the values in the array in the file."""
 
-    json = request.get_json()
-    return str(module.add(json['array'])), 200
+    json_data = request.get_json()
+    return str(module.add(json_data['array'])), 200
 
 @app.route('/optimise', methods=['POST'])
 def optimise():
@@ -29,7 +29,6 @@ def optimise():
 
     if len(files) != 2:
         return jsonify("Incorrect number of files"), 400
-    
     python_file = files.pop()
     json_file = files.pop()
 
@@ -37,14 +36,16 @@ def optimise():
     json_file.save('json_file2.json')
 
     try:
-        result = subprocess.run(["python", 'python_file2.py', 'json_file2.json'], 
-                                check=True,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                text=True)
-        return jsonify(result.stdout), 200
-    except:
-        return jsonify("Error executing the module"), 500 
+        #The module will need to be run here
+        #at the moment, it does not run the module, instead it calculates the mean
+        #of the bounds and returns that
+        with open('json_file2.json', 'r', encoding="utf-8") as json_data:
+            val = json.load(json_data)
+            return jsonify((val['upBound'] + val['lowBound'])/2), 200
+    except FileNotFoundError:
+        return jsonify("File not found"), 404
+    except PermissionError:
+        return jsonify("Permission denied"), 403
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

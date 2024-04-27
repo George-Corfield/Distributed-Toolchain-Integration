@@ -26,6 +26,7 @@ public class WebController {
         return "index";
     }
 
+    //this is a way to test the connection to the python_api
     @GetMapping(value = "/foo")
     public String pythonFoo(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
                         Model model) throws IOException, InterruptedException{
@@ -36,6 +37,7 @@ public class WebController {
         return "index";
     }
 
+    //this allows you to test the connection to the python_api and send a json file to be operated on
     @GetMapping(value = "/add")
     public String pythonAdd(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
                         Model model) throws IOException, InterruptedException{
@@ -50,6 +52,7 @@ public class WebController {
         return "index";
     }
 
+    //This is a fake request to the python_api to optimise a variable
     @GetMapping(value = "/add2")
     public String pythonAdd2(@RequestParam(value = "value", required = false, defaultValue = "1") String value,
                         Model model) throws IOException, InterruptedException{
@@ -82,6 +85,7 @@ public class WebController {
         return "upload";
     } 
 
+    //this allows for multiple files to be send in a POST request
     private static HttpRequest.BodyPublisher buildMultiPartRequestBody(List<File> files) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
