@@ -41,11 +41,15 @@ def optimise():
         #of the bounds and returns that
         with open('json_file2.json', 'r', encoding="utf-8") as json_data:
             val = json.load(json_data)
-            return jsonify((val['upBound'] + val['lowBound'])/2), 200
+            value = val[0]
+            return jsonify((value['upBound'] + value['lowBound'])/2), 200
     except FileNotFoundError:
         return jsonify("File not found"), 404
     except PermissionError:
         return jsonify("Permission denied"), 403
-
+    finally:
+        print("Remove the Extra FIles")
+        #remove python_file2
+        #remove json_file2
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
