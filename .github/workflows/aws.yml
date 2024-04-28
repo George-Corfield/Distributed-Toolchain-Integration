@@ -72,7 +72,6 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build .jar
-      id: build jar file
       working-directory: ./
       run: mvn package
 
