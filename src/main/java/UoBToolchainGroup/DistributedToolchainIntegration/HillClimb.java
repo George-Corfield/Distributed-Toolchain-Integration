@@ -36,6 +36,8 @@ public class HillClimb {
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
+        System.out.println(variablesArray);
+        System.out.println(variablesArray.get(0).get(0).getVariableId().equals(variablesArray.get(1).get(0).getVariableId()));
         this.modules = modules;
         this.results = new ArrayList<>();
         Result r = CalculateInitialResult();
@@ -57,23 +59,23 @@ public class HillClimb {
                 r.setOutputValue(execute);
             }
         }
-        r.setVariables(setResultVariables());
+        setResultVariables(r);
         return r;
     }
 
-    public List<Variable> setResultVariables(){
+    public void setResultVariables(Result r){
         //creates a set of all variables and their values
-        List<Variable> resultVariables = new ArrayList<>();
+        System.out.println("----------");
         for (int i = 0; i < variablesArray.size(); i++){
             List<Variable> v = variablesArray.get(i);
             for (int j = 0; j < v.size(); j++){
                 Variable var = v.get(j);
                 if (!var.getResult()){
-                    resultVariables.add(var);
+                    r.addVariable((new Variable(var)));
                 }
             }
         }
-        return resultVariables;
+        System.out.println("----------");
     }
 
     public double executeModule(ModulesFile module, List<Variable> variables) throws IOException, InterruptedException{
@@ -111,8 +113,9 @@ public class HillClimb {
         for (int i = 0; i < variablesArray.size(); i++){
             List<Variable> tempList = variablesArray.get(i);
             for (int j = 0; j < tempList.size(); j++){
-                if (tempList.get(j).getVariableId() == randomVariable.getVariableId()){
-                    tempList.get(j).setInitVal(newValue);
+                if (tempList.get(j).getVariableId().equals(randomVariable.getVariableId())){
+                    Variable v = tempList.get(j);
+                    v.setInitVal(newValue);
                 }
             }
         }
@@ -136,7 +139,7 @@ public class HillClimb {
                 neighbor.setOutputValue(execute);
             }
         }
-        neighbor.setVariables(setResultVariables());
+        setResultVariables(neighbor);
         return neighbor;
     }   
 
