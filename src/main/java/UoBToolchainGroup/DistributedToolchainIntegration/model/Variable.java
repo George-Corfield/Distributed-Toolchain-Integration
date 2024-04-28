@@ -48,6 +48,7 @@ public class Variable {
     public Variable(String variableName, double initVal){
         //for result variables only
         super();
+        this.variableId = new ObjectId();
         this.variableName = variableName;
         this.initVal = initVal;
         this.lowBound = initVal;

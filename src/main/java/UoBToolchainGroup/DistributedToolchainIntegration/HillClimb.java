@@ -98,29 +98,44 @@ public class HillClimb {
         return Double.parseDouble(res.body());
     }
 
-    public Result GenerateNeighbor(){
+    public void ChangeRandomVariableValue(){
+        //picks random variable from current result and changes its value in all places in variable array
+        Random r = new Random();
+        Variable randomVariable = currentResult.getVariables().get(r.nextInt(currentResult.getVariables().size()));
+        double lowerBound = randomVariable.getLowBound();
+        double upperBound = randomVariable.getUpBound();
+        double value = randomVariable.getInitVal();
+        double diff = upperBound - lowerBound;
+        diff = diff * 0.1 * r.nextDouble(-1, 1);
+        double newValue = Math.min(Math.max(value+diff, lowerBound), upperBound);
+        for (int i = 0; i < variablesArray.size(); i++){
+            List<Variable> tempList = variablesArray.get(i);
+            for (int j = 0; j < tempList.size(); j++){
+                if (tempList.get(j).getVariableId() == randomVariable.getVariableId()){
+                    tempList.get(j).setInitVal(newValue);
+                }
+            }
+        }
+    }
+
+    public Result GenerateNeighbor() throws IOException, InterruptedException{
         //modifies 1 variable value and outputs the new value of running the modules
         //TODO connect to module running logic to actually calculate results
         Result neighbor = new Result();
-        Random r = new Random();
-        int rand = r.nextInt(variablesArray.size());
-        List<Variable> mod = variablesArray.get(rand);
-        int rand2 = r.nextInt(mod.size());
-        Variable var = mod.get(rand2);
-        while (var.getResult()){
-            rand2 = r.nextInt(mod.size());
-            var = mod.get(rand2);
+        ChangeRandomVariableValue();
+        for (int i= 0; i < modules.size(); i++){
+            double execute = executeModule(modules.get(i), variablesArray.get(i));
+            if (i != modules.size()-1){
+                // variablesArray.get(i+1).add(new Variable("PR",execute));
+                for (int j=0; j < variablesArray.get(i+1).size(); j ++){
+                    if (variablesArray.get(i+1).get(j).getResult()){
+                        variablesArray.get(i+1).get(j).setInitVal(execute);
+                    }
+                }
+            } else {
+                neighbor.setOutputValue(execute);
+            }
         }
-        double lowerBound = var.getLowBound();
-        double upperBound = var.getUpBound();
-        double value = var.getInitVal();
-        double diff = upperBound - lowerBound;
-        diff = diff * 0.1 * r.nextDouble(-1, 1);
-        value = Math.min(Math.max(value+diff, lowerBound), upperBound);
-        var.setInitVal(value);
-        mod.set(rand2, var);
-        variablesArray.set(rand,mod);
-        neighbor.setOutputValue(r.nextFloat(501));
         neighbor.setVariables(setResultVariables());
         return neighbor;
     }   
@@ -165,7 +180,7 @@ public class HillClimb {
         return results;
     }
 
-    public void optimise(){
+    public void optimise() throws IOException, InterruptedException{
         //main function run to generate all results
         int iter = 1;
         while (iter != iterations){
