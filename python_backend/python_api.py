@@ -49,9 +49,11 @@ def optimise():
     except PermissionError:
         return jsonify("Permission denied"), 403
     finally:
+        #remove the temporary files
         if os.path.exists("json_file2.json"):
             os.remove("json_file2.json")
         if os.path.exists("python_file2.py"):
             os.remove("python_file2.py")
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

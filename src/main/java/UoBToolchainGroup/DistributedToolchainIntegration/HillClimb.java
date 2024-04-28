@@ -117,7 +117,7 @@ public class HillClimb {
         double diff = upperBound - lowerBound;
         diff = diff * 0.1 * r.nextDouble(-1, 1);
         value = Math.min(Math.max(value+diff, lowerBound), upperBound);
-        var.setInitVal(value);;
+        var.setInitVal(value);
         mod.set(rand2, var);
         variablesArray.set(rand,mod);
         neighbor.setOutputValue(r.nextFloat(501));
