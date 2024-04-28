@@ -3,6 +3,7 @@ This is a API module that emulates the simulations that are used to optimise the
 """
 
 import json
+import os
 from flask import Flask, request, jsonify
 from modules import module
 
@@ -48,8 +49,9 @@ def optimise():
     except PermissionError:
         return jsonify("Permission denied"), 403
     finally:
-        print("Remove the Extra FIles")
-        #remove python_file2
-        #remove json_file2
+        if os.path.exists("json_file2.json"):
+            os.remove("json_file2.json")
+        if os.path.exists("python_file2.py"):
+            os.remove("python_file2.py")
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
