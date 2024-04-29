@@ -47,7 +47,7 @@ A link to the full Technology stack is [here](./documentation/TechStackAndArchit
 | 13 | Permissions | Security to stop users from accessing each others data |
 
 ### MVP Requirements
-This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 3, 5, 6, 7, 12.
+This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 5, 6, 7, 12.
 
 ### Problems the client faces with current solutions
 The main problems the client faces with current solutions are:
@@ -66,7 +66,9 @@ Some examples of current solutions that are similar but do not provide all the n
 All of these products have been tried by the NCC but were missing necessary functionality.
 
 ## Limitations
-The system that is created will have limitations. They will be listed here in due time.
+The system that is created will have limitations. 
+* Optimisation does not run asynchronously from the rest of the Java backend so nothing can be done while optimising results.
+* 
 
 ## Definitions
 * CAD stands for Computer Aided Design.
