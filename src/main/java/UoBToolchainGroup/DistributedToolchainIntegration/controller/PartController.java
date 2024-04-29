@@ -45,7 +45,7 @@ public class PartController {
         model.addAttribute("variable", new Variable());
         model.addAttribute("currentVariables", variables);
         model.addAttribute("results", results);
-        return "Optimisation";
+        return "optimisation";
     }
 
     @PostMapping("/projects/{projectName}/{partId}")
