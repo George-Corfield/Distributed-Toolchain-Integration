@@ -1,5 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class OptimisationController {
     }
 
     @PostMapping("/optimise/projects/{projectName}/{partId}")
-    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables){
+    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables) throws IOException, InterruptedException{
         String[][] variables = null;
         //maps the selected variables html list to java array
         try {
