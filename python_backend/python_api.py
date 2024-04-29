@@ -6,6 +6,7 @@ import json
 import os
 from flask import Flask, request, jsonify
 from modules import module
+import numpy as np
 
 app = Flask(__name__)
 
@@ -43,7 +44,9 @@ def optimise():
         with open('json_file2.json', 'r', encoding="utf-8") as json_data:
             val = json.load(json_data)
             value = val[0]
-            return jsonify((value['upBound'] + value['lowBound'])/2), 200
+            #add random noise to the result
+            random_noise = np.random.normal(0, 1)
+            return jsonify(((value['upBound'] + value['lowBound'])/2) + random_noise), 200
     except FileNotFoundError:
         return jsonify("File not found"), 404
     except PermissionError:

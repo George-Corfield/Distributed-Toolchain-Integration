@@ -10,14 +10,12 @@ import UoBToolchainGroup.DistributedToolchainIntegration.model.Variable;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.VariablesFile;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.BuildMultiPartRequestBody;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.io.BufferedWriter;
 
 public class HillClimb {
 
@@ -36,8 +34,8 @@ public class HillClimb {
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
-        System.out.println(variablesArray);
-        System.out.println(variablesArray.get(0).get(0).getVariableId().equals(variablesArray.get(1).get(0).getVariableId()));
+        //System.out.println(variablesArray);
+        //System.out.println(variablesArray.get(0).get(0).getVariableId().equals(variablesArray.get(1).get(0).getVariableId()));
         this.modules = modules;
         this.results = new ArrayList<>();
         Result r = CalculateInitialResult();
@@ -123,7 +121,6 @@ public class HillClimb {
 
     public Result GenerateNeighbor() throws IOException, InterruptedException{
         //modifies 1 variable value and outputs the new value of running the modules
-        //TODO connect to module running logic to actually calculate results
         Result neighbor = new Result();
         ChangeRandomVariableValue();
         for (int i= 0; i < modules.size(); i++){
