@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="partStyle.css">
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+</head>
+
+<body>
+<h1 style="text-align: center">An error has occured</h1>
+<h2 style="text-align: center" th:text="${err}"></h2>
+<p style="text-align: center" th:text="${message}"></p>
+
+</body>
+</html>

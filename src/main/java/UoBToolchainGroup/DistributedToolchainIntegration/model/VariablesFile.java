@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.json.*;
+import org.springframework.data.annotation.PersistenceCreator;
 
 public class VariablesFile extends File{
 
+    @PersistenceCreator
     public VariablesFile(String fileName, String contentType, byte[] data){
         super( fileName, contentType, data);
     }

@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class OptimisationController {
     private ResultService resultService;
 
     @GetMapping("/projects/{projectName}/{partId}/optimise")
-    public String getOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model){
+    public String getOptimisation(@CookieValue("userId") String id, @PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = part.getOptimisationParams();
         List<File> currentFiles = new ArrayList<>();
@@ -50,7 +51,7 @@ public class OptimisationController {
         for (int i = 0; i < currentFileId.size(); i++){
             currentFiles.add(fileService.getFileById(currentFileId.get(i)));
         }
-        List<ModulesFile> mods = fileService.getAllModulesFiles();
+        List<ModulesFile> mods = fileService.getAvailableModulesFiles(new ObjectId(id));
         List<Variable> variables = variableService.getVariablesByPart(new ObjectId(partId));
         model.addAttribute("part", part);
         model.addAttribute("projectName", projectName);

@@ -76,9 +76,9 @@
                 </td>
             </tr>
         </table>
-        <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" method="post">
+        <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" onsubmit="return validateChoices()" method="post">
             <input type="hidden" id="hiddenVariables" name="selectedVariables"/>
-            <button type="submit" onclick="createVariableList()">Optimise</button>
+            <button type="submit">Optimise</button>
         </form>
     </div>
 </body>
@@ -125,7 +125,6 @@
         var selected = document.getElementsByClassName("selectedModule");
         let data = [];
         for (let i=0; i<selected.length; i++){
-            console.log(selected[i].value);
             data.push(selected[i].value);
         }
         let hiddenInput = document.getElementById("selectedModules")
@@ -138,6 +137,15 @@
 
     function cancelForm() {
         document.getElementById("op-form").style.display = "none";
+    }
+
+    function validateChoices(){
+        if (confirm("Some of your modules may have been uploaded by other users.\n Are you sure you want to continue?") == true){
+            createVariableList();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function createVariableList() {
