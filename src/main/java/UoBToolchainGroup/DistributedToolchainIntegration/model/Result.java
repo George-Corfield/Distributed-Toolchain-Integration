@@ -55,7 +55,11 @@ public class Result {
     }
 
     public void addVariable(Variable obj){
-        variables.add(obj);
+        System.out.println(variables);
+        System.out.println(obj);
+        if (!variables.contains(obj)){
+            variables.add(obj);
+        }
     }
 
     public double getOutputValue(){

@@ -9,9 +9,11 @@
 
 <body>
     <div class="header-container">
-        <h1>PROJECTS</h1>
-        <button class="new-project-button" onclick="addProjectForm()">NEW PROJECT</button>
-        <button class="new-module-button" onclick="addModuleForm()">UPLOAD MODULE</button>
+        <h1>Projects</h1>
+        <div class = "button-container">
+            <button class="new-project-button" onclick="addForm()">NEW PROJECT</button>
+            <button class="new-module-button" onclick="addModuleForm()">UPLOAD MODULE</button>
+        </div>
     </div>
     <div class="button-container">
         <button class="project-button" th:each="project: ${projects}">
