@@ -34,7 +34,8 @@ on:
 
 env:
   AWS_REGION: eu-west-2                  # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: distributed_toolchain           # set this to your Amazon ECR repository name
+  JAVA_ECR_REPOSITORY: distributed_toolchain           # set this to your Amazon ECR repository name
+  PYTHON_ECR_REPOSITORY: python_application
   ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
@@ -94,9 +95,9 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build --file=Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        docker build --file=Dockerfile -t $ECR_REGISTRY/$JAVA_ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$JAVA_ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$JAVA_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Build, tag, and push python image to Amazon ECR
       id: build-python-image
@@ -107,9 +108,9 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -f python_backend/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG  .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        docker build -f python_backend/Dockerfile -t $ECR_REGISTRY/$PYTHON_ECR_REPOSITORY:$IMAGE_TAG  .
+        docker push $ECR_REGISTRY/$PYTHON_ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$PYTHON_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     # - name: Fill in the new image ID in the Amazon ECS task definition
     #   id: task-def
