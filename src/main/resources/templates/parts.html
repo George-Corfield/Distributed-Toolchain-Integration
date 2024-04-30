@@ -10,18 +10,21 @@
 <body>
     <div class="header-container">
         <h1 th:text="${project.projectName}">Project Name: </h1>
-        <div class = "button-container">
+        <div class = "header-button-container">
             <button class="new-part-button" onclick="addPart()">NEW PART</button>
         </div>
     </div>
+
     <div class="button-container">
-        <button class="part-button" th:each="p : ${parts}">
+        <th:block th:each="p : ${parts}">
             <a th:href="@{${project.projectName} + '/' + ${p.partId}}">
-                <strong th:text="${p.partName}"></strong>
+                <button class="part-button">
+                    <strong th:text="${p.partName}"></strong>
+                    <br>
+                    <span th:text="${p.partDescription}"></span>
+                </button>
             </a>
-            <br>
-            <span th:text="${p.partDescription}"></span>
-        </button>
+        </th:block>
     </div>
 
     <div class="part-form-popup" id="part-form" style="display:none;">

@@ -9,8 +9,15 @@ body {
     padding: 10px 20px;
 }
 
-.button-container {
+.header-button-container{
     margin-top: 15px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
 }
 
 .new-part-button {
@@ -38,7 +45,7 @@ body {
     flex-basis: calc(25% - 10px);
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(45deg, #328f8a, #08ac4b);
+    background-color: #4CAF50;
     border: 1px solid #000000;
     border-radius: 8px;
     padding: 15px;
@@ -48,11 +55,8 @@ body {
     text-align: left;
 }
 
-.button-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-start;
+.part-button:hover {
+    background-color: #45a049;
 }
 
 .part-form-popup {
@@ -83,7 +87,7 @@ body {
 
 .part-form-popup button {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(45deg,#328f8a,#08ac4b);
+    background-color: #4CAF50;
     width: 100%;
     border: 0;
     border-radius: 8px;
@@ -94,7 +98,7 @@ body {
 }
 
 .part-form-popup button:hover {
-    background-image: linear-gradient(45deg,#2c837e,#079241);
+    background-color: #45a049;
 }
 
 .message {

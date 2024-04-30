@@ -5,6 +5,11 @@
     <link rel="stylesheet" th:href="@{/optimisationStyle.css}">
     <meta charset="UTF-8">
     <title th:text="${part.partName}"></title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -75,32 +80,56 @@
         </ul>
     </div>
 
-    <div style="float: left;">
-        <h2>Results</h2>
-        <span th:if="${results.isEmpty()}">No Current Results</span>
-        <span th:if="${not results.isEmpty()}">
-            <table>
+    <div class="header-container">
+        <h1>Results</h1>
+        <div class="button-container">
+            <a th:href="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}">
+                <button class="optmisation-button">
+                    <strong th:text="Optimise"></strong>
+                </button>
+            </a>
+        </div>
+    </div>
+    <span th:if="${results.isEmpty()}">No Current Results</span>
+    <span th:if="${not results.isEmpty()}">
+        
+        <div class="table-controls">
+            
+        </div>
+        
+        <table class="result-table" id="results-table">
+            <thead>
                 <tr>
                     <th>Result Id</th>
                     <th>Variables Values</th>
                     <th>Output Value</th>
                     <th>Fitness</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr th:each="r : ${results}">
-                    <th th:text="${r.resultId}"></th>
-                    <th>
+                    <td th:text="${r.resultId}"></td>
+                    <td>
                         <ul>
                             <li th:each="var : ${r.variables}" th:text="${var.variableName} + ' : ' + ${var.initVal}"></li>
                         </ul>
-                    </th>
-                    <th th:text="${r.outputValue}"></th>
-                    <th th:text="${r.fitnessLevel}"></th>
+                    </td>
+                    <td th:text="${r.outputValue}"></td>
+                    <td th:text="${r.fitnessLevel}"></td>
                 </tr>
-            </table>
-        </span>
-    </div>
+            </tbody>
+        </table>
+    </span>
 </body>
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        var table = $('#results-table').DataTable();
+        var tableControls = $(".dataTables_length, .dataTables_filter");
+        $(".table-controls").append(tableControls);
+    });
+</script>
 <script>
     function addVarForm() {
         document.getElementById("var-form").style.display = "block";
