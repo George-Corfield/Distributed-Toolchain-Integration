@@ -51,16 +51,16 @@ Modules in the future can be run in one of two ways:
 ## Overall Structure 
 The project's structure has been mostly dictated by the chosen framework spring-boot. Here is an overview of the folders and what they contain, as well as any files. 
 #### The Assets folder
-This folder contains images and other assets used in the documentation files and the readme. These do not impact the code or how the project runs.
+Contains images and other assets used in the documentation files and the readme. These do not impact the code or how the project runs.
 #### The Documentation folder 
-This folder contains the documentation (other than the readme).
+Contains the documentation (other than the readme).
 These files do not impact the code or how the project runs.
 #### The Python Backend folder
-This folder contains all the source code used in the python backend. This code is used as a stand in for the simulation software.
+Contains all the source code used in the python backend. This code is used as a stand in for the modules.
 #### The src folder
-This contains the source code for the spring-boot web-app. Src stands for source.
+Contains the source code for the spring-boot web-app. Src stands for source.
 #### The target folder 
-This folder contains the compiled code from the src folder. It is not necessary to modify anything in this folder.
+Contains the compiled code from the src folder. It is not necessary to modify anything in this folder.
 #### Dockerfile
 This file allows the project to be dockerised. There are two dockerfiles in the project. One is not in a folder and is used to dockerise the web-app. The other is within the python backend folder and is used to dockerise the python backend. Currently the web-app docker file is not configured to ignore the python backend and it will include it in the container it produces. This makes the container larger than necessary but does not affect the overall function of the container. This container cannot be used as the python backend as the correct ports are not open and the python_api.py file will not be run when starting the container.
 
@@ -71,19 +71,19 @@ The mvnw file is a maven wrapper which allows for maven commands to be run witho
 The pom.xml file (Project Object Model) is the main configuration file and contains dependencies, plugins, build settings and other project details.  
 
 ## Java-Backend
-The Java backend source code is located in the src folder. This is the code for the web-app.
+The Java backend source code is located in the src folder.
 
 ### test folder
-This folder contains code used to test the code written in main. It does not affect the function of the web-app but the tests are useful to know if the code written in main is correct or not.
+Contains code used to test the code written in main. It does not affect the function of the web-app but the tests are useful to know if the code written in main is correct or not.
 
 ### main folder
-This folder contains the source code of the web-app.
+Contains the source code of the web-app.
 
 #### java\UoBToolchainGroup\DistributedToolchainIntegration
-These folders contains all java source code for the project. An explanation of each folder and class within this folder will be below under the Java Source Code title.
+Contains all java source code for the project. An explanation of each folder and class within this folder will be below under the Java Source Code title.
 
 #### resources
-This contains resources that are used in displaying the page in the web browser. When a resource is needed it is loaded from this folder and the necessary data is injected into the page before it is served to the user. For example the page error.html (in templates) provides a template for the error page. If an error occurs it is loaded and the information for the specific error is injected into the html where the ${err} element is. The styling for the page is loaded from the static folder. Thymeleaf is responsible for injecting the data into the page.
+Contains resources that are used in displaying the page in the web browser. When a resource is needed it is loaded from this folder and the necessary data is injected into the page before it is served to the user. For example the page error.html (in templates) provides a template for the error page. If an error occurs it is loaded and the information for the specific error is injected into the html where the ${err} element is. The styling for the page is loaded from the static folder. Thymeleaf is responsible for injecting the data into the page.
 
 The following folder and files are located within the resources folder.
 * static - Contains the css used to style the web page.
@@ -115,16 +115,16 @@ A file used to unit test the python_api.
 The java source code is split into folders. To better understand this section an understanding of the Model-View-Controller Architecture will help. Find a link to a helpful resource [here](https://developer.mozilla.org/en-US/docs/Glossary/MVC). At a very basic level, the user will send input to the controller. The controller will update the model and then the model will update the view. The view updates what is displayed onto the screen.
 
 ### Controller folder 
-This contains all the controllers. Controllers handle user input and update the model accordingly.
+Contains all the controllers. Controllers handle user input and update the model accordingly.
 
 ### Model folder
-This contains all of the Models. These will handle data for the application and update the view.
+Contains all of the Models. These will handle data for the application and update the view.
 
 ### Repository Folder
-This folder contains files which handle data access logic, such as CRUD operations, for interacting with the database (in this case, MongoDB).
+Contains files which handle data access logic, such as CRUD operations, for interacting with the database (in this case, MongoDB).
 
 ### Service
-This folder contains files which implements business logic, orchestrates interactions with the repository layer, and provides higher-level operations or processes.
+Contains files which implements business logic, orchestrates interactions with the repository layer, and provides higher-level operations or processes.
 
 ### DistributedToolchainIntegrationApplication.java
 When this file is run it starts the whole application.
