@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="projectStyle.css">
+    <link rel="stylesheet" th:href="@{/projectStyle.css}">
     <meta charset="UTF-8">
     <title>Projects Page</title>
 </head>
@@ -10,19 +10,21 @@
 <body>
     <div class="header-container">
         <h1>Projects</h1>
-        <div class = "button-container">
-            <button class="new-project-button" onclick="addForm()">NEW PROJECT</button>
+        <div class = "header-button-container">
+            <button class="new-project-button" onclick="addProjectForm()">NEW PROJECT</button>
             <button class="new-module-button" onclick="addModuleForm()">UPLOAD MODULE</button>
         </div>
     </div>
     <div class="button-container">
-        <button class="project-button" th:each="project: ${projects}">
+        <th:block th:each="project: ${projects}">
             <a th:href="@{'projects/' + ${project.projectName}}">
-                <strong th:text="${project.projectName}"></strong>
+                <button class="project-button">
+                    <strong th:text="${project.projectName}"></strong>
+                    <br>
+                    <span th:text="${project.projectDescription}"></span>
+                </button>
             </a>
-            <br>
-            <span th:text="${project.projectDescription}"></span>
-        </button>
+        </th:block>
     </div>
 
     <div class="projects-form-popup" id="var-form" style="display:none;">
