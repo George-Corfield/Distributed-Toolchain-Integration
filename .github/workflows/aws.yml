@@ -36,9 +36,12 @@ env:
   AWS_REGION: eu-west-2                  # set this to your preferred AWS region, e.g. us-west-1
   JAVA_ECR_REPOSITORY: distributed_toolchain           # set this to your Amazon ECR repository name
   PYTHON_ECR_REPOSITORY: python_application
-  ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
+  JAVA_ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
+  PYTHON_ECS_SERVICE: MY_ECS_SERVICE
+  JAVA_ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
+  PYTHON_ECS_CLUSTER: MY_ECS_CLUSTER
+  JAVA_ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
+  PYTHON_ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
