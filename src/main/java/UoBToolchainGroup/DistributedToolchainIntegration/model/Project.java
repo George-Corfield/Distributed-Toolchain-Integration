@@ -1,3 +1,6 @@
+/*
+ * This class is used to create project objects
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.util.Date;
@@ -18,6 +21,8 @@ public class Project {
     private Date projectStartDate;
     private ObjectId userId;
 
+    //Constuctors
+
     public Project(){
         super();
         this.projectId = new ObjectId();
@@ -37,6 +42,8 @@ public class Project {
         this.userId = userId;
     }
 
+    //getters and setters
+
     public ObjectId getProjectId() {
         return projectId;
     }
@@ -44,8 +51,6 @@ public class Project {
     public void setProjectId(ObjectId projectId) {
         this.projectId = projectId;
     }
-
-
 
     public String getProjectName() {
         return projectName;
