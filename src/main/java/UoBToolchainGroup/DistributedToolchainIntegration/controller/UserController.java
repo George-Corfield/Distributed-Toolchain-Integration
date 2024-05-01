@@ -30,7 +30,6 @@ public class UserController {
     public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, 
     Model mode,
     HttpServletResponse response) throws NoSuchAlgorithmException{
-    
         User foundUser = userService.getUserByUsername(userDetails.getUsername());
         if (foundUser == null){
             //user not found
@@ -82,9 +81,10 @@ public class UserController {
             userService.createUser(newUser);
             return "redirect:/login";
         } else {
+            return "redirect:/register?fail=true";
             //user exists
         }
-        return "redirect:/login";
+        // return "redirect:/login";
     }
 
     @GetMapping("/register")
