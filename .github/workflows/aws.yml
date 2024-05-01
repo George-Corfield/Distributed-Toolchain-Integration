@@ -40,8 +40,8 @@ env:
   PYTHON_ECS_SERVICE: distributed_toolchain_python_service
   JAVA_ECS_CLUSTER: distributed_toolchain_java_dev                 # set this to your Amazon ECS cluster name
   PYTHON_ECS_CLUSTER: distributed_toolchain_python_dev
-  JAVA_ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
-  PYTHON_ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION
+  JAVA_ECS_TASK_DEFINITION: ./AWS/java_application_task-def.json # set this to the path to your Amazon ECS task definition
+  PYTHON_ECS_TASK_DEFINITION: ./AWS/python_application_task-def.json
                                                # file, e.g. .aws/task-definition.json
   JAVA_CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
   PYTHON_CONTAINER_NAME:                                             # containerDefinitions section of your task definition
