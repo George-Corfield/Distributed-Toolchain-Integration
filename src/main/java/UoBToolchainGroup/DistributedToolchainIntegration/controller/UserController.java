@@ -88,7 +88,12 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(@RequestParam(value="fail", required = false) Boolean fail, Model model){
+        if (fail != null){
+            if (fail){
+                //add error logic 
+            }
+        }
         model.addAttribute("userDetails", new User());
         return "register";
     }

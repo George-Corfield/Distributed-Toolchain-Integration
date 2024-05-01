@@ -52,10 +52,13 @@ public class ProjectControllerTest {
 
     @BeforeEach
     public void setup(){
+        //sets up parameters before each test 
         userId = new ObjectId();
         test_project = new Project(new ObjectId(), "test_project", "test_project", new Date(), userId);
         test_projects = List.of(new Project(), new Project());
         test_parts = List.of(new Part(), new Part());
+
+        //ensures that project service loads desired results on certain calls
         when(projectService.getProjectsByUser(userId)).thenReturn(test_projects);
         when(projectService.getProjectByName("test_project")).thenReturn(test_project);
         when(partService.getPartsByProjectId(test_project.getProjectId())).thenReturn(test_parts);
@@ -64,6 +67,7 @@ public class ProjectControllerTest {
 
     @Test
     public void testProjectGetRequest() throws Exception{
+        //test to check that projects loads the correct parameters
         mvc.perform(get("/projects")
         .cookie(new Cookie("userId", userId.toString())))
         .andExpect(status().isOk())
@@ -74,6 +78,7 @@ public class ProjectControllerTest {
 
     @Test
     public void testProjectPostRequest() throws Exception{
+        //test to check that projects redirects correctly when new project is posted
         mvc.perform(post("/projects")
         .cookie(new Cookie("userId", userId.toString()))
         .param("projectName", "test_project")
@@ -82,6 +87,7 @@ public class ProjectControllerTest {
 
     @Test
     public void testPartsGetRequest() throws Exception{
+        //test to ensure that parts are correctly displayed to user
         mvc.perform(get("/projects/{projectName}",test_project.getProjectName()))
         .andExpect(status().isOk())
         .andExpect(model().attributeExists("project","parts","newPart"))
@@ -91,6 +97,7 @@ public class ProjectControllerTest {
 
     @Test
     public void testPartsPostRequest() throws Exception{
+        //test to ensure that correct redirect occurs when new part is posted
         mvc.perform(post("/projects/{projectName}",test_project.getProjectName())
         .param("partName", "test_part")
         .param("partDescription", "test_part"))

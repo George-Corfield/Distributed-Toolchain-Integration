@@ -50,9 +50,11 @@ public class PartControllerTest {
 
     @BeforeEach
     public void setup(){
+        //set up parameters before each test
         test_part = new Part(new ObjectId(), "test_part", "test_part", new OptimisationParams(), new ObjectId());
         variables = List.of(new Variable(), new Variable());
         results = List.of(new Result(), new Result());
+        //ensures all services retrieve desired results
         when(partService.getPartbyId(test_part.getPartId())).thenReturn(test_part);
         when(variableService.getVariablesByPart(test_part.getPartId())).thenReturn(variables);
         when(resultService.getResultsByPart(test_part.getPartId())).thenReturn(results);
@@ -60,6 +62,7 @@ public class PartControllerTest {
 
     @Test
     public void testPartGetRequest() throws Exception{
+        //Test to make sure all data is displayed correctly to user when viewing specific part
         mvc.perform(get("/projects/{projectName}/{partId}","test_project",test_part.getPartId().toString()))
         .andExpect(status().isOk())
         .andExpect(model().attributeExists("part","projectName","variable","currentVariables","results"))
@@ -71,6 +74,7 @@ public class PartControllerTest {
 
     @Test
     public void testPartPostRequest() throws Exception{
+        //ensures that when a new variable is created user is correctly redirected
         mvc.perform(post("/projects/{projectName}/{partId}","test_project",test_part.getPartId().toString()))
         .andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/projects/test_project/"+test_part.getPartId().toString()));
