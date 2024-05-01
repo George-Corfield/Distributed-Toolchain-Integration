@@ -81,9 +81,10 @@ body {
 
 .variable-form-popup {
     position: fixed;
+    z-index: 9999; /*make sure the form appears infront of everything*/
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*keeps menu in the centre of the screen*/
     width: 100%;
     max-width: 360px;
     margin: auto;
@@ -107,7 +108,7 @@ body {
 
 .variable-form-popup button {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(45deg,#328f8a,#08ac4b);
+    background-color: #4CAF50;
     width: 100%;
     border: 0;
     border-radius: 8px;
@@ -118,7 +119,7 @@ body {
 }
 
 .variable-form-popup button:hover {
-    background-image: linear-gradient(45deg,#2c837e,#079241);
+    background-color: #45a049;
 }
 
 

@@ -50,13 +50,13 @@
             <input type="text" placeholder="Name" th:field="*{variableName}" required/>
             <br>
             <label for="initVal"><b>Initial Value</b></label>
-            <input type="float" placeholder="Initial" th:field="*{initVal}" required/>
+            <input type="number" step="any" placeholder="Initial" th:field="*{initVal}" required/>
             <br>
             <label for="lowBound"><b>Lower Bound</b></label>
-            <input type="float" placeholder="Lower" th:field="*{lowBound}" required/>
+            <input type="number" step="any" placeholder="Lower" th:field="*{lowBound}" required/>
             <br>
             <label for="upBound"><b>Upper Bound</b></label>
-            <input type="float" placeholder="Upper" th:field="*{upBound}" required/>
+            <input type="number" step="any" placeholder="Upper" th:field="*{upBound}" required/>
 
             <button type="submit">Submit</button>
         </form>
