@@ -43,8 +43,8 @@ env:
   JAVA_ECS_TASK_DEFINITION: ./AWS/java_application_task-def.json # set this to the path to your Amazon ECS task definition
   PYTHON_ECS_TASK_DEFINITION: ./AWS/python_application_task-def.json
                                                # file, e.g. .aws/task-definition.json
-  JAVA_CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
-  PYTHON_CONTAINER_NAME:                                             # containerDefinitions section of your task definition
+  JAVA_CONTAINER_NAME: java_application          # set this to the name of the container in the
+  PYTHON_CONTAINER_NAME: python_app                                             # containerDefinitions section of your task definition
 
 permissions:
   contents: read
