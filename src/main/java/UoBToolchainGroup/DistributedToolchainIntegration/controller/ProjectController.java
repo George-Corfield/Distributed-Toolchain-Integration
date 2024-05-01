@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
@@ -65,4 +67,13 @@ public class ProjectController {
         projectService.createProject(project);
         return "redirect:/projects";
     }
+
+    // not functioning correctly, error #500
+    // Endpoint for deleting a project
+    //@DeleteMapping("/projects/{projectId}")
+    //public String deleteProject(@PathVariable String projectId) {
+        //projectService.deleteProject(projectId);
+        //return "redirect:/projects";
+    //}
+
 }
