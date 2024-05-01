@@ -122,7 +122,7 @@ public class OptimisationController {
         }
 
         //runs hill climb algorithm and then redirects to results page
-        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
+        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray, op.getIp());
         updateResultsTable(h.getResults(), new ObjectId(partId));
         return "redirect:/projects/{projectName}/{partId}";
     }

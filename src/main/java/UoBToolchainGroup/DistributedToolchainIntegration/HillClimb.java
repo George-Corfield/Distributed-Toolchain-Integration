@@ -27,6 +27,7 @@ public class HillClimb {
     private boolean maximising;
     private List<List<Variable>> variablesArray;
     private List<ModulesFile> modules;
+    private String ip;
     //optimisation data
     private List<Result> results;
     private Result currentResult;
@@ -34,11 +35,12 @@ public class HillClimb {
     private double maximum;
     
     //Constructor
-    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,List<ModulesFile> modules) throws IOException, InterruptedException{
+    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,List<ModulesFile> modules, String ip) throws IOException, InterruptedException{
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
         this.modules = modules;
+        this.ip = ip;
         this.results = new ArrayList<>();
         Result r = CalculateInitialResult();
         currentResult = r;
@@ -86,7 +88,7 @@ public class HillClimb {
         List<byte[]> data = List.of(jsonData.getFileContent(), module.getFileContent());
 
         //Build the request
-        HttpRequest req = HttpRequest.newBuilder().uri(URI.create("http://localhost:5000/optimise"))
+        HttpRequest req = HttpRequest.newBuilder().uri(URI.create(ip))
             .header("Content-Type", "multipart/form-data; boundary=boundary")
             .POST(BuildMultiPartRequestBody.buildMultiPartRequestBodyBytes(data))
             .build();

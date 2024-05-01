@@ -71,9 +71,9 @@
     <div class="opParams-form-popup" id="op-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}" th:object="${opParams}" method="post">
             <h1>Change Optimization Parameters</h1>
-            <!-- <label for="opParamsIterations"><b>Python API IP Address</b></label>
-            <input type="number" th:placeholder="'Current: ' + ${ip}" th:field="*{ip}" th:value="${ip}"/>
- -->
+            <label for="opParamsIterations"><b>Iteration Limit</b></label>
+            <input type="string" th:placeholder="'Current: ' + ${opParams.ip}" th:field="*{ip}" th:value="${opParams.ip}"/>
+
             <label for="opParamsIterations"><b>Iteration Limit</b></label>
             <input type="number" th:placeholder="'Current: ' + ${opParams.iterations}" th:field="*{iterations}" th:value="${opParams.iterations}"/>
     
