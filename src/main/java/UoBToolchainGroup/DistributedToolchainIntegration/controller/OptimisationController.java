@@ -81,6 +81,7 @@ public class OptimisationController {
 
         //sets the iterations to the newly entered iterations, which is kept the same if the user does not iteract
         op.setIterations(newOp.getIterations());
+        op.setIp(newOp.getIp());
         op.setMaximising(newOp.getMaximising());
         part.setOptimisationParams(op);
 
@@ -122,7 +123,7 @@ public class OptimisationController {
         }
 
         //runs hill climb algorithm and then redirects to results page
-        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
+        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray, op.getIp());
         updateResultsTable(h.getResults(), new ObjectId(partId));
         return "redirect:/projects/{projectName}/{partId}";
     }

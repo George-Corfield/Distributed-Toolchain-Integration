@@ -16,6 +16,7 @@ public class OptimisationParams {
     private Integer iterations;
     private List<ObjectId> modules;
     private Boolean maximising;
+    private String ip;
     //add other variables here
 
     //Constructor
@@ -25,15 +26,17 @@ public class OptimisationParams {
         this.iterations = 100;
         this.modules = new ArrayList<>();
         this.maximising = false;
+        this.ip = "http://localhost:5000/optimise";
     }
 
     //Constructor
-    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules, Boolean max){
+    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules, Boolean max, String ip){
         super();
         this.paramsId = paramsId;
         this.iterations = iterations;
         this.modules = modules;
         this.maximising = max;
+        this.ip = ip;
     }
     
     //getters and setters
@@ -72,6 +75,14 @@ public class OptimisationParams {
 
     public void setMaximising(Boolean max){
         this.maximising = max;
+    }
+
+    public String getIp(){
+        return ip;
+    }
+
+    public void setIp(String ip){
+        this.ip = ip;
     }
 
 }
