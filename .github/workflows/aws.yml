@@ -36,15 +36,15 @@ env:
   AWS_REGION: eu-west-2                  # set this to your preferred AWS region, e.g. us-west-1
   JAVA_ECR_REPOSITORY: distributed_toolchain           # set this to your Amazon ECR repository name
   PYTHON_ECR_REPOSITORY: python_application
-  JAVA_ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
-  PYTHON_ECS_SERVICE: MY_ECS_SERVICE
-  JAVA_ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
-  PYTHON_ECS_CLUSTER: MY_ECS_CLUSTER
+  JAVA_ECS_SERVICE: distributed_toolchain_java_service                 # set this to your Amazon ECS service name
+  PYTHON_ECS_SERVICE: distributed_toolchain_python_service
+  JAVA_ECS_CLUSTER: distributed_toolchain_java_dev                 # set this to your Amazon ECS cluster name
+  PYTHON_ECS_CLUSTER: distributed_toolchain_python_dev
   JAVA_ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
   PYTHON_ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+  JAVA_CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
+  PYTHON_CONTAINER_NAME:                                             # containerDefinitions section of your task definition
 
 permissions:
   contents: read
@@ -116,18 +116,35 @@ jobs:
         docker push $ECR_REGISTRY/$PYTHON_ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$PYTHON_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-    # - name: Fill in the new image ID in the Amazon ECS task definition
-    #   id: task-def
-    #   uses: aws-actions/amazon-ecs-render-task-definition@v1
-    #   with:
-    #     task-definition: ${{ env.ECS_TASK_DEFINITION }}
-    #     container-name: ${{ env.CONTAINER_NAME }}
-    #     image: ${{ steps.build-image.outputs.image }}
+    - name: Fill in the new image ID in the Amazon ECS java task definition
+      id: task-def-java
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.JAVA_ECS_TASK_DEFINITION }}
+        container-name: ${{ env.JAVA_CONTAINER_NAME }}
+        image: ${{ steps.build-java-image.outputs.image }}
 
-    # - name: Deploy Amazon ECS task definition
-    #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-    #   with:
-    #     task-definition: ${{ steps.task-def.outputs.task-definition }}
-    #     service: ${{ env.ECS_SERVICE }}
-    #     cluster: ${{ env.ECS_CLUSTER }}
-    #     wait-for-service-stability: true
+    - name: Fill in the new image ID in the Amazon ECS python task definition
+      id: task-def-python
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.PYTHON_ECS_TASK_DEFINITION }}
+        container-name: ${{ env.PYTHON_CONTAINER_NAME }}
+        image: ${{ steps.build-python-image.outputs.image }}
+
+    
+    - name: Deploy Amazon ECS java task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-java.outputs.task-definition }}
+        service: ${{ env.JAVA_ECS_SERVICE }}
+        cluster: ${{ env.JAVA_ECS_CLUSTER }}
+        wait-for-service-stability: true
+
+    - name: Deploy Amazon ECS python task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-python.outputs.task-definition }}
+        service: ${{ env.PYTHON_ECS_SERVICE }}
+        cluster: ${{ env.PYTHON_ECS_CLUSTER }}
+        wait-for-service-stability: true
