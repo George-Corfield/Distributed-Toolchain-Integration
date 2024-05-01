@@ -54,8 +54,13 @@ public class ProjectController {
 
     @PostMapping("/projects")
     public String addProject(@ModelAttribute("newProject") Project project, @CookieValue("userId") String id, Model model){
-        project.setUser(new ObjectId(id));
-        projectService.createProject(project);
+        Project checkProject = projectService.getProjectByName(project.getProjectName());
+        if (checkProject == null){
+            project.setUser(new ObjectId(id));
+            projectService.createProject(project);
+        }else {
+            //duplicate project error
+        }
         return "redirect:/projects";
     }
 }
