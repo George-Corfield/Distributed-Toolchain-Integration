@@ -1,3 +1,6 @@
+/*
+ * This is the file controller. When a user wants to upload a file it is send to an endpoint in this file.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,10 +21,11 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-
+    //This is the endpoint to save general files.
     @PostMapping("/saveFile")
     public String saveFile(@RequestParam("file") MultipartFile file){
         try{
+            //Collects information about the file and then use the file service to save the file.
             String fileName = file.getOriginalFilename();
             String contentType = file.getContentType();
             byte[] data = file.getBytes();
@@ -34,9 +38,11 @@ public class FileController {
         }
     }
 
+    //This is the endpoint to save module files.
     @PostMapping("/saveModule")
     public String saveModule(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId, @RequestParam(value = "publicFile", defaultValue = "false") boolean publicFile){
         try {
+            //Collects information about the file and then use the file service to save the file.
             String fileName = file.getOriginalFilename();
             String contentType = file.getContentType();
             byte[] data = file.getBytes();

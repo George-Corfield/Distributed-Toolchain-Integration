@@ -1,3 +1,7 @@
+/*
+ * The hillclimb class creates a hillclimb object. This object is used to optimise the variables
+ * It makes calls to the module APIs.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration;
 
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ public class HillClimb {
     private double minimum;
     private double maximum;
     
-
+    //Constructor
     public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,List<ModulesFile> modules) throws IOException, InterruptedException{
         this.iterations = iterations;
         this.maximising = maximising;

@@ -25,7 +25,8 @@ def add():
 
 @app.route('/optimise', methods=['POST'])
 def optimise():
-    """Takes the JSON file and the Module and runs the module with the JSON file as input"""
+    """Takes the JSON file and the Module and runs the module with the JSON file as input
+    Currently the request body needs to contain the json file last."""
 
     files = request.files.getlist('file')
 

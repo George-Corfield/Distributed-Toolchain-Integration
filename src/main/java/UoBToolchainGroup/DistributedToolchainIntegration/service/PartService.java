@@ -1,3 +1,6 @@
+/*
+ * Part service. Handles CRUD Database opertaions.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
 import org.bson.types.ObjectId;
