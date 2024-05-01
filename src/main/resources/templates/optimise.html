@@ -8,9 +8,16 @@
 </head>
 
 <body>
+    <div class="back-button-container">
+        <a th:href="@{'/projects/' + ${projectName} + '/' + ${part.partId}}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
+    </div>
+
     <h1 th:text="${part.partName}"></h1>
     <h3 th:text="${part.partDescription}"></h3>
-    <div class="container">
+    <div class="page-container">
         <div class="left-column">
             <h2><strong>Optimisation Parameters</strong></h2>
             <h3>Current Iteration Limit:</h3>

@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <div class="back-button-container">
+        <a th:href="@{'/projects/' + ${projectName}}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
+    </div>
+
     <div class = "header-container">
         <h1 th:text="${part.partName}"></h1>
         <div class = "button-container">

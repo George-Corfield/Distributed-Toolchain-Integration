@@ -8,8 +8,15 @@
 </head>
 
 <body>
+    <div class="back-button-container">
+        <a th:href="@{'/projects'}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
+    </div>
+
     <div class="header-container">
-        <h1 th:text="${project.projectName}">Project Name: </h1>
+        <h1 th:text="${project.projectName}"></h1>
         <div class = "header-button-container">
             <button class="new-part-button" onclick="addPart()">NEW PART</button>
         </div>
