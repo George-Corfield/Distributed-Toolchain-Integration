@@ -19,6 +19,8 @@
         <h1 th:text="${project.projectName}"></h1>
         <div class = "header-button-container">
             <button class="new-part-button" onclick="addPart()">NEW PART</button>
+            <!--see below as to why not functioning-->
+            <!--<button class="delete-project-button" onclick="deleteProjectForm()">DELETE PROJECT</button>-->
         </div>
     </div>
 
@@ -49,6 +51,21 @@
         <p class="message" onclick="cancelPart()">Cancel new part</p>
     </div>
 
+    <!--this works, but the interaction with ProjectService and ProjectController are not functioning correctly, error #500-->
+    <!--<div class="delete-project-popup" id="delete-project-form" style="display:none;">
+        <form action="#" th:action="@{'/projects/'+ ${project.projectId}+'/delete'}" method="RequestMethod.DELETE"> /projects/{projectId}/delete
+            <h2>DELETE PROJECT</h2>
+
+            <label for="areYouSure"><b>Are you sure?</b></label>
+            <input type="checkbox" name="areYouSure" id="areYouSure" checked="false">
+
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="message" onclick="cancelDeleteProjectForm()">Cancel Upload</p>
+    </div>--> 
+
 </body>
 
 <script>
@@ -58,6 +75,14 @@
 
     function cancelPart() {
         document.getElementById("part-form").style.display ="none";
+    }   
+
+    function deleteProjectForm() {
+        document.getElementById("delete-project-form").style.display = "block";
+    }
+
+    function cancelDeleteProjectForm() {
+        document.getElementById("delete-project-form").style.display = "none";
     }
 </script>
 </html>
