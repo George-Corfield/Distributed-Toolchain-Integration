@@ -34,8 +34,6 @@ public class HillClimb {
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
-        //System.out.println(variablesArray);
-        //System.out.println(variablesArray.get(0).get(0).getVariableId().equals(variablesArray.get(1).get(0).getVariableId()));
         this.modules = modules;
         this.results = new ArrayList<>();
         Result r = CalculateInitialResult();
@@ -63,7 +61,6 @@ public class HillClimb {
 
     public void setResultVariables(Result r){
         //creates a set of all variables and their values
-        System.out.println("----------");
         for (int i = 0; i < variablesArray.size(); i++){
             List<Variable> v = variablesArray.get(i);
             for (int j = 0; j < v.size(); j++){
@@ -73,7 +70,6 @@ public class HillClimb {
                 }
             }
         }
-        System.out.println("----------");
     }
 
     public double executeModule(ModulesFile module, List<Variable> variables) throws IOException, InterruptedException{

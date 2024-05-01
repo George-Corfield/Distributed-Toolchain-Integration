@@ -2,6 +2,8 @@
 
 [![Pylint](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/pylint.yml/badge.svg?branch=dev)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/pylint.yml)
 [![Python application](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/python-app.yml/badge.svg)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/python-app.yml)
+[![Java CI with Maven](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/maven.yml/badge.svg)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/maven.yml)
+[![Deploy to Amazon ECS](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/aws.yml/badge.svg)](https://github.com/spe-uob/2023-DistributedToolchainIntegration/actions/workflows/aws.yml)
 ## Contents
 [Project Overview](#Project-Overview)
 
