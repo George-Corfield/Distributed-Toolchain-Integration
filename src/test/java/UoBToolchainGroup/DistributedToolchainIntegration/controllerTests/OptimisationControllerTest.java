@@ -72,7 +72,7 @@ public class OptimisationControllerTest {
         //sets up all required parameters before tests begin
         UserId = new ObjectId();
         files = List.of((File) new ModulesFile("test-file", "application/python", new byte[0], UserId, false));
-        test_opParam = new OptimisationParams(new ObjectId(), 10, List.of(files.get(0).getFileId()), true);
+        test_opParam = new OptimisationParams(new ObjectId(), 10, List.of(files.get(0).getFileId()), true, "http://localhost:5000/optimise");
         test_part = new Part(new ObjectId(), "test_part", "test_part", test_opParam, new ObjectId());
         variables = List.of(new Variable(), new Variable());
         modFiles = List.of(new ModulesFile("test-mod", "application/python", new byte[0], UserId, true));
