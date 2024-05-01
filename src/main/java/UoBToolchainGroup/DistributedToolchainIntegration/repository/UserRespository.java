@@ -1,3 +1,6 @@
+/*
+ * User repository, allows for users to be sotred in the databse.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;

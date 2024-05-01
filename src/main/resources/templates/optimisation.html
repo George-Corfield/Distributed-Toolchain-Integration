@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <div class="back-button-container">
+        <a th:href="@{'/projects/' + ${projectName}}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
+    </div>
+
     <div class = "header-container">
         <h1 th:text="${part.partName}"></h1>
         <div class = "button-container">
@@ -60,7 +67,7 @@
 
             <button type="submit">Submit</button>
         </form>
-        <p class="message" onclick="cancelPart()">Cancel new variable</p>
+        <p class="message" onclick="cancelVar()">Cancel new variable</p>
     </div> 
 
     <div class="upload-form">
@@ -134,7 +141,7 @@
     function addVarForm() {
         document.getElementById("var-form").style.display = "block";
     }
-    function cancelPart() {
+    function cancelVar() {
         document.getElementById("var-form").style.display ="none";
     }
 </script>

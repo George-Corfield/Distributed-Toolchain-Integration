@@ -1,3 +1,6 @@
+/*
+ * Project service. Handles CRUD Database opertaions.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
 import org.bson.types.ObjectId;
@@ -25,9 +28,15 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public Project getPartbyId(String projectId){
+    public Project getProjectById(String projectId){
         return projectRepository.findById(projectId).get();
     }
+
+    // not functioning correctly, error #500
+    //public void deleteProject(String projectId) {
+        //Project project = getProjectById(projectId);
+        //projectRepository.delete(project);
+    //}
 
     public List<Project> getProjectsByUser(ObjectId userId){
         //retrieves all projects with the same userId

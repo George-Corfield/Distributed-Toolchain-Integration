@@ -1,3 +1,6 @@
+/*
+ * This class is used to create part objects
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import org.bson.types.ObjectId;
@@ -14,6 +17,8 @@ public class Part {
     private OptimisationParams optimisationParams;
     private ObjectId projectId;
 
+    //Constructors
+
     public Part(){
         super();
         this.partId = new ObjectId();
@@ -27,6 +32,8 @@ public class Part {
         this.optimisationParams = optimisationParams;
         this.projectId = projectId;
     }   
+
+    //getters and setters
 
     public ObjectId getPartId(){
         return partId;

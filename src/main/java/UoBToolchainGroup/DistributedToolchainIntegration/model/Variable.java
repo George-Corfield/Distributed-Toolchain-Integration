@@ -1,3 +1,6 @@
+/*
+ * This class is used to create Variable objects.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import org.bson.types.ObjectId;
@@ -17,6 +20,8 @@ public class Variable {
     private double lowBound;
     private double upBound;
     private boolean result;
+
+    //Constructors
 
     public Variable(){
         super();
@@ -64,6 +69,8 @@ public class Variable {
         this.variableName = variableName;
         this.result = false;
     }
+
+    //getters and setters
 
     public ObjectId getVariableId() {
         return variableId;

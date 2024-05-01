@@ -1,3 +1,6 @@
+/*
+ * This class is used to create VariableFile objects.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -9,6 +12,8 @@ import org.springframework.data.annotation.PersistenceCreator;
 
 public class VariablesFile extends File{
 
+    //Constructors
+
     @PersistenceCreator
     public VariablesFile(String fileName, String contentType, byte[] data){
         super( fileName, contentType, data);
@@ -18,10 +23,14 @@ public class VariablesFile extends File{
         super( fileName, contentType, new JSONArray(variableList).toString().getBytes());
     }
 
+    //Converts any variable list to a JSONArray.
+    //It is static so a VariableFile object does NOT need to be instantiated to use this function.
     public static JSONArray convertToJsonArray(List<Variable> varList){
         return new JSONArray(varList);
     }
 
+    //Converts a Json Variable File (list of bytes) into a variable list.
+    //It is static so a VariableFile object does NOT need to be instantiated to use this function.
     public static List<Variable> convertToVarList(byte[] bytes){
         //create a list to store the result
         List<Variable> vars = new ArrayList<>();
@@ -39,6 +48,8 @@ public class VariablesFile extends File{
         }
         return vars;
     }  
+
+    //getters
 
     public JSONArray getJsonArray(){
         return convertToJsonArray(convertToVarList(data));

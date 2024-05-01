@@ -1,3 +1,7 @@
+/*
+ * The hillclimb class creates a hillclimb object. This object is used to optimise the variables
+ * It makes calls to the module APIs.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration;
 
 import java.util.ArrayList;
@@ -23,18 +27,20 @@ public class HillClimb {
     private boolean maximising;
     private List<List<Variable>> variablesArray;
     private List<ModulesFile> modules;
+    private String ip;
     //optimisation data
     private List<Result> results;
     private Result currentResult;
     private double minimum;
     private double maximum;
     
-
-    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,List<ModulesFile> modules) throws IOException, InterruptedException{
+    //Constructor
+    public HillClimb(int iterations, boolean maximising, List<List<Variable>> variablesArray,List<ModulesFile> modules, String ip) throws IOException, InterruptedException{
         this.iterations = iterations;
         this.maximising = maximising;
         this.variablesArray = variablesArray;
         this.modules = modules;
+        this.ip = ip;
         this.results = new ArrayList<>();
         Result r = CalculateInitialResult();
         currentResult = r;
@@ -82,7 +88,7 @@ public class HillClimb {
         List<byte[]> data = List.of(jsonData.getFileContent(), module.getFileContent());
 
         //Build the request
-        HttpRequest req = HttpRequest.newBuilder().uri(URI.create("http://localhost:5000/optimise"))
+        HttpRequest req = HttpRequest.newBuilder().uri(URI.create(ip))
             .header("Content-Type", "multipart/form-data; boundary=boundary")
             .POST(BuildMultiPartRequestBody.buildMultiPartRequestBodyBytes(data))
             .build();

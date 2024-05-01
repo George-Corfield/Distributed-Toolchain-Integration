@@ -63,7 +63,7 @@ public class ProjectServiceTest extends ContainerTest{
     @CsvSource({"test-project-1,6628696e117fd47726a8115b","test-project-2,6628696e117fd47726a8115d","test-project-3,6628696e117fd47726a8115c"})
     public void testGetProjectById(String expectedName, String id){
         //Test to ensure getPartById() returns correct project
-        Project project = projectService.getPartbyId(id);
+        Project project = projectService.getProjectById(id);
         assertEquals(expectedName, project.getProjectName());
     }
 }
