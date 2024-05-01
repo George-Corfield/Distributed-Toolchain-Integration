@@ -62,6 +62,7 @@ public class PartController {
     //Endpoint for adding variables to a part using a variables file.
     @PostMapping("/projects/varsfile/{projectName}/{partId}")
     public String addVars(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("file") MultipartFile file) throws IOException{
+        if(file.isEmpty()) {return "redirect:/projects/{projectName}/{partId}";}
         //turn the provided file into a variable file
         VariablesFile varFile = new VariablesFile(file.getOriginalFilename(), file.getContentType(), file.getBytes());
         List<Variable> varsList = varFile.getVarList();
