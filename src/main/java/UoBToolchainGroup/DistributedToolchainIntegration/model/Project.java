@@ -1,7 +1,6 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.util.Date;
-import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -28,8 +27,7 @@ public class Project {
     String projectName, 
     String projectDescription, 
     Date projectStartDate,
-    ObjectId userId,
-    List<Part> parts){
+    ObjectId userId){
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
