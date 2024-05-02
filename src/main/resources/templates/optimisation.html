@@ -9,11 +9,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- DataTables CSS -->
+    <!--note that DataTables is only used for the large results table, not the variable table-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
-    <div class="back-button-container">
+    <div class="back-button-container"> <!--returns user to parts page-->
         <a th:href="@{'/projects/' + ${projectName}}">
             <button class="back-button">
                 <strong>&lt;&lt;Previous</strong>
@@ -23,6 +24,7 @@
     <div class = "header-container">
         <h1 th:text="${part.partName}"></h1>
         <div class = "button-container">
+            <!--button to create a new variable-->
             <button class="new-variable-button" onclick="addVarForm()">NEW VARIABLE</button>
         </div>
     </div>    
@@ -49,7 +51,8 @@
     <br>
     <br>
 
-    <div class="variable-form-popup" id="var-form" style="display:none;">
+    <!--form to create new variable-->
+    <div class="variable-form-popup" id="var-form" style="display:none;"> 
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId}}" th:object="${variable}" method="post">
             <h1>Add Variable</h1>
 
@@ -70,7 +73,8 @@
         <p class="message" onclick="cancelVar()">Cancel new variable</p>
     </div> 
 
-    <div class="upload-form">
+    <!--form to to upload variables by a file-->
+    <div class="upload-form"> 
         <form method="POST" enctype="multipart/form-data" action="#" th:action="@{'/projects/varsfile/' + ${projectName} + '/' + ${part.partId}}">
             <div class="form-group">
                 <label for="file">Upload File:</label>
@@ -87,7 +91,7 @@
         </ul>
     </div>
 
-    <div class="header-container">
+    <div class="header-container"> 
         <h1>Results</h1>
         <div class="button-container">
             <a th:href="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}">
@@ -99,8 +103,8 @@
     </div>
     <span th:if="${results.isEmpty()}">No Current Results</span>
     <span th:if="${not results.isEmpty()}">
-        
-        <div class="table-controls">
+        <!--Table controls are copied from DataTables and appended here-->
+        <div class="table-controls"> 
             
         </div>
         
@@ -118,7 +122,7 @@
                     <td th:text="${r.resultId}"></td>
                     <td>
                         <ul>
-                            <li th:each="var : ${r.variables}" th:text="${var.variableName} + ' : ' + ${var.initVal}"></li>
+                            <li th:each="var : ${r.variables}" th:text="${var.variableName} + ' : ' + ${var.initVal}"></li> <!--sometimes more than 1 variable is optimised-->
                         </ul>
                     </td>
                     <td th:text="${r.outputValue}"></td>
@@ -129,18 +133,25 @@
     </span>
 </body>
 
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script 
+    type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+    //JavaScript for the DataTables
+</script>
 <script>
+    //the Table Controls from Data Tables is squished onto the actual table
+    //here the controls are taken away from the table and appended onto the table-controls class
     $(document).ready( function () {
         var table = $('#results-table').DataTable();
         var tableControls = $(".dataTables_length, .dataTables_filter");
         $(".table-controls").append(tableControls);
     });
-</script>
-<script>
+    
+    //reveals the new variable form
     function addVarForm() {
-        document.getElementById("var-form").style.display = "block";
+        document.getElementById("var-form").style.display = "block"; 
     }
+
+    //hides the new variable form
     function cancelVar() {
         document.getElementById("var-form").style.display ="none";
     }

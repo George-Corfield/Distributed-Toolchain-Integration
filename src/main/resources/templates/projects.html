@@ -11,10 +11,14 @@
     <div class="header-container">
         <h1>Projects</h1>
         <div class = "header-button-container">
+            <!--button to create a new project-->
             <button class="new-project-button" onclick="addProjectForm()">NEW PROJECT</button>
+            <!--button to add a new module-->
             <button class="new-module-button" onclick="addModuleForm()">UPLOAD MODULE</button>
         </div>
     </div>
+
+    <!--button for all projects-->
     <div class="button-container">
         <th:block th:each="project: ${projects}">
             <a th:href="@{'projects/' + ${project.projectName}}">
@@ -27,6 +31,7 @@
         </th:block>
     </div>
 
+    <!--form to create new project-->
     <div class="projects-form-popup" id="var-form" style="display:none;">
         <form action="#" th:action="@{/projects}" th:object="${newProject}" method="post">
             <h2>NEW PROJECT</h2>
@@ -44,13 +49,16 @@
         <p class="message" onclick="cancelProjectForm()">Cancel new project</p>
     </div>
 
-    <div class="modules-form-popup" id="module-form" style="display:none;">
+    <!--form to upload a new module-->
+    <div class="modules-form-popup" id="module-form" style="display:none;"> 
         <form action="#" method="post" th:action="@{/saveModule}" enctype="multipart/form-data">
             <h2>UPLOAD MODULE</h2>
 
             <label for="file"><b>Select File</b></label>
             <input type="file" name="file" id="file">
 
+            <!--useful for the optimise page-->
+            <!--user can define whether they want their module to be public or private-->
             <label for="publicFile"><b>File is Public</b></label>
             <input type="checkbox" name="publicFile" id="publicFile" checked="true">
 
@@ -63,20 +71,25 @@
 </body>
 
 <script>
+    //reveals the project form
     function addProjectForm(){
-        document.getElementById("var-form").style.display = "block";
+        document.getElementById("var-form").style.display = "block"; 
     }
 
+    //hides the project form
     function cancelProjectForm() {
-        document.getElementById("var-form").style.display = "none";
+        document.getElementById("var-form").style.display = "none"; 
     }
 
+    //reveals the module form
     function addModuleForm(){
         document.getElementById("module-form").style.display = "block";
+        //note, the checkbox refuses to start unchecked
     }
 
+    //hides the module form
     function cancelModuleForm() {
-        document.getElementById("module-form").style.display = "none";
+        document.getElementById("module-form").style.display = "none"; 
     }
 </script>
 </html>

@@ -27,6 +27,10 @@ body {
     background-color: #dfdfdf;
 }
 
+/*splits the page into a grid and turns it into columns*/
+/*there are four columns of which only 2 are used*/
+/*first column has current data*/
+/*second column has any changeable data*/
 .page-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

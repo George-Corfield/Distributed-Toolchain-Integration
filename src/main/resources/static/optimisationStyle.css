@@ -182,6 +182,9 @@ body {
     background-color: #45a049;
 }
 
+
+/*css for results table*/
+/*overided by the DataTables CSS*/
 .result-table {
     padding-bottom: 20px;
     border-collapse: collapse;
