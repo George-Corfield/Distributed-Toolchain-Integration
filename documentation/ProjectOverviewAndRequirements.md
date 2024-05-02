@@ -11,7 +11,7 @@
 
 ## Project-Overview
 ### Problem
-The NCC (National Composites Centre) has a large number of software used to run tests and simulations on components they are designing. These tests provide information on the performance, cost, durability and many other metrics. These components often need to find a balance between these metrics and manually running simulations and making adjustments is extremely time consuming. This wastes the time of the engineers at the NCC.
+The NCC (National Composites Centre) has a large amount of software used to run tests and simulations on components they are designing. These tests provide information on the performance, cost, durability and many other metrics. These components often need to find a balance between these metrics and manually running simulations and making adjustments is extremely time consuming. This wastes the time of the engineers at the NCC.
 
 We have been tasked with creating a system to sit in the middle of the modules used for testing. This system will take a component and requirements for this component as input. The system will then send the component and the current requirements for the component to each simulation. It will collect the results, adjust the requirements and repeat the process until the component has been optimised.
 
@@ -19,9 +19,9 @@ We have been tasked with creating a system to sit in the middle of the modules u
 The system we will create is a web app. This app will be able to store parametric and non-parametric data relating to each component, as well as each component. Users will be able to specify a range for each requirement provided for each component and then the components will be sent to modules used for testing. The modules results will be collected and used to adjust the requirements of the component. This will repeat until the component is optimised. The results will then be passed to the user.
 
 ### Technology Stack
-Python is a particularly suited to this project for the following reasons:
+Python will be used to represent the simulation software in the project for the following reasons:
 * It is commonly used in engineering and scientific applications meaning the Users are likely familiar with it. This will satisfy the requirement of the system being extendable by the users.
-* A python API is available for the majority of the modules that are being used. This will make integration with the tool much easier as wrappers will not need to be made for those tools. 
+* A python API is available for the majority of the modules that are being used. This will make integration with the tools much easier. 
 
 The chosen Database is mongoDB as it is a noSQL databse. This will make it much easier to store parametric and non-parametric data and have that data associated with different users.
 
@@ -47,7 +47,7 @@ A link to the full Technology stack is [here](./documentation/TechStackAndArchit
 | 13 | Permissions | Security to stop users from accessing each others data |
 
 ### MVP Requirements
-This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 3, 5, 6, 7, 12.
+This is a large project and it is unlikely that it will be completed by the end of the year. The following is a list of the above requirements needed for a minimum viable product: 1, 2, 5, 6, 7, 12.
 
 ### Problems the client faces with current solutions
 The main problems the client faces with current solutions are:
@@ -58,7 +58,7 @@ The main problems the client faces with current solutions are:
 * Methodology to further develop the system.
 
 Some examples of current solutions that are similar but do not provide all the necessary functionality are:
-*  [Heeds (Siemens)](https://plm.sw.siemens.com/en-US/simcenter/integration-solutions/heeds/)
+* [Heeds (Siemens)](https://plm.sw.siemens.com/en-US/simcenter/integration-solutions/heeds/)
 * [Isight (Dassault Systèmes)](https://www.3ds.com/products-services/simulia/products/isight-simulia-execution-engine/)
 * [Model Centre (Ansys)](https://www.ansys.com/en-gb/products/connect/ansys-modelcenter)
 * [Dapta toolchain](https://www.dapta.com/)
@@ -66,7 +66,8 @@ Some examples of current solutions that are similar but do not provide all the n
 All of these products have been tried by the NCC but were missing necessary functionality.
 
 ## Limitations
-The system that is created will have limitations. They will be listed here in due time.
+The system that is created will have limitations. 
+* Optimisation does not run asynchronously from the rest of the Java backend so nothing can be done while optimising results. This can be fixed in the future.
 
 ## Definitions
 * CAD stands for Computer Aided Design.

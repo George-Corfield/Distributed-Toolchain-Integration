@@ -1,5 +1,5 @@
 # Containerization
-We have used docker to containerize the application. Containers are packages of software which contain all necessary elements to run in any environment. This project currently uses three containers: The SpringBoot application, the python back-end and the database. Containers function completely independent from each other and interact through localhost. A common issue is the incorrect ports being used in communication between the containers.
+We have used docker to containerize the application. Containers are packages of software which contain all necessary elements to run in any environment. This project currently uses three containers: The SpringBoot application, the python back-end and the database. Containers function completely independent from each other and interact through localhost. A common issues are the incorrect ports being used in communication between the containers, and not opening the ports in the container.
 
 We used docker to containerize the application. To install docker follow the instructions [here](https://docs.docker.com/engine/install/).
 

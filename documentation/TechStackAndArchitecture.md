@@ -1,5 +1,5 @@
-
 ## Tech Stack
+
 * Python
 * Java
 * SpringBoot
@@ -7,12 +7,9 @@
 
 MongoDB was chosen as we will need to store parametric and non-parametric data. Examples of data types we will be storing are floats, integers, strings and files for components and simulations.
 
-Python will be used to create control scripts. These scripts will be responsible for taking components and their requirements from the database, connecting to the modules and then using the modules to iterate over the requirements.
+Python will be used to create an app that will act as a stand in for the simulation software that the NCC uses. It will accept POST requests which will contain a module and parameters. The parameters will be used as input for the corresponding module.
 
-Java and Spring Boot will be used to create the web app. This will provide the users with a user interface, and a way to send and retrieve data from the python control scripts.
-
-The Java backend will not connect to the database and it will instead have to use the python control scripts to retrieve data from the database. This has less points of failure and will prevent any issues with both areas of the backend trying to access the database at the same time.
-
+Java and Spring Boot will be used to create the web app. This will provide the users with a user interface, and a way to store the relevant files as well as send them to the python app to be optimised.
 
 ## Architecture
 
