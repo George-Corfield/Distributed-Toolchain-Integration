@@ -33,7 +33,7 @@ public class UserController {
     public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, 
     Model mode,
     HttpServletResponse response) throws NoSuchAlgorithmException{
-    
+
         //Search for the user in the database
         User foundUser = userService.getUserByUsername(userDetails.getUsername());
 
@@ -94,14 +94,20 @@ public class UserController {
             userService.createUser(newUser);
             return "redirect:/login";
         } else {
+            return "redirect:/register?fail=true";
             //user already exists
         }
-        return "redirect:/login";
+        // return "redirect:/login";
     }
 
     //Endpoint for registering a new user, shows the page.
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(@RequestParam(value="fail", required = false) Boolean fail, Model model){
+        if (fail != null){
+            if (fail){
+                //add error logic 
+            }
+        }
         model.addAttribute("userDetails", new User());
         return "register";
     }

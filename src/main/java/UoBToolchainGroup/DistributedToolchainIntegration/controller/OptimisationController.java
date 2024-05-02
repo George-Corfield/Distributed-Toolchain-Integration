@@ -91,7 +91,7 @@ public class OptimisationController {
     }
 
     @PostMapping("/optimise/projects/{projectName}/{partId}")
-    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables) throws IOException, InterruptedException{
+    public String startOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables) throws IOException, InterruptedException{
         String[][] variables = null;
         //maps the selected variables html list to java array
         try {
@@ -99,7 +99,7 @@ public class OptimisationController {
                 variables = objectMapper.readValue(selectedVariables, String[][].class);
             } catch (Exception e) {
                 e.printStackTrace();
-                return "redirect:/projects/{projectName}/{partId}";
+                return "redirect:/projects/{projectName}/{partId}/optimise";
             }
         Part p = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = p.getOptimisationParams();

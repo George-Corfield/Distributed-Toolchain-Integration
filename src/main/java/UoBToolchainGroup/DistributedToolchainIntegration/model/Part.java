@@ -6,7 +6,6 @@ package UoBToolchainGroup.DistributedToolchainIntegration.model;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.List;
 
 @Document(collection="Parts")
 public class Part {
@@ -26,8 +25,7 @@ public class Part {
         this.optimisationParams = new OptimisationParams();
     }
 
-    public Part(ObjectId partId, String partName, String partDescription,
-    List<Variable> variables, List<Variable> optimisationVariables, OptimisationParams optimisationParams, ObjectId projectId){
+    public Part(ObjectId partId, String partName, String partDescription, OptimisationParams optimisationParams, ObjectId projectId){
         this.partId = partId;
         this.partName = partName;
         this.partDescription = partDescription;

@@ -4,6 +4,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class FileController {
 
     //This is the endpoint to save general files.
     @PostMapping("/saveFile")
+    @ResponseBody
     public String saveFile(@RequestParam("file") MultipartFile file){
         if(file.isEmpty()){
             return "No file Submitted";
