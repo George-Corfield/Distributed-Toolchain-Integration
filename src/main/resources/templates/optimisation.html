@@ -2,85 +2,158 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <!--  <link rel="stylesheet" href="style.css">  -->
+    <link rel="stylesheet" th:href="@{/optimisationStyle.css}">
     <meta charset="UTF-8">
     <title th:text="${part.partName}"></title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <!--note that DataTables is only used for the large results table, not the variable table-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
-    <h1 th:text="${part.partName}"></h1>
-    <h3 th:text="${part.partDescription}"></h3>
-    <ul th:each="var : ${currentVariables}">
-        <li th:text="${var}"></li>
-    </ul>
+    <div class="back-button-container"> <!--returns user to parts page-->
+        <a th:href="@{'/projects/' + ${projectName}}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
+    </div>
 
-    <button onclick="addVarForm()">Add Variable</button>
+    <div class = "header-container">
+        <h1 th:text="${part.partName}"></h1>
+        <div class = "button-container">
+            <!--button to create a new variable-->
+            <button class="new-variable-button" onclick="addVarForm()">NEW VARIABLE</button>
+        </div>
+    </div>    
 
-    <div class="variable-form-popup" id="var-form" style="display:none;">
+    <table class="variable-table">
+        <thead>
+            <tr>
+                <th>Variable Name</th>
+                <th>Initial Value</th>
+                <th>Lower Bound</th>
+                <th>Upper Bound</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="var : ${currentVariables}">
+                <td th:text="${var.variableName}"></td>
+                <td th:text="${var.initVal}"></td>
+                <td th:text="${var.lowBound}"></td>
+                <td th:text="${var.upBound}"></td>
+            </tr>
+        </tbody>
+    </table>
+   
+    <br>
+    <br>
+
+    <!--form to create new variable-->
+    <div class="variable-form-popup" id="var-form" style="display:none;"> 
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId}}" th:object="${variable}" method="post">
             <h1>Add Variable</h1>
 
             <label for="variableName"><b>Name</b></label>
             <input type="text" placeholder="Name" th:field="*{variableName}" required/>
-
+            <br>
             <label for="initVal"><b>Initial Value</b></label>
-            <input type="number" placeholder="Initial" th:field="*{initVal}" required/>
-
+            <input type="number" step="any" placeholder="Initial" th:field="*{initVal}" required/>
+            <br>
             <label for="lowBound"><b>Lower Bound</b></label>
-            <input type="number" placeholder="Lower" th:field="*{lowBound}" required/>
-
+            <input type="number" step="any" placeholder="Lower" th:field="*{lowBound}" required/>
+            <br>
             <label for="upBound"><b>Upper Bound</b></label>
-            <input type="number" placeholder="Upper" th:field="*{upBound}" required/>
+            <input type="number" step="any" placeholder="Upper" th:field="*{upBound}" required/>
 
             <button type="submit">Submit</button>
         </form>
+        <p class="message" onclick="cancelVar()">Cancel new variable</p>
     </div> 
 
+    <!--form to to upload variables by a file-->
+    <div class="upload-form"> 
+        <form method="POST" enctype="multipart/form-data" action="#" th:action="@{'/projects/varsfile/' + ${projectName} + '/' + ${part.partId}}">
+            <div class="form-group">
+                <label for="file">Upload File:</label>
+                <input class="file-input" type="file" name="file" id="file" />
+                <button class="upload-button" type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
     <div>
-		<form method="POST" enctype="multipart/form-data" action="#" th:action="@{'/projects/varsfile/' + ${projectName} + '/' + ${part.partId}}">
-			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-			</table>
-		</form>
-	</div>
-    <div>
-		<ul>
-			<li th:each="file : ${files}">
-				<a th:href="${file}" th:text="${file}"></a>
-			</li>
-		</ul>
-	</div>
+        <ul class="file-list">
+            <li th:each="file : ${files}">
+                <a th:href="${file}" th:text="${file}"></a>
+            </li>
+        </ul>
+    </div>
 
-    <div style="float: right;">
-        <h2>Results</h2>
-        <span th:if="${results.isEmpty()}">No Current Results</span>
-        <span th:if="${not results.isEmpty()}">
-            <table>
+    <div class="header-container"> 
+        <h1>Results</h1>
+        <div class="button-container">
+            <a th:href="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}">
+                <button class="optmisation-button">
+                    <strong th:text="Optimise"></strong>
+                </button>
+            </a>
+        </div>
+    </div>
+    <span th:if="${results.isEmpty()}">No Current Results</span>
+    <span th:if="${not results.isEmpty()}">
+        <!--Table controls are copied from DataTables and appended here-->
+        <div class="table-controls"> 
+            
+        </div>
+        
+        <table class="result-table" id="results-table">
+            <thead>
                 <tr>
                     <th>Result Id</th>
                     <th>Variables Values</th>
                     <th>Output Value</th>
                     <th>Fitness</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr th:each="r : ${results}">
-                    <th th:text="${r.resultId}"></th>
-                    <th>
+                    <td th:text="${r.resultId}"></td>
+                    <td>
                         <ul>
-                            <li th:each="var : ${r.variables}" th:text="${var.variableName} + ' : ' + ${var.initVal}"></li>
+                            <li th:each="var : ${r.variables}" th:text="${var.variableName} + ' : ' + ${var.initVal}"></li> <!--sometimes more than 1 variable is optimised-->
                         </ul>
-                    </th>
-                    <th th:text="${r.outputValue}"></th>
-                    <th th:text="${r.fitnessLevel}"></th>
+                    </td>
+                    <td th:text="${r.outputValue}"></td>
+                    <td th:text="${r.fitnessLevel}"></td>
                 </tr>
-            </table>
-        </span>
-    </div>
+            </tbody>
+        </table>
+    </span>
 </body>
 
+<script 
+    type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+    //JavaScript for the DataTables
+</script>
 <script>
+    //the Table Controls from Data Tables is squished onto the actual table
+    //here the controls are taken away from the table and appended onto the table-controls class
+    $(document).ready( function () {
+        var table = $('#results-table').DataTable();
+        var tableControls = $(".dataTables_length, .dataTables_filter");
+        $(".table-controls").append(tableControls);
+    });
+    
+    //reveals the new variable form
     function addVarForm() {
-        document.getElementById("var-form").style.display = "block";
+        document.getElementById("var-form").style.display = "block"; 
+    }
+
+    //hides the new variable form
+    function cancelVar() {
+        document.getElementById("var-form").style.display ="none";
     }
 </script>
 </html>

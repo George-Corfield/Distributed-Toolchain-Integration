@@ -91,6 +91,7 @@ public class UserServiceTest  extends ContainerTest{
     public void testGetAllUsers(){
         //Test to check getAllUsers() retrieves all users in database
         List<User> users = userService.getAllUsers();
+        System.out.println(userService.getAllUsers());
         assertTrue(users.size() == 3);
     }
     

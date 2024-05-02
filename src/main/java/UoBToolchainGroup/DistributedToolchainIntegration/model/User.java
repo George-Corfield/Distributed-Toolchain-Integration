@@ -1,3 +1,6 @@
+/*
+ * This class is used to create User objects.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import org.bson.types.ObjectId;
@@ -16,6 +19,8 @@ public class User {
     private int role;
     private byte[] salt;
 
+    //Constructors
+
     public User(){
         super();
     }
@@ -29,6 +34,8 @@ public class User {
         this.role = role;
         this.salt = salt;
     }
+
+    //Getters and setters
 
     public ObjectId getUserId() {
         return userId;

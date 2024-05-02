@@ -1,3 +1,6 @@
+/*
+ * This class is used to create optimisationParameter objects
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.util.ArrayList;
@@ -13,24 +16,31 @@ public class OptimisationParams {
     private Integer iterations;
     private List<ObjectId> modules;
     private Boolean maximising;
+    private String ip;
     //add other variables here
 
+    //Constructor
     public OptimisationParams(){
         super();
         this.paramsId = new ObjectId();
         this.iterations = 100;
         this.modules = new ArrayList<>();
         this.maximising = false;
+        this.ip = "http://localhost:5000/optimise";
     }
 
-    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules, Boolean max){
+    //Constructor
+    public OptimisationParams(ObjectId paramsId, Integer iterations, List<ObjectId> modules, Boolean max, String ip){
         super();
         this.paramsId = paramsId;
         this.iterations = iterations;
         this.modules = modules;
         this.maximising = max;
+        this.ip = ip;
     }
     
+    //getters and setters
+
     public ObjectId getParamsId(){
         return paramsId;
     }
@@ -65,6 +75,14 @@ public class OptimisationParams {
 
     public void setMaximising(Boolean max){
         this.maximising = max;
+    }
+
+    public String getIp(){
+        return ip;
+    }
+
+    public void setIp(String ip){
+        this.ip = ip;
     }
 
 }

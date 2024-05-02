@@ -1,3 +1,6 @@
+/*
+ * Variable service. Handles CRUD Database opertaions.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.service;
 
 import java.util.List;

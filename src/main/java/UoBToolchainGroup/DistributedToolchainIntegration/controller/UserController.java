@@ -1,3 +1,6 @@
+/*
+ * This is the controller for users. It handles creating, modifying users and logging in.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 import java.util.Arrays;
@@ -25,13 +28,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+    //Endpoint for logging in with credentials.
     @PostMapping("/login")
     public String checkLoginDetails(@ModelAttribute("userDetails") User userDetails, 
     Model mode,
     HttpServletResponse response) throws NoSuchAlgorithmException{
-    
+
+        //Search for the user in the database
         User foundUser = userService.getUserByUsername(userDetails.getUsername());
+
         if (foundUser == null){
             //user not found
         } else {
@@ -48,6 +53,7 @@ public class UserController {
         return "redirect:/login?fail=true";
     }
 
+    //Gets the cookie for the user.
     public Optional<String> getCookie(HttpServletRequest req){
         Cookie[] cookies = req.getCookies();
         for (Cookie c: cookies){
@@ -59,6 +65,7 @@ public class UserController {
 
     }
 
+    //Endpoint for a failed login. (Incorrect username/password/any other error)
     @GetMapping("/login")
     public String login(@RequestParam(value ="fail", required = false) Boolean fail, Model model){
         if(fail != null){
@@ -70,29 +77,42 @@ public class UserController {
         return "login";
     }
 
+    //Endpoint for registering a new user, takes the form and creates the user if they don't exist already.
     @PostMapping("/register")
     public String register(@ModelAttribute("userDetails") User newUser, Model model) throws NoSuchAlgorithmException{
+        //Search for the user in the database
         User checkUser = userService.getUserByUsername(newUser.getUsername());
         if (checkUser == null){
+            //If the user doesn't exist then create them
             newUser.setUserId(new ObjectId());
             newUser.setRole(10);
+            //generate a salt for the user and store it in the database.
             byte[] salt = generateSalt();
             newUser.setSalt(salt);
+            //set the password with the hash.
             newUser.setPassword(generatePasswordHash(newUser.getPassword(), salt));
             userService.createUser(newUser);
             return "redirect:/login";
         } else {
-            //user exists
+            return "redirect:/register?fail=true";
+            //user already exists
         }
-        return "redirect:/login";
+        // return "redirect:/login";
     }
 
+    //Endpoint for registering a new user, shows the page.
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(@RequestParam(value="fail", required = false) Boolean fail, Model model){
+        if (fail != null){
+            if (fail){
+                //add error logic 
+            }
+        }
         model.addAttribute("userDetails", new User());
         return "register";
     }
 
+    //Generates a password hash using the plaintext and salt.
     private byte[] generatePasswordHash(byte[] plaintext, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-512");
         md.update(salt);
@@ -100,7 +120,7 @@ public class UserController {
         return hashedPassword;
     }
 
-    //create a generate salt function
+    //Function that generates salts for passwords.
     private byte[] generateSalt(){
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];

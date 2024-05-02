@@ -1,5 +1,9 @@
+/*
+ * This is the controller for optimisation. It contains the endpoints for an optimisation request.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +81,7 @@ public class OptimisationController {
 
         //sets the iterations to the newly entered iterations, which is kept the same if the user does not iteract
         op.setIterations(newOp.getIterations());
+        op.setIp(newOp.getIp());
         op.setMaximising(newOp.getMaximising());
         part.setOptimisationParams(op);
 
@@ -86,7 +91,7 @@ public class OptimisationController {
     }
 
     @PostMapping("/optimise/projects/{projectName}/{partId}")
-    public String timeToOptimise(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables){
+    public String startOptimisation(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("selectedVariables") String selectedVariables) throws IOException, InterruptedException{
         String[][] variables = null;
         //maps the selected variables html list to java array
         try {
@@ -94,7 +99,7 @@ public class OptimisationController {
                 variables = objectMapper.readValue(selectedVariables, String[][].class);
             } catch (Exception e) {
                 e.printStackTrace();
-                return "redirect:/projects/{projectName}/{partId}";
+                return "redirect:/projects/{projectName}/{partId}/optimise";
             }
         Part p = partService.getPartbyId(new ObjectId(partId));
         OptimisationParams op = p.getOptimisationParams();
@@ -118,7 +123,7 @@ public class OptimisationController {
         }
 
         //runs hill climb algorithm and then redirects to results page
-        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray);
+        HillClimb h = new HillClimb(op.getIterations(),op.getMaximising(),variablesArray, modulesArray, op.getIp());
         updateResultsTable(h.getResults(), new ObjectId(partId));
         return "redirect:/projects/{projectName}/{partId}";
     }

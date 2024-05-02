@@ -1,3 +1,6 @@
+/*
+ * Starts the web-app when run
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration;
 
 import org.springframework.boot.SpringApplication;

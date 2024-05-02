@@ -1,3 +1,6 @@
+/*
+ * This class is used to create file objects.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import org.bson.types.ObjectId;
@@ -12,10 +15,12 @@ public class File {
     private String contentType;
     protected byte[] data;
 
+    //Constructor
     public File(){
         super();
     }
 
+    //Constructor for new files with no id
     public File(String fileName, String contentType, byte[] data){
         this.fileId = new ObjectId();
         this.fileName = fileName;
@@ -23,6 +28,7 @@ public class File {
         this.data = data;
     }
 
+    //Constuctor for files with an id
     public File(ObjectId id, String fileName, String contentType, byte[] data){
         this.fileId = id;
         this.fileName = fileName;
@@ -31,6 +37,8 @@ public class File {
     }
 
 
+    //getters and setters
+    
     public String getFileName(){
         return fileName;
     }

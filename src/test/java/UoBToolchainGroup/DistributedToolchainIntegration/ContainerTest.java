@@ -1,7 +1,7 @@
 package UoBToolchainGroup.DistributedToolchainIntegration;
 
-import java.time.Duration;
 
+import org.junit.jupiter.api.AfterAll;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -20,8 +20,7 @@ public class ContainerTest {
         .withExposedPorts(27017)
         .withEnv("MONGO_INITDB_ROOT_USERNAME", "test_admin")
         .withEnv("MONGO_INITDB_ROOT_PASSWORD","test_admin")
-        .withCopyFileToContainer(MountableFile.forClasspathResource("init-script.js"), "/docker-entrypoint-initdb.d/init-script.js")
-        .withStartupTimeout(Duration.ofSeconds(50));
+        .withCopyFileToContainer(MountableFile.forClasspathResource("init-script.js"), "/docker-entrypoint-initdb.d/init-script.js");
 
     //starts the mongo container and logs that init-script.js has been successfully read in
     //occurs prior to tests being run
@@ -42,10 +41,16 @@ public class ContainerTest {
     //Similar to applicaiton.properties file for main application
     @DynamicPropertySource
     static void setMongoProperties(DynamicPropertyRegistry registry){
-        registry.add("spring.data.mongodb.host", MONGO_TEST_CONTAINER::getHost);
-        registry.add("spring.data.mongodb.port", MONGO_TEST_CONTAINER::getFirstMappedPort);
-        registry.add("spring.data.mongodb.username", () -> "test_admin");
-        registry.add("spring.data.mongodb.password", () -> "test_admin");
+        // registry.add("spring.data.mongodb.host", MONGO_TEST_CONTAINER::getHost);
+        // registry.add("spring.data.mongodb.port", MONGO_TEST_CONTAINER::getFirstMappedPort);
+        // registry.add("spring.data.mongodb.username", () -> "test_admin");
+        // registry.add("spring.data.mongodb.password", () -> "test_admin");
+        registry.add("spring.data.mongodb.uri", () -> "mongodb://test_admin:test_admin@"+MONGO_TEST_CONTAINER.getHost()+":"+MONGO_TEST_CONTAINER.getFirstMappedPort()+"/service_test?authSource=admin");
         registry.add("spring.data.mongodb.database", () -> "service_test");
+    }
+
+    @AfterAll
+    static void teardown(){
+
     }
 }

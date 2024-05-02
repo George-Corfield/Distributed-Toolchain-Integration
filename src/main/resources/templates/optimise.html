@@ -2,170 +2,227 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
+    <link rel="stylesheet" th:href="@{/optimiseStyle.css}">
     <meta charset="UTF-8">
     <title>Optimise</title>
 </head>
 
 <body>
+    <!--returns user to variables page-->
+    <div class="back-button-container"> 
+        <a th:href="@{'/projects/' + ${projectName} + '/' + ${part.partId}}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
+    </div>
+
     <h1 th:text="${part.partName}"></h1>
     <h3 th:text="${part.partDescription}"></h3>
-    <br>
+    <div class="page-container">
+        <div class="left-column">
+            <h2><strong>Optimisation Parameters</strong></h2>
+            <h3>Current Iteration Limit:</h3>
+            <span style="margin-left: 25px;" th:text="${opParams.iterations}"></span>
+            
+            <h3>Current Modules Used:</h3>
+            <ol>
+                <li th:each="var : ${currentModules}" th:text="${var.fileName}"></li>
+            </ol>
+            
+            <h3>Current Optimisation Problem:</h3>
+            <span style="margin-left: 25px;" th:if="${opParams.maximising}">Maximisation</span>
+            <span style="margin-left: 25px;" th:if="${!opParams.maximising}">Minimisation</span>
+        </div>
+        <div class="right-column">
+            <!--button to set optmisation parameters-->
+            <button class="optimise-button" onclick="addOpForm()">Set Parameters</button>
+            
+            <!--cannot optimise without a module-->
+            <div th:if="${currentModules.isEmpty()}">
+                <div>Please Select Modules before Optimising</div>
+            </div>
+            <div th:if="${not currentModules.isEmpty()}">
+                <div>
+                    <table>
+                        <tr>
+                            <th>Module</th>
+                            <th>Variables</th>
+                        </tr>
+                        <tr th:each="currentMod, iter : ${currentModules}" th:id="'row-'+${iter.index}">
+                            <td th:text="${currentMod.fileName}"></td>
+                            <td th:id="'entry-'+${iter.index}">
+                                <!--option to add another 'module select'-->
+                                <button class="optimise-button2" type="button" onclick="addVarOption(this.parentNode)">Add Variable</button>
+                                <div class="varOption">
+                                    <select class="selectedVar" required>
+                                        <option th:each="var : ${variables}" th:value="${var.variableId}" th:text="${var.variableName}"></option>
+                                    </select>
+                                    <!--button to delete a 'module select'-->
+                                    <button class="optimise-button2" type="button" onclick="delVarOption(this, this.parentNode.parentNode.id)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--optimisation confirmation button-->
+                    <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" onsubmit="return validateChoices()" method="post">
+                        <input type="hidden" id="hiddenVariables" name="selectedVariables"/>
+                        <button class="optimise-button2" type="submit">Optimise</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2><strong>Optimisation Parameters</strong></h2>
-    <h3>Iteration Limit:</h3><span th:text="${opParams.iterations}"></span>
-    <h3>Modules:</h3>
-    <ol>
-        <li th:each="var : ${currentModules}" th:text="${var.fileName}"></li>
-    </ol>
-    <h3>Optimisation Problem:</h3>
-    <span th:if="${opParams.maximising}">Maximisation</span>
-    <span th:if="${!opParams.maximising}">Minimisation</span>
 
-    <br>
-    <button onclick="addOpForm()">Set Parameters</button>
-
+    <!--form to choose parameters for optimisaton-->
     <div class="opParams-form-popup" id="op-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}" th:object="${opParams}" method="post">
-            <h1>Change Optimisation Parameters</h1>
+            <h1>Change Optimization Parameters</h1>
+            <label for="opParamsIP"><b>PythonAPI IP Address</b></label>
+            <input type="text" th:placeholder="'Current: ' + ${opParams.ip}" th:field="*{ip}" th:value="${opParams.ip}"/>
+
             <label for="opParamsIterations"><b>Iteration Limit</b></label>
             <input type="number" th:placeholder="'Current: ' + ${opParams.iterations}" th:field="*{iterations}" th:value="${opParams.iterations}"/>
-
+    
             <label for="opParamsMaximisation"><b>Choose Problem Type</b></label>
             <select th:field="*{maximising}">
                 <option th:value="1">Maximisation</option>
                 <option th:value="0">Minimisation</option>
             </select>
-            <label for="opParamsModuleChoices"><b>Modules</b></label>
-            <div id="Options">
+    
+            
+            <div id="moduleOptions">
+                <label for="opParamsModuleChoices"><b>Modules:</b></label>
                 <div class="moduleOption">
-                    <select class="selectedModule" id="module">
+                    <select class="selectedModule" name="selectedModule">
                         <option th:each="var : ${allModules}" th:value="${var.fileId}" th:text="${var.fileName}"></option>
                     </select>
-                    <button type="button" onclick="addModOption(this.parentNode)">Add</button>
+                    <!--delete a module-->
                     <button type="button" onclick="delModOption(this)">Delete</button>
                 </div>
             </div>
-            
+    
             <input type="hidden" id="selectedModules" name="selectedModules"/>
-
+            
+            <!--add a module-->
+            <button type="button" onclick="addModOption()">Add a module</button>   
+            <!--submittion point-->
             <button type="submit" onclick="createModuleList()">Submit</button>
         </form>
-
+        <!--cancel the form-->
         <p class="message" onclick="cancelForm()">Cancel Changes</p>
     </div>
 
     <br>
 
-    <div th:if="${currentModules.isEmpty()}" style="float: right;">Please Select Modules before Optimising</div>
-    <div th:if="${not currentModules.isEmpty()}" style="float: right;">
-        <table>
-            <tr>
-                <th>Module</th>
-                <th>Variables</th>
-            </tr>
-            <tr th:each="currentMod, iter : ${currentModules}" th:id="'row-'+${iter.index}">
-                <td th:text="${currentMod.fileName}"></td>
-                <td th:id="'entry-'+${iter.index}">
-                    <button type="button" onclick="addVarOption(this.parentNode)">Add</button>
-                    <div class="varOption">
-                        <select class="selectedVar" required>
-                            <option th:each="var : ${variables}" th:value="${var.variableId}" th:text="${var.variableName}"></option>
-                        </select>
-                        <button type="button" onclick="delVarOption(this, this.parentNode.parentNode.id)">Delete</button>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" onsubmit="return validateChoices()" method="post">
-            <input type="hidden" id="hiddenVariables" name="selectedVariables"/>
-            <button type="submit">Optimise</button>
-        </form>
-    </div>
-</body>
-<script>
-    const insertAfter = (el, htmlString) => 
-            el.insertAdjacentHTML('afterend', htmlString);  
+    <script>
+        //add another module option
+        function addModOption() {
+            var newModuleOption = document.createElement('div');
+            newModuleOption.classList.add('moduleOption');
 
-    function addModOption(option){
-        var newModuleOption = option.cloneNode(true);
+            var selectModule = document.createElement('select');
+            selectModule.classList.add('selectedModule');
+            selectModule.name = 'selectedModule';
 
-        newModuleOption.querySelector('select').selectedIndex = -1;
-        document.getElementById("Options").append(newModuleOption);
-    }
+            var allModules = document.querySelectorAll('.selectedModule');
+            var options = allModules[0].innerHTML;
+            selectModule.innerHTML = options;
 
-    function delModOption(button){
-        if (document.getElementsByClassName("moduleOption").length = 1){
-            alert("Cannot have 0 modules to run");
-        } else {
-            document.getElementById("Options").removeChild(button.parentNode);
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.setAttribute('type', 'button');
+            deleteButton.setAttribute('onclick', 'delModOption(this)');
 
-        }
+            newModuleOption.appendChild(selectModule);
+            newModuleOption.appendChild(deleteButton);
+            document.getElementById("moduleOptions").appendChild(newModuleOption);
 
-    }
-
-    function addVarOption(tableData){
-        var newOption = tableData.getElementsByClassName('varOption')[0].cloneNode(true);
-
-
-        newOption.querySelector('select').selectedIndex =0;
-        document.getElementById(tableData.id).append(newOption);
-    }
-
-    function delVarOption(button, id){
-        var tableData = document.getElementById(id);
-        if (tableData.getElementsByClassName('varOption').length == 1){
-            alert("Cannot have 0 variable inputs!");
-        } else {
-            document.getElementById(id).removeChild(button.parentNode);
-        }
-       
-    }
-
-    function createModuleList(){
-        var selected = document.getElementsByClassName("selectedModule");
-        let data = [];
-        for (let i=0; i<selected.length; i++){
-            data.push(selected[i].value);
-        }
-        let hiddenInput = document.getElementById("selectedModules")
-        hiddenInput.value = data;
-    }
-
-    function addOpForm(){
-        document.getElementById("op-form").style.display="block";
-    }
-
-    function cancelForm() {
-        document.getElementById("op-form").style.display = "none";
-    }
-
-    function validateChoices(){
-        if (confirm("Some of your modules may have been uploaded by other users.\n Are you sure you want to continue?") == true){
-            createVariableList();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function createVariableList() {
-        let i = 0
-        let hiddenInput = document.getElementById("hiddenVariables");
-        var tableEntry = document.getElementById("entry-"+String(i));
-        let data = [];
-        while (tableEntry != null){
-            var options = tableEntry.getElementsByClassName("selectedVar");
-            let eachEntry = [];
-            for (let j=0; j<options.length; j++){
-                eachEntry.push(options[j].value);
+            //sometimes, adding another module adds another add button
+            //remove the add button if it exists
+            var addButton = document.getElementById('addButton');
+            if (addButton) {
+                addButton.parentNode.removeChild(addButton);
             }
-            i += 1;
-            tableEntry = document.getElementById("entry-"+String(i));
-            data.push(eachEntry);
         }
-        
-        hiddenInput.value = JSON.stringify(data);
 
-    }
-</script>
+        //delete a module option
+        //also stops the user from having zero modules
+        function delModOption(button){
+            if (document.getElementsByClassName("moduleOption").length == 1){
+                alert("Cannot have 0 modules to run");
+            } else {
+                button.parentNode.parentNode.removeChild(button.parentNode);
+            }
+        }
+
+        //option to add more variables to optimise
+        function addVarOption(tableData){
+            var newOption = tableData.getElementsByClassName('varOption')[0].cloneNode(true);
+            tableData.appendChild(newOption);
+        }
+
+        //delete a variable button
+        //also stops the user from having zero variables
+        function delVarOption(button, id){
+            var tableData = document.getElementById(id);
+            if (tableData.getElementsByClassName('varOption').length == 1){
+                alert("Cannot have 0 variable inputs!");
+            } else {
+                button.parentNode.parentNode.removeChild(button.parentNode);
+            }
+        }
+
+        //list for the modules selected to optimise
+        function createModuleList(){
+            var selected = document.getElementsByClassName("selectedModule");
+            let data = [];
+            for (let i=0; i<selected.length; i++){
+                data.push(selected[i].value);
+            }
+            let hiddenInput = document.getElementById("selectedModules")
+            hiddenInput.value = data;
+        }
+
+        //reveals the set parameters form
+        function addOpForm(){
+            document.getElementById("op-form").style.display="block";
+        }
+
+        //hides the set parameters form
+        function cancelForm() {
+            document.getElementById("op-form").style.display = "none";
+        }
+
+        //some modules can be set to public or private
+        //therefore some modules used may not have been made by the user
+        function validateChoices(){
+            if (confirm("Some of your modules may have been uploaded by other users.\n Are you sure you want to continue?") == true){
+                createVariableList();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //adding the optimisation results to the results table
+        function createVariableList() {
+            let i = 0
+            let hiddenInput = document.getElementById("hiddenVariables");
+            var tableEntry = document.getElementById("entry-"+String(i));
+            let data = [];
+            while (tableEntry != null){
+                var options = tableEntry.getElementsByClassName("selectedVar");
+                let eachEntry = [];
+                for (let j=0; j<options.length; j++){
+                    eachEntry.push(options[j].value);
+                }
+                i += 1;
+                tableEntry = document.getElementById("entry-"+String(i));
+                data.push(eachEntry);
+            }
+            hiddenInput.value = JSON.stringify(data);
+        }
+    </script>
+</body>
 </html>

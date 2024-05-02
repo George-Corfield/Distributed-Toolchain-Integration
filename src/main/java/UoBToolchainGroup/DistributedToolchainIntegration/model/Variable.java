@@ -1,3 +1,6 @@
+/*
+ * This class is used to create Variable objects.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import org.bson.types.ObjectId;
@@ -18,10 +21,16 @@ public class Variable {
     private double upBound;
     private boolean result;
 
+    //Constructors
+
     public Variable(){
         super();
         this.variableId = new ObjectId();
         this.result = false;
+    }
+
+    public Variable(Variable that){
+        this(that.variableId,that.partId, that.variableName, that.initVal, that.lowBound, that.upBound);
     }
 
     public Variable(ObjectId variableId,ObjectId partId, String variableName, double initVal, double lowBound, double upBound){
@@ -48,6 +57,7 @@ public class Variable {
     public Variable(String variableName, double initVal){
         //for result variables only
         super();
+        this.variableId = new ObjectId();
         this.variableName = variableName;
         this.initVal = initVal;
         this.lowBound = initVal;
@@ -59,6 +69,8 @@ public class Variable {
         this.variableName = variableName;
         this.result = false;
     }
+
+    //getters and setters
 
     public ObjectId getVariableId() {
         return variableId;
@@ -119,8 +131,31 @@ public class Variable {
 
     @Override
     public String toString(){
-        return String.format("{\"variableName\":\"%s\",\"initVal\":%f,\"lowBound\":%f,\"upBound\":%f}",
-        variableName, initVal, lowBound, upBound);
+        return String.format("{\"variableId\":\"%s\",\"variableName\":\"%s\",\"initVal\":%f,\"lowBound\":%f,\"upBound\":%f}",
+        variableId.toString(),variableName, initVal, lowBound, upBound);
     }
 
+    @Override
+    public boolean equals(Object v){
+        if (v == this){
+            return true;
+        }
+        if (!(v instanceof Variable)){
+            return false;
+        }
+        Variable that = (Variable) v;
+        return this.variableId.equals(that.variableId) && this.variableName.equals(this.variableName);
+    }
+
+    @Override
+    public final int hashCode(){
+        int result = 17;
+        if (variableId != null){
+            result = 31 * result + variableId.hashCode();
+        }
+        if (variableName != null){
+            result = 31 * result + variableName.hashCode();
+        }
+        return result;
+    }
 }

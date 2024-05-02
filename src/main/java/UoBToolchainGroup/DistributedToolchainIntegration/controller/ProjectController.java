@@ -1,3 +1,6 @@
+/*
+ * This is the controller for projects. It handles creating and modifying projects.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 import java.util.List;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Project;
 import UoBToolchainGroup.DistributedToolchainIntegration.model.Part;
@@ -25,6 +30,7 @@ public class ProjectController {
     @Autowired
     private PartService partService;
 
+    //Endpoint for visiting the projects page
     @GetMapping("/projects")
     public String loadProjects(@CookieValue("userId") String id, Model model, HttpServletRequest request){
         List<Project> projects = projectService.getProjectsByUser(new ObjectId(id));
@@ -34,6 +40,7 @@ public class ProjectController {
         return "projects";
     }
 
+    //Endpoint for viewing a specific project
     @GetMapping("/projects/{projectName}")
     public String getParts(@PathVariable String projectName, Model model){
         Project project = projectService.getProjectByName(projectName);
@@ -44,6 +51,7 @@ public class ProjectController {
         return "parts";
     }
 
+    //Endpoint for adding a part to a project.
     @PostMapping("/projects/{projectName}")
     public String addPart(@PathVariable String projectName, @ModelAttribute("newPart") Part part, Model model){
         Project project = projectService.getProjectByName(projectName);
@@ -52,10 +60,25 @@ public class ProjectController {
         return "redirect:/projects/" + projectName;
     }
 
+    //Endpoint for creating a new project.
     @PostMapping("/projects")
     public String addProject(@ModelAttribute("newProject") Project project, @CookieValue("userId") String id, Model model){
-        project.setUser(new ObjectId(id));
-        projectService.createProject(project);
+        Project checkProject = projectService.getProjectByName(project.getProjectName());
+        if (checkProject == null){
+            project.setUser(new ObjectId(id));
+            projectService.createProject(project);
+        }else {
+            //duplicate project error
+        }
         return "redirect:/projects";
     }
+
+    // not functioning correctly, error #500
+    // Endpoint for deleting a project
+    //@DeleteMapping("/projects/{projectId}")
+    //public String deleteProject(@PathVariable String projectId) {
+        //projectService.deleteProject(projectId);
+        //return "redirect:/projects";
+    //}
+
 }

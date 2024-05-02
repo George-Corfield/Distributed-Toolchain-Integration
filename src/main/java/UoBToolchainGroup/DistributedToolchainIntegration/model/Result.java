@@ -1,3 +1,6 @@
+/*
+ * This class is used to create Result objects
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.model;
 
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ public class Result {
     private double outputValue;
     private double fitnessLevel;
 
+    //Constuctors
 
     public Result(){
         resultId = new ObjectId();
@@ -29,6 +33,8 @@ public class Result {
         this.outputValue = outputVal;
         this.fitnessLevel = fitness;
     }
+
+    //getters and setters
 
     public ObjectId getResultId(){
         return resultId;
@@ -55,7 +61,11 @@ public class Result {
     }
 
     public void addVariable(Variable obj){
-        variables.add(obj);
+        System.out.println(variables);
+        System.out.println(obj);
+        if (!variables.contains(obj)){
+            variables.add(obj);
+        }
     }
 
     public double getOutputValue(){

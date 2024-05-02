@@ -1,3 +1,6 @@
+/*
+ * This is the parts controller. It has the endpoints for viewing and modifying parts.
+ */
 package UoBToolchainGroup.DistributedToolchainIntegration.controller;
 
 
@@ -34,7 +37,7 @@ public class PartController {
     private ResultService resultService;
     
 
-
+    //Endpoint for the page that shows information for a specific part.
     @GetMapping("/projects/{projectName}/{partId}")
     public String getPart(@PathVariable String projectName, @PathVariable String partId, Model model){
         Part part = partService.getPartbyId(new ObjectId(partId));
@@ -45,9 +48,10 @@ public class PartController {
         model.addAttribute("variable", new Variable());
         model.addAttribute("currentVariables", variables);
         model.addAttribute("results", results);
-        return "Optimisation";
+        return "optimisation";
     }
 
+    //Endpoint for adding a variable to a part.
     @PostMapping("/projects/{projectName}/{partId}")
     public String addVar(@PathVariable String projectName, @PathVariable String partId, Model model, @ModelAttribute("varialble") Variable variable){
         variable.setPartId(new ObjectId(partId));
@@ -55,8 +59,10 @@ public class PartController {
         return "redirect:/projects/{projectName}/{partId}";
     }
 
+    //Endpoint for adding variables to a part using a variables file.
     @PostMapping("/projects/varsfile/{projectName}/{partId}")
     public String addVars(@PathVariable String projectName, @PathVariable String partId, Model model, @RequestParam("file") MultipartFile file) throws IOException{
+        if(file.isEmpty()) {return "redirect:/projects/{projectName}/{partId}";}
         //turn the provided file into a variable file
         VariablesFile varFile = new VariablesFile(file.getOriginalFilename(), file.getContentType(), file.getBytes());
         List<Variable> varsList = varFile.getVarList();

@@ -8,22 +8,39 @@
 </head>
 
 <body>
-    <div class="header-container">
-        <h1 th:text="'Project: ' + ${project.projectName}">Project Name: </h1>
-        <h2>PARTS LIST:</h2>
-        <button class="new-project-button" onclick="addPart()">NEW PART</button>
-    </div>
-    <div class="button-container">
-        <button class="part-button" th:each="p : ${parts}">
-            <a th:href="@{${project.projectName} + '/' + ${p.partId}}">
-                <strong th:text="${p.partName}"></strong>
-            </a>
-            <br>
-            <span th:text="${p.partDescription}"></span>
-        </button>
+    <!--returns user to projects page-->
+    <div class="back-button-container"> 
+        <a th:href="@{'/projects'}">
+            <button class="back-button">
+                <strong>&lt;&lt;Previous</strong>
+            </button></a>
     </div>
 
-    <div class="part-form-popup" id="part-form" style="display:none;">
+    <div class="header-container">
+        <h1 th:text="${project.projectName}"></h1>
+        <div class = "header-button-container">
+            <!--button to create a new part-->
+            <button class="new-part-button" onclick="addPart()">NEW PART</button>
+            <!--see below as to why not functioning-->
+            <!--<button class="delete-project-button" onclick="deleteProjectForm()">DELETE PROJECT</button>-->
+        </div>
+    </div>
+
+     <!--button for all parts-->
+    <div class="button-container">
+        <th:block th:each="p : ${parts}">
+            <a th:href="@{${project.projectName} + '/' + ${p.partId}}">
+                <button class="part-button">
+                    <strong th:text="${p.partName}"></strong>
+                    <br>
+                    <span th:text="${p.partDescription}"></span>
+                </button>
+            </a>
+        </th:block>
+    </div>
+
+    <!--form to create new part-->
+    <div class="part-form-popup" id="part-form" style="display:none;"> 
         <form class="form" action="#" th:action="@{'/projects/' + ${project.projectName}}" th:object="${newPart}" method="post">
             <h2>New Part</h2>
 
@@ -38,15 +55,44 @@
         <p class="message" onclick="cancelPart()">Cancel new part</p>
     </div>
 
+    <!--this works, but the interaction with ProjectService and ProjectController are not functioning correctly, error #500-->
+    <!--<div class="delete-project-popup" id="delete-project-form" style="display:none;">
+        <form action="#" th:action="@{'/projects/'+ ${project.projectId}+'/delete'}" method="RequestMethod.DELETE"> /projects/{projectId}/delete
+            <h2>DELETE PROJECT</h2>
+
+            <label for="areYouSure"><b>Are you sure?</b></label>
+            <input type="checkbox" name="areYouSure" id="areYouSure" checked="false">
+
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="message" onclick="cancelDeleteProjectForm()">Cancel Upload</p>
+    </div>--> 
+
 </body>
 
 <script>
+     //reveals the new part form
     function addPart(){
         document.getElementById("part-form").style.display= "block";
     }
 
+    //hides the new part form
     function cancelPart() {
-        document.getElementById("part-form").style.display ="none";
+        document.getElementById("part-form").style.display ="none"; 
+    }  
+
+    //this works though the server side doesnt function as intended error #500
+    //reveals the delete project form
+    function deleteProjectForm() {
+        //note the checkbox refuses to start unchecked
+        document.getElementById("delete-project-form").style.display = "block"; 
+    }
+
+    //hides the delete project form
+    function cancelDeleteProjectForm() {
+        document.getElementById("delete-project-form").style.display = "none"; 
     }
 </script>
 </html>
