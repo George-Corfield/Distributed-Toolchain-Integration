@@ -48,6 +48,9 @@ The Java backend will connect to the database and it will forward the data onto 
 ## In-Depth-Explanation
 We were asked to provide an in depth explanation of the project and how it works a link to the document is [here](./documentation/InDepthExplanation.md).
 
+## Developer Notes for handover
+We were also asked to provide a series of notes to the next developers about what the project already does and how it works, as well as some client feedback and notes for development in the future. After following the Setup Instructions below, use this document to ensure the project is running correctly and understand the next steps. A link to this document is [here](./documentation/DeveloperNotes.md).
+
 ## Setup-Instructions
 
 ### Prerequisites
