@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <div class="back-button-container">
+    <!--returns user to variables page-->
+    <div class="back-button-container"> 
         <a th:href="@{'/projects/' + ${projectName} + '/' + ${part.partId}}">
             <button class="back-button">
                 <strong>&lt;&lt;Previous</strong>
@@ -33,8 +34,10 @@
             <span style="margin-left: 25px;" th:if="${!opParams.maximising}">Minimisation</span>
         </div>
         <div class="right-column">
+            <!--button to set optmisation parameters-->
             <button class="optimise-button" onclick="addOpForm()">Set Parameters</button>
             
+            <!--cannot optimise without a module-->
             <div th:if="${currentModules.isEmpty()}">
                 <div>Please Select Modules before Optimising</div>
             </div>
@@ -48,16 +51,19 @@
                         <tr th:each="currentMod, iter : ${currentModules}" th:id="'row-'+${iter.index}">
                             <td th:text="${currentMod.fileName}"></td>
                             <td th:id="'entry-'+${iter.index}">
+                                <!--option to add another 'module select'-->
                                 <button class="optimise-button2" type="button" onclick="addVarOption(this.parentNode)">Add Variable</button>
                                 <div class="varOption">
                                     <select class="selectedVar" required>
                                         <option th:each="var : ${variables}" th:value="${var.variableId}" th:text="${var.variableName}"></option>
                                     </select>
+                                    <!--button to delete a 'module select'-->
                                     <button class="optimise-button2" type="button" onclick="delVarOption(this, this.parentNode.parentNode.id)">Delete</button>
                                 </div>
                             </td>
                         </tr>
                     </table>
+                    <!--optimisation confirmation button-->
                     <form action="#" th:action="@{'/optimise/projects/' + ${projectName} + '/' + ${part.partId}}" onsubmit="return validateChoices()" method="post">
                         <input type="hidden" id="hiddenVariables" name="selectedVariables"/>
                         <button class="optimise-button2" type="submit">Optimise</button>
@@ -68,6 +74,7 @@
     </div>
 
 
+    <!--form to choose parameters for optimisaton-->
     <div class="opParams-form-popup" id="op-form" style="display:none;">
         <form class="form" action="#" th:action="@{'/projects/' + ${projectName} + '/' + ${part.partId} + '/optimise'}" th:object="${opParams}" method="post">
             <h1>Change Optimization Parameters</h1>
@@ -90,23 +97,26 @@
                     <select class="selectedModule" name="selectedModule">
                         <option th:each="var : ${allModules}" th:value="${var.fileId}" th:text="${var.fileName}"></option>
                     </select>
+                    <!--delete a module-->
                     <button type="button" onclick="delModOption(this)">Delete</button>
                 </div>
             </div>
     
             <input type="hidden" id="selectedModules" name="selectedModules"/>
-    
-            <button type="button" onclick="addModOption()">Add a module</button>
-    
+            
+            <!--add a module-->
+            <button type="button" onclick="addModOption()">Add a module</button>   
+            <!--submittion point-->
             <button type="submit" onclick="createModuleList()">Submit</button>
         </form>
-    
+        <!--cancel the form-->
         <p class="message" onclick="cancelForm()">Cancel Changes</p>
     </div>
 
     <br>
 
     <script>
+        //add another module option
         function addModOption() {
             var newModuleOption = document.createElement('div');
             newModuleOption.classList.add('moduleOption');
@@ -116,7 +126,7 @@
             selectModule.name = 'selectedModule';
 
             var allModules = document.querySelectorAll('.selectedModule');
-            var options = allModules[0].innerHTML; // Assuming all modules have the same options
+            var options = allModules[0].innerHTML;
             selectModule.innerHTML = options;
 
             var deleteButton = document.createElement('button');
@@ -128,13 +138,16 @@
             newModuleOption.appendChild(deleteButton);
             document.getElementById("moduleOptions").appendChild(newModuleOption);
 
-            // Remove the Add button if it exists
+            //sometimes, adding another module adds another add button
+            //remove the add button if it exists
             var addButton = document.getElementById('addButton');
             if (addButton) {
                 addButton.parentNode.removeChild(addButton);
             }
         }
 
+        //delete a module option
+        //also stops the user from having zero modules
         function delModOption(button){
             if (document.getElementsByClassName("moduleOption").length == 1){
                 alert("Cannot have 0 modules to run");
@@ -143,11 +156,14 @@
             }
         }
 
+        //option to add more variables to optimise
         function addVarOption(tableData){
             var newOption = tableData.getElementsByClassName('varOption')[0].cloneNode(true);
             tableData.appendChild(newOption);
         }
 
+        //delete a variable button
+        //also stops the user from having zero variables
         function delVarOption(button, id){
             var tableData = document.getElementById(id);
             if (tableData.getElementsByClassName('varOption').length == 1){
@@ -157,6 +173,7 @@
             }
         }
 
+        //list for the modules selected to optimise
         function createModuleList(){
             var selected = document.getElementsByClassName("selectedModule");
             let data = [];
@@ -167,14 +184,18 @@
             hiddenInput.value = data;
         }
 
+        //reveals the set parameters form
         function addOpForm(){
             document.getElementById("op-form").style.display="block";
         }
 
+        //hides the set parameters form
         function cancelForm() {
             document.getElementById("op-form").style.display = "none";
         }
 
+        //some modules can be set to public or private
+        //therefore some modules used may not have been made by the user
         function validateChoices(){
             if (confirm("Some of your modules may have been uploaded by other users.\n Are you sure you want to continue?") == true){
                 createVariableList();
@@ -184,6 +205,7 @@
             }
         }
 
+        //adding the optimisation results to the results table
         function createVariableList() {
             let i = 0
             let hiddenInput = document.getElementById("hiddenVariables");

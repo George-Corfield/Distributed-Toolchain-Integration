@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <div class="back-button-container">
+    <!--returns user to projects page-->
+    <div class="back-button-container"> 
         <a th:href="@{'/projects'}">
             <button class="back-button">
                 <strong>&lt;&lt;Previous</strong>
@@ -18,12 +19,14 @@
     <div class="header-container">
         <h1 th:text="${project.projectName}"></h1>
         <div class = "header-button-container">
+            <!--button to create a new part-->
             <button class="new-part-button" onclick="addPart()">NEW PART</button>
             <!--see below as to why not functioning-->
             <!--<button class="delete-project-button" onclick="deleteProjectForm()">DELETE PROJECT</button>-->
         </div>
     </div>
 
+     <!--button for all parts-->
     <div class="button-container">
         <th:block th:each="p : ${parts}">
             <a th:href="@{${project.projectName} + '/' + ${p.partId}}">
@@ -36,7 +39,8 @@
         </th:block>
     </div>
 
-    <div class="part-form-popup" id="part-form" style="display:none;">
+    <!--form to create new part-->
+    <div class="part-form-popup" id="part-form" style="display:none;"> 
         <form class="form" action="#" th:action="@{'/projects/' + ${project.projectName}}" th:object="${newPart}" method="post">
             <h2>New Part</h2>
 
@@ -69,20 +73,26 @@
 </body>
 
 <script>
+     //reveals the new part form
     function addPart(){
         document.getElementById("part-form").style.display= "block";
     }
 
+    //hides the new part form
     function cancelPart() {
-        document.getElementById("part-form").style.display ="none";
-    }   
+        document.getElementById("part-form").style.display ="none"; 
+    }  
 
+    //this works though the server side doesnt function as intended error #500
+    //reveals the delete project form
     function deleteProjectForm() {
-        document.getElementById("delete-project-form").style.display = "block";
+        //note the checkbox refuses to start unchecked
+        document.getElementById("delete-project-form").style.display = "block"; 
     }
 
+    //hides the delete project form
     function cancelDeleteProjectForm() {
-        document.getElementById("delete-project-form").style.display = "none";
+        document.getElementById("delete-project-form").style.display = "none"; 
     }
 </script>
 </html>
