@@ -34,7 +34,12 @@ We chose to use MongoDB as our database for the following reasons.
 * It is very scalable so it can be used into the future of the project.
 * It is popular so there are lost of resources online for how to use it well.
 
-It is possible to use any database of your choosing which may make it easier to integrate with current systems. The repository and service files will need to be replaced to do so.
+It is possible to use any database of your choosing which may make it easier to integrate with current systems. The repository and service files will need to be replaced to do so. 
+
+We have also set up provisions for a cloud database system, as well as a locally run database system. Each have they're own advantages with local systems being able to be run without internet connection, and also useful for a locally run server, whereas the cloud system is vastly better for deploying the system on the web, and for scaling up the amount of data stored. Developers taking on the project have a choice of which to use based on the development they are doing.
+
+Below is an image displaying the design and entity relations of the database collections: 
+![database ERD](../assets/database-SEP.png)
 
 ### Running the Modules
 The module will be run using the network. This is so that the modules can be run locally, over the network or the internet. It also allows for much easier interactions between the web-app and the modules through the use of API's.
@@ -48,8 +53,22 @@ Modules in the future can be run in one of two ways:
 * The Java backend will send the module file to an api which will take the json data and the module. It will then run the module as a sub-process using the json data as input.
 * The api will have different end points for different modules and the json data is sent to the endpoint for the module that needs to be run.
 
+### Optimisation Algorithm
+For the optimisation algorithm we chose a basic Hill climbing algorithm. As the name suggests, the algorithm uses an iterative technique to "climb a hill" where the peak of a hill represents an optimal solution. The way the algorithm has been implemented is by starting at an arbitrary solution, and at each iteration making small changes to try and produce a better solution. This means that over a long series of solutions it is able to make a series of fine changes to come to an optimal or almost optimal solution no matter the starting values. 
+
+We chose this as our initial optimisation algorithm mainly because it allowed us to differentiate problems into 2 categories, minimisation and maximisation. This means that our algorithm is able to work towards an unknown minimum/maximum value, which is ideal for optimisation problems that the NCC requires to be solved. In future iterations of this application/project, an updated system would allow users to select from a vast array of different optimisation techniques, each one would have its applications to different types of problems.
+
+### CI/CD
+The github repository uses actions to continually integrate and deploy the application to AWS. This means that everytime a change is made to the `dev` branch, all the code in both the python and java applications is tested. This is an automated process which allows multiple developers to merge their code and ensure they are not impacting already written and working code, and are ensuring they have passed all tests before code is allowed to be merged with working code. 
+
+On top of this, we have decided to use AWS to host our web application. This is done through a process called Continuous Deployment/Delivery, which means that everytime code is pushed to the `dev` branch, it is dockerised into two separate containers, and pushed to a repository on AWS. From there, code is then unpackaged and run on an Elastic Container Service, and available to any user who wants to access it. This process means that once code has been updated and integrated, it is automatically uploaded to a cloud server without any downtime. We decided to do this as a proof of concept that the application could be deployed and accessed on a cloud, but provisions are still there for users/clients to run the applications locally.
+
 ## Overall Structure 
 The project's structure has been mostly dictated by the chosen framework spring-boot. Here is an overview of the folders and what they contain, as well as any files. 
+#### The .github folder
+Contains templates for issues and pull requests to maintain consistency. Workflows are also stored here as a series of `.yml` files which document how the code is tested, built, dockerised and pushed to AWS to create a CI/CD pipeline. These do not impact how the project or code run.
+#### The AWS folder
+Contains a series of `.json` files used by the `aws.yml` file to push images to AWS. These do not impact the code or how the project runs, and should not be altered unless using AWS.
 #### The Assets folder
 Contains images and other assets used in the documentation files and the readme. These do not impact the code or how the project runs.
 #### The Documentation folder 
@@ -74,7 +93,7 @@ The pom.xml file (Project Object Model) is the main configuration file and conta
 The Java backend source code is located in the src folder.
 
 ### test folder
-Contains code used to test the code written in main. It does not affect the function of the web-app but the tests are useful to know if the code written in main is correct or not.
+Contains code used to test the code written in main. It does not affect the function of the web-app but the tests are useful to know if the code written in main is correct or not. For testing the database, the system uses a dockerised mongodb container, which runs locally on the machine and therefore does not interact with any actual data.
 
 ### main folder
 Contains the source code of the web-app.
@@ -88,7 +107,7 @@ Contains resources that are used in displaying the page in the web browser. When
 The following folder and files are located within the resources folder.
 * static - Contains the css used to style the web page.
 * templates - Contains the html used to format the webpage.
-* application.properties - Contains information on the application properties.
+* application.properties - Contains information on the application properties, particularly for defining where the database is to be accessed. Currently there are provisions that allow developers to switch between a cloud based database, and a local database depending on the type of developement needed.
 
 ## Python Backend
 
