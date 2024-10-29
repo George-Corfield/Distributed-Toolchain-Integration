@@ -25,8 +25,6 @@ This system will be need to be able to:
 
 A full document for the Project Overview and Requirements is available [here](./documentation/ProjectOverviewAndRequirements.md), as well as the proposed solution.
 
-This is for a test line
-
 ## Tech Stack
 * Python
 * Java
